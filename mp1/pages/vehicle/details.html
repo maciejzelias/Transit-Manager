@@ -1,0 +1,152 @@
+<html lang="pl-PL">
+
+<head>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <title>
+        QTransit Manager Demo
+    </title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            QTransit Manager
+        </h1>
+        <img src="../../images/logo.png" alt=" QTransit Company Logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="../index.html">
+                    Strona główna
+                </a>
+            </li>
+            <li>
+                <a href="../driver/list.html">
+                    Kierowcy
+                </a>
+            </li>
+            <li>
+                <a href="../transit/list.html">
+                    Przejazdy
+                </a>
+            </li>
+            <li>
+                <a href="./list.html">
+                    Pojazdy
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Szczegóły pojazdu</h2>
+
+        <form class="form">
+            <label for="brandName"> Marka: </label>
+            <input type="text" name="brandName" id="brandName" value="Mercedes" disabled>
+            <span id="errorBrandName"></span>
+
+            <label for="ProductionYear"> Rok Produkcji: </label>
+            <input type="number" name="ProductionYear" id="ProductionYear" value="1998" disabled>
+            <span id="errorProductionYear"></span>
+            <label for="SemitrailerSize"> Rozmiar Naczepy: </label>
+            <input type="number" name="SemitrailerSize" id="SemitrailerSize" value="" required min="1950" max="2022"
+                disabled>
+            <span id="errorSemitrailerSize"></span>
+
+            <div>
+                <a href="./form-edit.html">Edytuj</a>
+
+            </div>
+        </form>
+
+        <h2>Szczegóły przejazdów</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Marka
+                    </th>
+                    <th>
+                        Rok Produkcji
+                    </th>
+                    <th>
+                        Do
+                    </th>
+                    <th>
+                        Data od
+                    </th>
+                    <th>
+                        Data do
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>
+                        Mercedes
+                    </td>
+                    <td>
+                        1998
+                    </td>
+                    <td>
+                        Konstancin
+                    </td>
+                    <td>
+                        2022-10-20
+                    </td>
+                    <td>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Scania
+                    </td>
+                    <td>
+                        2004
+                    </td>
+                    <td>
+                        Gdańsk
+                    </td>
+                    <td>
+                        2022-10-20
+                    </td>
+                    <td>
+                        2022-10-21
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Scania
+                    </td>
+                    <td>
+                        2000
+                    </td>
+                    <td>
+                        Barcelona
+                    </td>
+                    <td>
+                        2022-05-11
+                    </td>
+                    <td>
+                        2022-05-14
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a href="./list.html">Powrót</a>
+
+        </div>
+    </main>
+    <footer>
+        Maciej Zelias s22482
+    </footer>
+</body>
+
+</html>

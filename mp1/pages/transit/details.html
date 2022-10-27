@@ -1,0 +1,108 @@
+<html lang="pl-PL">
+
+<head>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <title>
+        QTransit Manager Demo
+    </title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            QTransit Manager
+        </h1>
+        <img src="../../images/logo.png" alt=" QTransit Company Logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="../index.html">
+                    Strona główna
+                </a>
+            </li>
+            <li>
+                <a href="../driver/list.html">
+                    Kierowcy
+                </a>
+            </li>
+            <li>
+                <a href="../transit/list.html">
+                    Przejazdy
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    Pojazdy
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>
+            Szczegóły przejazdu
+        </h2>
+
+        <form>
+            <label for="toWhere"> Do: *</label>
+            <input type="text" name="toWhere" id="toWhere" value="Konstancin" required disabled>
+            <span id="errortoWhere"></span>
+
+            <label for="dateFrom"> Data Od: *</label>
+            <input type="date" name="dateFrom" id="ProductionYear" value="2022-10-20" required disabled>
+            <span id="errordateFrom"></span>
+
+            <label for="dateTo"> Data do: </label>
+            <input type="date" name="dateTo" id="dateTo" disabled>
+            <span id="errordateTo"></span>
+
+            <label for="vehicle"> Pojazd: *</label>
+            <select name="vehicle" id="vehicle" required disabled>
+                <option>
+                    -- wybierz pojazd --
+                </option>
+                <option value="1" selected>
+                    Mercedes 1998
+                </option>
+                <option value="2">
+                    Scania 2000
+                </option>
+                <option value="3">
+                    Scania 2004
+                </option>
+            </select>
+            <span id="errorVehicle"></span>
+
+            <label for="driver"> Kierowca: *</label>
+            <select name="driver" id="driver" required disabled>
+                <option>
+                    -- wybierz kierowcę --
+                </option>
+                <option value="1" selected>
+                    Jan Kowalski
+                </option>
+                <option value="2">
+                    Michał Jarosz
+                </option>
+                <option value="3">
+                    Jakub Mazur
+                </option>
+            </select>
+            <span id="errorDriver"></span>
+
+
+            <div>
+                <a href="./form-edit.html"> Edytuj</a>
+                <a href="./list.html">Powrót</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+        Maciej Zelias s22482
+    </footer>
+</body>
+
+</html>

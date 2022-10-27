@@ -1,0 +1,109 @@
+<html lang="pl-PL">
+
+<head>
+    <link rel="stylesheet" href="../css/style.css" />
+    <meta charset="UTF-8">
+    <title>
+        QTransit Manager Demo
+    </title>
+</head>
+
+<body>
+    <header>
+        <h1>
+            QTransit Manager
+        </h1>
+        <img src="../../images/logo.png" alt=" QTransit Company Logo">
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="../index.html">
+                    Strona główna
+                </a>
+            </li>
+            <li>
+                <a href="../driver/list.html">
+                    Kierowcy
+                </a>
+            </li>
+            <li>
+                <a href="../transit/list.html">
+                    Przejazdy
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    Pojazdy
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>
+            Nowy przejazd
+        </h2>
+
+        <form>
+            <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
+            <input type="text" name="toWhere" id="toWhere" required>
+            <span id="errortoWhere">Pole jest wymagane</span>
+
+            <label for="dateFrom"> Data Od: <span class="symbol-required">*</span></label>
+            <input type="date" name="dateFrom" id="ProductionYear" required>
+            <span id="errordateFrom">Pole jest wymagane</span>
+
+            <label for="dateTo"> Data do: </label>
+            <input type="date" name="dateTo" id="dateTo">
+            <span id="errordateTo"></span>
+
+            <label for="vehicle"> Pojazd: <span class="symbol-required">*</span></label>
+            <select name="vehicle" id="vehicle" required>
+                <option>
+                    -- wybierz pojazd --
+                </option value="1">
+                <option>
+                    Mercedes 1998
+                </option>
+                <option value="2">
+                    Scania 2000
+                </option>
+                <option value="3">
+                    Scania 2004
+                </option>
+            </select>
+            <span id="errorVehicle">źle wybrany pojazd</span>
+
+            <label for="driver"> Kierowca: <span class="symbol-required">*</span></label>
+            <select name="driver" id="driver" required>
+                <option>
+                    -- wybierz kierowcę --
+                </option>
+                <option value="1">
+                    Jan Kowalski
+                </option>
+                <option value="2">
+                    Michał Jarosz
+                </option>
+                <option value="3">
+                    Jakub Mazur
+                </option>
+            </select>
+            <span id="errorDriver">źle wybrany kierowca</span>
+
+
+            <div>
+                <p id="errorsSummary">Formularz zawiera błędy</p>
+                <input type="submit" value="Dodaj" />
+                <a href="./list.html">Anuluj</a>
+            </div>
+        </form>
+    </main>
+    <footer>
+        Maciej Zelias s22482
+    </footer>
+</body>
+
+</html>
