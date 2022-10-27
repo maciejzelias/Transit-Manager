@@ -71,6 +71,7 @@ footer {
 .list-actions-button-edit,
 .list-actions-button-delete,
 .button-add,
+.button-return,
 .form-button-submit,
 .form-button-cancel {
     display: inline-block;
@@ -116,6 +117,7 @@ footer {
 
 
 .button-add,
+.button-return,
 .form-button-submit,
 .form-button-cancel {
     padding: 0.5rem 1rem;
@@ -126,6 +128,16 @@ footer {
     background-color: #27ae60;
 }
 
+.button-return {
+    background-color: #2980b9;
+    margin-top: 1rem;
+}
+
+.button-return:hover {
+    background-color: #3498db;
+}
+
+.button-return a,
 .button-add a {
     text-align: center;
     color: white;
