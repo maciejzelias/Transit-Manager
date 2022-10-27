@@ -54,16 +54,16 @@
 
             <label for="ProductionYear"> Rok Produkcji: <span class="symbol-required">*</span></label>
             <input type="number" name="ProductionYear" id="ProductionYear" required>
-            <span id="errorProductionYear">Pole jest wymagane</span>
+            <span id="errorProductionYear" class="errors-text">Pole jest wymagane</span>
 
             <label for="SemitrailerSize"> Wielkość naczepy: </label>
             <input type="number" name="SemitrailerSize" id="SemitrailerSize">
-            <span id="errorSemitrailerSize">Pole musi być liczbą</span>
+            <span id="errorSemitrailerSize" class="errors-text">Pole musi być liczbą</span>
 
-            <div>
-                <p id="errorsSummary">Formularz zawiera błędy</p>
-                <input type="submit" value="Dodaj" />
-                <a href="./list.html">Anuluj</a>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text">Formularz zawiera błędy</p>
+                <input type="submit" value="Dodaj" class="form-button-submit" />
+                <a href="./list.html" class="form-button-cancel">Anuluj</a>
             </div>
         </form>
     </main>

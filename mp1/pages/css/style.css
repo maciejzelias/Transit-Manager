@@ -126,6 +126,11 @@ footer {
     background-color: #27ae60;
 }
 
+.button-add a {
+    text-align: center;
+    color: white;
+}
+
 .button-add:hover,
 .form-button-submit:hover{
     background-color: #2ecc71;
