@@ -1,7 +1,10 @@
 <html lang="pl-PL">
 
 <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="application/javascript" src="/js/validationTransitForm.js"></script>
+
     <meta charset="UTF-8">
     <title>
         QTransit Manager Demo
@@ -29,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="../transit/list.html">
+                <a href="../transit/list.html" class="active">
                     Przejazdy
                 </a>
             </li>
@@ -46,18 +49,18 @@
             Nowy przejazd
         </h2>
 
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
             <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
             <input type="text" name="toWhere" id="toWhere" required>
-            <span id="errortoWhere">Pole jest wymagane</span>
+            <span id="errortoWhere" class="errors-text">Pole jest wymagane</span>
 
             <label for="dateFrom"> Data Od: <span class="symbol-required">*</span></label>
             <input type="date" name="dateFrom" id="ProductionYear" required>
-            <span id="errordateFrom">Pole jest wymagane</span>
+            <span id="errordateFrom" class="errors-text">Pole jest wymagane</span>
 
             <label for="dateTo"> Data do: </label>
             <input type="date" name="dateTo" id="dateTo">
-            <span id="errordateTo"></span>
+            <span id="errordateTo" class="errors-text"></span>
 
             <label for="vehicle"> Pojazd: <span class="symbol-required">*</span></label>
             <select name="vehicle" id="vehicle" required>
@@ -74,7 +77,7 @@
                     Scania 2004
                 </option>
             </select>
-            <span id="errorVehicle">źle wybrany pojazd</span>
+            <span id="errorVehicle" class="errors-text">źle wybrany pojazd</span>
 
             <label for="driver"> Kierowca: <span class="symbol-required">*</span></label>
             <select name="driver" id="driver" required>
@@ -91,13 +94,13 @@
                     Jakub Mazur
                 </option>
             </select>
-            <span id="errorDriver">źle wybrany kierowca</span>
+            <span id="errorDriver" class="errors-text">źle wybrany kierowca</span>
 
 
-            <div>
-                <p id="errorsSummary">Formularz zawiera błędy</p>
-                <input type="submit" value="Dodaj" />
-                <a href="./list.html">Anuluj</a>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text">Formularz zawiera błędy</p>
+                <input type="submit" value="Dodaj" class="form-button-submit"/>
+                <a href="./list.html" class="form-button-cancel">Anuluj</a>
             </div>
         </form>
     </main>

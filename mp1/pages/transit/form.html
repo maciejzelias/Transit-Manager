@@ -1,7 +1,9 @@
 <html lang="pl-PL">
 
 <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="application/javascript" src="/js/validationTransitForm.js"></script>
     <meta charset="UTF-8">
     <title>
         QTransit Manager Demo
@@ -29,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a href="../transit/list.html">
+                <a href="../transit/list.html" class="active">
                     Przejazdy
                 </a>
             </li>
@@ -46,7 +48,11 @@
             Nowy przejazd
         </h2>
 
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
+            <label for="fromWhere"> Z: <span class="symbol-required">*</span></label>
+            <input type="text" name="fromWhere" id="fromWhere" required>
+            <span id="errorFromWhere"></span>
+
             <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
             <input type="text" name="toWhere" id="toWhere" required>
             <span id="errortoWhere"></span>

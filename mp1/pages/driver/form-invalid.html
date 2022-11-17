@@ -1,7 +1,9 @@
 <html lang="pl-PL">
 
 <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="application/javascript" src="/js/validationDriverForm.js"></script>
     <meta charset="UTF-8">
     <title>
         QTransit Manager Demo
@@ -24,7 +26,7 @@
                 </a>
             </li>
             <li>
-                <a href="./list.html">
+                <a href="./list.html" class="active">
                     Kierowcy
                 </a>
             </li>
@@ -47,23 +49,23 @@
         </h2>
 
 
-        <form>
+        <form class="form" novalidate onsubmit="return validateForm();">
             <label for="firstName"> Imię: <span class="symbol-required">*</span></label>
             <input type="text" name="firstName" id="firstName" required>
-            <span id="errorFirstName">Pole jest wymagane</span>
+            <span id="errorFirstName" class="errors-text" >Pole jest wymagane</span>
 
             <label for="lastName"> Nazwisko: <span class="symbol-required">*</span></label>
             <input type="text" name="lastName" id="lastName" required>
-            <span id="errorLastName">Pole jest wymagane</span>
+            <span id="errorLastName" class="errors-text">Pole jest wymagane</span>
 
             <label for="birthdayYear"> Rok urodzenia <span class="symbol-required">*</span></label>
             <input type="number" name="birthdayYear" id="birthdayYear" required min="1950" max="2022">
-            <span id="errorBirthdayYear">rok musi mieścić się w przedziale 1950 - 2022</span>
+            <span id="errorBirthdayYear" class="errors-text">Rok musi mieścić się w przedziale 1950 - 2022</span>
 
-            <div>
-                <p id="errorsSummary">Formularz zawiera błędy</p>
-                <input type="submit" value="Dodaj" />
-                <a href="./list.html">Anuluj</a>
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text">Formularz zawiera błędy</p>
+                <input type="submit" value="Dodaj" class="form-button-submit" />
+                <a href="./list.html"  class="form-button-cancel">Anuluj</a>
             </div>
         </form>
     </main>

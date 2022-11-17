@@ -1,7 +1,8 @@
 <html lang="pl-PL">
 
 <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../css/style.css" />
     <meta charset="UTF-8">
     <title>
         QTransit Manager Demo
@@ -29,12 +30,12 @@
                 </a>
             </li>
             <li>
-                <a href="../transit/list.html">
+                <a href="../transit/list.html" class="active">
                     Przejazdy
                 </a>
             </li>
             <li>
-                <a href="">
+                <a href="../vehicle/list.html">
                     Pojazdy
                 </a>
             </li>
@@ -46,20 +47,20 @@
             Szczegóły przejazdu
         </h2>
 
-        <form>
-            <label for="toWhere"> Do: *</label>
+        <form class="form">
+            <label for="toWhere"> Do:</label>
             <input type="text" name="toWhere" id="toWhere" value="Konstancin" required disabled>
             <span id="errortoWhere"></span>
 
-            <label for="dateFrom"> Data Od: *</label>
+            <label for="dateFrom"> Data Od:</label>
             <input type="date" name="dateFrom" id="ProductionYear" value="2022-10-20" required disabled>
             <span id="errordateFrom"></span>
 
-            <label for="dateTo"> Data do: </label>
+            <label for="dateTo"> Data do</label>
             <input type="date" name="dateTo" id="dateTo" disabled>
             <span id="errordateTo"></span>
 
-            <label for="vehicle"> Pojazd: *</label>
+            <label for="vehicle"> Pojazd:</label>
             <select name="vehicle" id="vehicle" required disabled>
                 <option>
                     -- wybierz pojazd --
@@ -76,7 +77,7 @@
             </select>
             <span id="errorVehicle"></span>
 
-            <label for="driver"> Kierowca: *</label>
+            <label for="driver"> Kierowca:</label>
             <select name="driver" id="driver" required disabled>
                 <option>
                     -- wybierz kierowcę --
@@ -94,9 +95,9 @@
             <span id="errorDriver"></span>
 
 
-            <div>
-                <a href="./form-edit.html"> Edytuj</a>
-                <a href="./list.html">Powrót</a>
+            <div class="form-buttons">
+                <a href="./form-edit.html" class="list-actions-button-edit"> Edytuj</a>
+                <a href="./list.html" class="button-return">Powrót</a>
             </div>
         </form>
     </main>

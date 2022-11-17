@@ -1,7 +1,9 @@
 <html lang="pl-PL">
 
 <head>
-    <link rel="stylesheet" href="../css/style.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../../css/style.css" />
+    <script type="application/javascript" src="/js/validationVehicleForm.js"></script>
     <meta charset="UTF-8">
     <title>
         QTransit Manager Demo
@@ -34,7 +36,7 @@
                 </a>
             </li>
             <li>
-                <a href="./list.html">
+                <a href="./list.html" class="active">
                     Pojazdy
                 </a>
             </li>
@@ -47,7 +49,7 @@
             Nowy pojazd
         </h2>
 
-        <form class="form">
+        <form class="form" novalidate onsubmit="return validateForm();">
             <label for="brandName"> Marka: <span class="symbol-required">*</span></label>
             <input type="text" name="brandName" id="brandName" required>
             <span id="errorBrandName" class="errors-text">Pole jest wymagane</span>
