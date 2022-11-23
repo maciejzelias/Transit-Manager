@@ -1,76 +1,43 @@
-<html lang="pl-PL">
+<%- include("../../fragments/header.ejs") %>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../../css/style.css" />
-    <script type="application/javascript" src="/js/validationDriverForm.js"></script>
-    <meta charset="UTF-8">
-    <title>
-        QTransit Manager Demo
-    </title>
-</head>
+<main>
+  <h2>Edycja Pracownika</h2>
 
-<body>
-    <header>
-        <h1>
-            QTransit Manager
-        </h1>
-        <img src="../../images/logo.png" alt=" QTransit Company Logo">
-    </header>
+  <form class="form" novalidate onsubmit="return validateForm();">
+    <label for="firstName"> Imię: <span class="symbol-required">*</span></label>
+    <input type="text" name="firstName" id="firstName" value="Jan" required />
+    <span id="errorFirstName"></span>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="../../index.html">
-                    Strona główna
-                </a>
-            </li>
-            <li>
-                <a href="./list.html" class="active">
-                    Kierowcy
-                </a>
-            </li>
-            <li>
-                <a href="../transit/list.html">
-                    Przejazdy
-                </a>
-            </li>
-            <li>
-                <a href="../vehicle/list.html">
-                    Pojazdy
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <label for="lastName">
+      Nazwisko: <span class="symbol-required">*</span></label
+    >
+    <input
+      type="text"
+      name="lastName"
+      id="lastName"
+      value="Kowalski"
+      required
+    />
+    <span id="errorLastName"></span>
 
-    <main>
-        <h2>
-            Edycja Pracownika
-        </h2>
+    <label for="birthdayYear">
+      Rok urodzenia <span class="symbol-required">*</span></label
+    >
+    <input
+      type="number"
+      name="birthdayYear"
+      id="birthdayYear"
+      required
+      min="1950"
+      max="2022"
+    />
+    <span id="errorBirthdayYear"></span>
 
-        <form class="form" novalidate onsubmit="return validateForm();">
-            <label for="firstName"> Imię: <span class="symbol-required">*</span></label>
-            <input type="text" name="firstName" id="firstName" value="Jan" required>
-            <span id="errorFirstName"></span>
-
-            <label for="lastName"> Nazwisko: <span class="symbol-required">*</span></label>
-            <input type="text" name="lastName" id="lastName" value="Kowalski" required>
-            <span id="errorLastName"></span>
-
-            <label for="birthdayYear"> Rok urodzenia <span class="symbol-required">*</span></label>
-            <input type="number" name="birthdayYear" id="birthdayYear" required min="1950" max="2022">
-            <span id="errorBirthdayYear"></span>
-
-            <div class="form-buttons">
-                <p id="errorsSummary"></p>
-                <input type="submit" value="Akceptuj" class="form-button-submit"/>
-                <a href="./list.html" class="form-button-cancel">Anuluj </a>
-            </div>
-        </form>
-    </main>
-    <footer>
-        Maciej Zelias s22482
-    </footer>
-</body>
-
-</html>
+    <div class="form-buttons">
+      <p id="errorsSummary"></p>
+      <input type="submit" value="Akceptuj" class="form-button-submit" />
+      <a href="./list.html" class="form-button-cancel">Anuluj </a>
+    </div>
+  </form>
+</main>
+<%- include("../../fragments/footer.ejs") %>

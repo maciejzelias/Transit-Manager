@@ -1,154 +1,91 @@
-<html lang="pl-PL">
+<%- include("../../fragments/header.ejs") %>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../../css/style.css" />
-    <meta charset="UTF-8">
-    <title>
-        QTransit Manager Demo
-    </title>
-</head>
+<main>
+  <h2>Lista pojazdów</h2>
+  <table class="table-list">
+    <thead>
+      <tr>
+        <th>Marka</th>
+        <th>Rok produkcji</th>
+        <th>Rozmiar naczepy</th>
+        <th>Akcje</th>
+      </tr>
+    </thead>
 
-<body>
-    <header>
-        <h1>
-            QTransit Manager
-        </h1>
-        <img src="../../images/logo.png" alt=" QTransit Company Logo">
-    </header>
-
-    <nav>
-        <ul>
+    <tbody>
+      <tr>
+        <td label="Marka">Mercedes</td>
+        <td label="Rok Produkcji">1998</td>
+        <td label="Rozmiar Naczepy"></td>
+        <td label="Akcje">
+          <ul class="list-actions">
             <li>
-                <a href="../../index.html">
-                    Strona główna
-                </a>
+              <a href="/vehicles/details/p1" class="list-actions-button-details"
+                >Szczegóły</a
+              >
             </li>
             <li>
-                <a href="../driver/list.html">
-                    Kierowcy
-                </a>
+              <a href="/vehicles/edit/p1" class="list-actions-button-edit"
+                >Edytuj</a
+              >
             </li>
             <li>
-                <a href="../transit/list.html">
-                    Przejazdy
-                </a>
+              <a href="" class="list-actions-button-delete">Usuń</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+
+      <tr>
+        <td>Scania</td>
+        <td>2004</td>
+        <td>5</td>
+        <td>
+          <ul class="list-actions">
+            <li>
+              <a href="/vehicles/details/p2" class="list-actions-button-details"
+                >Szczegóły</a
+              >
             </li>
             <li>
-                <a href="" class="active">
-                    Pojazdy
-                </a>
+              <a href="/vehicles/edit/p2" class="list-actions-button-edit"
+                >Edytuj</a
+              >
             </li>
-        </ul>
-    </nav>
+            <li>
+              <a href="" class="list-actions-button-delete">Usuń</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
 
-    <main>
-        <h2>Lista pojazdów</h2>
-        <table class='table-list'>
-            <thead>
-                <tr>
-                    <th>
-                        Marka
-                    </th>
-                    <th>
-                        Rok produkcji
-                    </th>
-                    <th>
-                        Rozmiar naczepy
-                    </th>
-                    <th>
-                        Akcje
-                    </th>
-                </tr>
-            </thead>
+      <tr>
+        <td>Scania</td>
+        <td>2000</td>
+        <td>4</td>
+        <td>
+          <ul class="list-actions">
+            <li>
+              <a href="/vehicles/details/p3" class="list-actions-button-details"
+                >Szczegóły</a
+              >
+            </li>
+            <li>
+              <a href="/vehicles/edit/p3" class="list-actions-button-edit"
+                >Edytuj</a
+              >
+            </li>
+            <li>
+              <a href="" class="list-actions-button-delete">Usuń</a>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-            <tbody>
-                <tr>
-                    <td label="Marka">
-                        Mercedes
-                    </td>
-                    <td label="Rok Produkcji">
-                        1998
-                    </td>
-                    <td label="Rozmiar Naczepy">
-
-                    </td>
-                    <td label="Akcje">
-                        <ul class="list-actions">
-                            <li>
-                                <a href="./details.html" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="./form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        Scania
-                    </td>
-                    <td>
-                        2004
-                    </td>
-                    <td>
-                        5
-                    </td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                                <a href="./details.html" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="./form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>
-                        Scania
-                    </td>
-                    <td>
-                        2000
-                    </td>
-                    <td>
-                        4
-                    </td>
-                    <td>
-                        <ul class="list-actions">
-                            <li>
-                                <a href="./details.html" class="list-actions-button-details">Szczegóły</a>
-                            </li>
-                            <li>
-                                <a href="./form-edit.html" class="list-actions-button-edit">Edytuj</a>
-                            </li>
-                            <li>
-                                <a href="" class="list-actions-button-delete">Usuń</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p class='button-add'>
-            <a href="form.html">
-                Dodaj nowy pojazd
-            </a>
-        </p>
-    </main>
-    <footer>
-        Maciej Zelias s22482
-    </footer>
-</body>
-
-</html>
+  <p class="button-add">
+    <a href="/vehicles/add"> Dodaj nowy pojazd </a>
+  </p>
+</main>
+<%- include("../../fragments/footer.ejs") %>

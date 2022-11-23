@@ -1,77 +1,32 @@
-<html lang="pl-PL">
+<%- include("../../fragments/header.ejs") %>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../../css/style.css" />
-    <script type="application/javascript" src="/js/validationVehicleForm.js"></script>
-    <meta charset="UTF-8">
-    <title>
-        QTransit Manager Demo
-    </title>
-</head>
+<main>
+  <h2>Nowy pojazd</h2>
 
-<body>
-    <header>
-        <h1>
-            QTransit Manager
-        </h1>
-        <img src="../../images/logo.png" alt=" QTransit Company Logo">
-    </header>
+  <form class="form" novalidate onsubmit="return validateForm();">
+    <label for="brandName">
+      Marka: <span class="symbol-required">*</span></label
+    >
+    <input type="text" name="brandName" id="brandName" required />
+    <span id="errorBrandName" class="errors-text">Pole jest wymagane</span>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="../../index.html">
-                    Strona główna
-                </a>
-            </li>
-            <li>
-                <a href="../driver/list.html">
-                    Kierowcy
-                </a>
-            </li>
-            <li>
-                <a href="../transit/list.html">
-                    Przejazdy
-                </a>
-            </li>
-            <li>
-                <a href="./list.html" class="active">
-                    Pojazdy
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <label for="ProductionYear">
+      Rok Produkcji: <span class="symbol-required">*</span></label
+    >
+    <input type="number" name="ProductionYear" id="ProductionYear" required />
+    <span id="errorProductionYear" class="errors-text">Pole jest wymagane</span>
 
-    <main>
+    <label for="SemitrailerSize"> Wielkość naczepy: </label>
+    <input type="number" name="SemitrailerSize" id="SemitrailerSize" />
+    <span id="errorSemitrailerSize" class="errors-text"
+      >Pole musi być liczbą</span
+    >
 
-        <h2>
-            Nowy pojazd
-        </h2>
-
-        <form class="form" novalidate onsubmit="return validateForm();">
-            <label for="brandName"> Marka: <span class="symbol-required">*</span></label>
-            <input type="text" name="brandName" id="brandName" required>
-            <span id="errorBrandName" class="errors-text">Pole jest wymagane</span>
-
-            <label for="ProductionYear"> Rok Produkcji: <span class="symbol-required">*</span></label>
-            <input type="number" name="ProductionYear" id="ProductionYear" required>
-            <span id="errorProductionYear" class="errors-text">Pole jest wymagane</span>
-
-            <label for="SemitrailerSize"> Wielkość naczepy: </label>
-            <input type="number" name="SemitrailerSize" id="SemitrailerSize">
-            <span id="errorSemitrailerSize" class="errors-text">Pole musi być liczbą</span>
-
-            <div class="form-buttons">
-                <p id="errorsSummary" class="errors-text">Formularz zawiera błędy</p>
-                <input type="submit" value="Dodaj" class="form-button-submit" />
-                <a href="./list.html" class="form-button-cancel">Anuluj</a>
-            </div>
-        </form>
-    </main>
-    <footer>
-        Maciej Zelias s22482
-    </footer>
-</body>
-
-</html>
+    <div class="form-buttons">
+      <p id="errorsSummary" class="errors-text">Formularz zawiera błędy</p>
+      <input type="submit" value="Dodaj" class="form-button-submit" />
+      <a href="./list.html" class="form-button-cancel">Anuluj</a>
+    </div>
+  </form>
+</main>
+<%- include("../../fragments/footer.ejs") %>

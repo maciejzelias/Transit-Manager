@@ -1,153 +1,78 @@
-<html lang="pl-PL">
+<%- include("../../fragments/header.ejs") %>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../../css/style.css" />
-    <meta charset="UTF-8">
-    <title>
-        QTransit Manager Demo
-    </title>
-</head>
+<main>
+  <h2>Szczegóły kierowcy</h2>
 
-<body>
-    <header>
-        <h1>
-            QTransit Manager
-        </h1>
-        <img src="../../images/logo.png" alt=" QTransit Company Logo">
-    </header>
+  <form class="form">
+    <label for="firstName"> Imię: </label>
+    <input type="text" name="firstName" id="firstName" value="Jan" disabled />
+    <span id="errorFirstName"></span>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="../../index.html">
-                    Strona główna
-                </a>
-            </li>
-            <li>
-                <a href="./list.html" class="active">
-                    Kierowcy
-                </a>
-            </li>
-            <li>
-                <a href="../transit/list.html">
-                    Przejazdy
-                </a>
-            </li>
-            <li>
-                <a href="../vehicle/list.html">
-                    Pojazdy
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <label for="lastName"> Nazwisko:</label>
+    <input
+      type="text"
+      name="lastName"
+      id="lastName"
+      value="Kowalski"
+      disabled
+    />
+    <span id="errorLastName"></span>
+    <label for="birthdayYear"> Rok urodzenia:</label>
+    <input
+      type="number"
+      name="birthdayYear"
+      id="birthdayYear"
+      value="1986"
+      required
+      min="1950"
+      max="2022"
+      disabled
+    />
+    <span id="errorBirthdayYear"></span>
 
-    <main>
-        <h2>Szczegóły kierowcy</h2>
+    <div class="form-buttons">
+      <a href="./form-edit.html" class="list-actions-button-edit">Edytuj</a>
+    </div>
+  </form>
 
-        <form class="form">
-            <label for="firstName"> Imię: </label>
-            <input type="text" name="firstName" id="firstName" value="Jan" disabled>
-            <span id="errorFirstName"></span>
+  <h2>Szczegóły przejazdów</h2>
+  <table class="table-list">
+    <thead>
+      <tr>
+        <th>Marka</th>
+        <th>Rok Produkcji</th>
+        <th>Do</th>
+        <th>Data od</th>
+        <th>Data do</th>
+      </tr>
+    </thead>
 
-            <label for="lastName"> Nazwisko:</label>
-            <input type="text" name="lastName" id="lastName" value="Kowalski" disabled>
-            <span id="errorLastName"></span>
-            <label for="birthdayYear"> Rok urodzenia:</label>
-            <input type="number" name="birthdayYear" id="birthdayYear" value="1986" required min="1950" max="2022"
-                disabled>
-            <span id="errorBirthdayYear"></span>
-
-            <div class="form-buttons">
-                <a href="./form-edit.html" class="list-actions-button-edit">Edytuj</a>
-
-            </div>
-        </form>
-
-        <h2>Szczegóły przejazdów</h2>
-        <table class="table-list">
-            <thead>
-                <tr>
-                    <th>
-                        Marka
-                    </th>
-                    <th>
-                        Rok Produkcji
-                    </th>
-                    <th>
-                        Do
-                    </th>
-                    <th>
-                        Data od
-                    </th>
-                    <th>
-                        Data do
-                    </th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>
-                        Mercedes
-                    </td>
-                    <td>
-                        1998
-                    </td>
-                    <td>
-                        Konstancin
-                    </td>
-                    <td>
-                        2022-10-20
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Scania
-                    </td>
-                    <td>
-                        2004
-                    </td>
-                    <td>
-                        Gdańsk
-                    </td>
-                    <td>
-                        2022-10-20
-                    </td>
-                    <td>
-                        2022-10-21
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Scania
-                    </td>
-                    <td>
-                        2000
-                    </td>
-                    <td>
-                        Barcelona
-                    </td>
-                    <td>
-                        2022-05-11
-                    </td>
-                    <td>
-                        2022-05-14
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="button-return">
-            <a href="./list.html">Powrót</a>
-
-        </div>
-    </main>
-    <footer>
-        Maciej Zelias s22482
-    </footer>
-</body>
-
-</html>
+    <tbody>
+      <tr>
+        <td>Mercedes</td>
+        <td>1998</td>
+        <td>Konstancin</td>
+        <td>2022-10-20</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Scania</td>
+        <td>2004</td>
+        <td>Gdańsk</td>
+        <td>2022-10-20</td>
+        <td>2022-10-21</td>
+      </tr>
+      <tr>
+        <td>Scania</td>
+        <td>2000</td>
+        <td>Barcelona</td>
+        <td>2022-05-11</td>
+        <td>2022-05-14</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="button-return">
+    <a href="./list.html">Powrót</a>
+  </div>
+</main>
+<%- include("../../fragments/footer.ejs") %>

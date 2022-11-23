@@ -21,6 +21,16 @@ function checkRequired(value) {
   return true;
 }
 
+function checkRange(value, min, max) {
+  if (!value) {
+    return false;
+  }
+  if (value < min || value > max) {
+    return false;
+  }
+  return true;
+}
+
 function checkTextLengthRange(value, min, max) {
   if (!value) {
     return false;
@@ -41,6 +51,52 @@ function CheckYear(value) {
   const date = new Date();
   const currYear = date.getFullYear();
   if (value > currYear) {
+    return false;
+  }
+  return true;
+}
+
+function CheckVehicleYear(value) {
+  if (!value) return false;
+  value = value.toString().trim();
+  const date = new Date();
+  const currYear = date.getFullYear();
+  if (value > currYear) {
+    return false;
+  }
+  if (value > 1900) {
+    return false;
+  }
+
+  return true;
+}
+
+function checkDate(value) {
+  if (!value) {
+    return false;
+  }
+  const pattern = /(\d{2})-(\d{2})-(\d{4})/;
+  return pattern.test(value);
+}
+
+function checkDateIsAfter(value, compareTo) {
+  if (!value) {
+    return false;
+  }
+  if (!compareTo) {
+    return false;
+  }
+  const pattern = /(\d{2})-(\d{2})-(\d{4})/;
+  if (!pattern.test(value)) {
+    return false;
+  }
+
+  if (!pattern.test(compareTo(false))) {
+    return false;
+  }
+  const valueDate = new Date(value);
+  const compareToDate = new Date(compareTo);
+  if (valueDate.getTime() < compareToDate.getTime()) {
     return false;
   }
   return true;

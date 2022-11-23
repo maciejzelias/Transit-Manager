@@ -1,43 +1,8 @@
-<html lang="pl-PL">
-  <head>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="./css/style.css" />
-    <script
-      type="application/javascript"
-      src="/js/validationCommon.js"
-    ></script>
-    <meta charset="UTF-8" />
-    <title>QTransit Manager Demo</title>
-  </head>
-
-  <body>
-    <header>
-      <h1>QTransit Manager</h1>
-      <img src="../images/logo.png" alt=" QTransit Company Logo" />
-    </header>
-
-    <nav>
-      <ul>
-        <li>
-          <a href="" class="active"> Strona główna </a>
-        </li>
-        <li>
-          <a href="./pages/driver/list.html"> Kierowcy </a>
-        </li>
-        <li>
-          <a href="./pages/transit/list.html"> Przejazdy </a>
-        </li>
-        <li>
-          <a href="./pages/vehicle/list.html"> Pojazdy </a>
-        </li>
-      </ul>
-    </nav>
+<%- include("./fragments/header.ejs") %>
 
     <main>
       <h2>Strona główna</h2>
       <p>Webowy manager przejazdow firmy QTransit</p>
     </main>
 
-    <footer>Maciej Zelias s22482</footer>
-  </body>
-</html>
+<%- include('./fragments/footer.ejs') %>

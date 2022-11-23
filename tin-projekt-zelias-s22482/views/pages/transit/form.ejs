@@ -1,115 +1,57 @@
-<html lang="pl-PL">
+<%- include("../../fragments/header.ejs") %>
 
-<head>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="../../css/style.css" />
-    <script type="application/javascript" src="/js/validationTransitForm.js"></script>
-    <meta charset="UTF-8">
-    <title>
-        QTransit Manager Demo
-    </title>
-</head>
+<main>
+  <h2>Nowy przejazd</h2>
 
-<body>
-    <header>
-        <h1>
-            QTransit Manager
-        </h1>
-        <img src="../../images/logo.png" alt=" QTransit Company Logo">
-    </header>
+  <form class="form" novalidate onsubmit="return validateForm();">
+    <label for="fromWhere"> Z: <span class="symbol-required">*</span></label>
+    <input type="text" name="fromWhere" id="fromWhere" required />
+    <span id="errorFromWhere"></span>
 
-    <nav>
-        <ul>
-            <li>
-                <a href="../../index.html">
-                    Strona główna
-                </a>
-            </li>
-            <li>
-                <a href="../driver/list.html">
-                    Kierowcy
-                </a>
-            </li>
-            <li>
-                <a href="../transit/list.html" class="active">
-                    Przejazdy
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    Pojazdy
-                </a>
-            </li>
-        </ul>
-    </nav>
+    <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
+    <input type="text" name="toWhere" id="toWhere" required />
+    <span id="errorToWhere"></span>
 
-    <main>
-        <h2>
-            Nowy przejazd
-        </h2>
+    <label for="dateFrom">
+      Data Od: <span class="symbol-required">*</span></label
+    >
+    <input type="date" name="dateFrom" id="dateFrom" required />
+    <span id="errorDateFrom"></span>
 
-        <form class="form" novalidate onsubmit="return validateForm();">
-            <label for="fromWhere"> Z: <span class="symbol-required">*</span></label>
-            <input type="text" name="fromWhere" id="fromWhere" required>
-            <span id="errorFromWhere"></span>
+    <label for="dateTo"> Data do: </label>
+    <input type="date" name="dateTo" id="dateTo" />
+    <span id="errorDateTo"></span>
 
-            <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
-            <input type="text" name="toWhere" id="toWhere" required>
-            <span id="errortoWhere"></span>
+    <label for="vehicle"> Pojazd: <span class="symbol-required">*</span></label>
+    <select name="vehicle" id="vehicle" required>
+      <option>-- wybierz pojazd --</option>
+      <option value="1">Mercedes 1998</option>
+      <option value="2">Scania 2000</option>
+      <option value="3">Scania 2004</option>
+    </select>
+    <span id="errorVehicle"></span>
 
-            <label for="dateFrom"> Data Od: <span class="symbol-required">*</span></label>
-            <input type="date" name="dateFrom" id="ProductionYear" required>
-            <span id="errordateFrom"></span>
+    <label for="driver">
+      Kierowca: <span class="symbol-required">*</span></label
+    >
+    <select name="driver" id="driver" required>
+      <option>-- wybierz kierowcę --</option>
+      <option value="1">Jan Kowalski</option>
+      <option value="2">Michał Jarosz</option>
+      <option value="3">Jakub Mazur</option>
+    </select>
+    <span id="errorDriver"></span>
 
-            <label for="dateTo"> Data do: </label>
-            <input type="date" name="dateTo" id="dateTo">
-            <span id="errordateTo"></span>
-
-            <label for="vehicle"> Pojazd: <span class="symbol-required">*</span></label>
-            <select name="vehicle" id="vehicle" required>
-                <option>
-                    -- wybierz pojazd --
-                </option>
-                <option value="1">
-                    Mercedes 1998
-                </option>
-                <option value="2">
-                    Scania 2000
-                </option>
-                <option value="3">
-                    Scania 2004
-                </option>
-            </select>
-            <span id="errorVehicle"></span>
-
-            <label for="driver"> Kierowca: <span class="symbol-required">*</span></label>
-            <select name="driver" id="driver" required>
-                <option>
-                    -- wybierz kierowcę --
-                </option>
-                <option value="1">
-                    Jan Kowalski
-                </option>
-                <option value="2">
-                    Michał Jarosz
-                </option>
-                <option value="3">
-                    Jakub Mazur
-                </option>
-            </select>
-            <span id="errorDriver"></span>
-
-
-            <div class="form-buttons">
-                <p id="errorsSummary"></p>
-                <input type="submit" value="Dodaj" class="form-button-submit"/>
-                <a href="./list.html" class="form-button-cancel">Anuluj</a>
-            </div>
-        </form>
-    </main>
-    <footer>
-        Maciej Zelias s22482
-    </footer>
-</body>
-
-</html>
+    <div class="form-buttons">
+      <p id="errorsSummary"></p>
+      <input
+        type="submit"
+        value="Dodaj"
+        class="form-button-submit"
+        onsubmit="console.log('elo')"
+      />
+      <a href="./list.html" class="form-button-cancel">Anuluj</a>
+    </div>
+  </form>
+</main>
+<%- include("../../fragments/footer.ejs") %>
