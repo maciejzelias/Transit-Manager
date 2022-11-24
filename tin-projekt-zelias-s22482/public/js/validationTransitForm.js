@@ -84,7 +84,8 @@ function validateForm() {
     valid = false;
     dateFromInput.classList.add("error-input");
     erorrDateFrom.innerText("To pole jest wymagane");
-  } else if (!checkDate(dateFromInput.value)) {
+  } 
+  else if (!checkDate(dateFromInput.value)) {
     valid = false;
     dateFromInput.classList.add("error-input");
     erorrDateFrom.innerText(

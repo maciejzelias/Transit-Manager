@@ -13,9 +13,9 @@ function checkRequired(value) {
   if (!value) {
     return false;
   }
-  value = value.toString();
+  value = value.toString().trim();
 
-  if (value.trim() === "") {
+  if (value === "") {
     return false;
   }
   return true;
