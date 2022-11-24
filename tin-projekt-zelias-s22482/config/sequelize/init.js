@@ -7,26 +7,26 @@ const Vehicle = require("../../model/sequelize/Vehicle");
 module.exports = () => {
   Driver.hasMany(Transit, {
     as: "transits",
-    foreignKey: { name: 'driverId', allowNull: false },
+    foreignKey: { name: "driverId", allowNull: false },
     constraints: true,
     onDelete: "CASCADE",
   });
 
   Transit.belongsTo(Driver, {
     as: "driver",
-    foreignKey: { name: 'driverId', allowNull: false },
+    foreignKey: { name: "driverId", allowNull: false },
   });
 
   Vehicle.hasMany(Transit, {
     as: "transits",
-    foreignKey: { name: 'vehicleId', allowNull: false },
+    foreignKey: { name: "vehicleId", allowNull: false },
     constraints: true,
     onDelete: "CASCADE",
   });
 
   Transit.belongsTo(Vehicle, {
     as: "vehicle",
-    foreignKey: { name: 'vehicleId', allowNull: false },
+    foreignKey: { name: "vehicleId", allowNull: false },
   });
 
   let allDrivers, allVehicles;
@@ -76,22 +76,24 @@ module.exports = () => {
           {
             driverId: allDrivers[0]._id,
             vehicleId: allVehicles[0]._id,
-            dateFrom: "11-05-2022",
-            dateTo: "14-05-2022",
+            dateFrom: "2022-05-11",
+            dateTo: "2022-05-14",
             startingLocalization: "Warsaw",
             endingLocalization: "Barcelona",
           },
           {
             driverId: allDrivers[1]._id,
             vehicleId: allVehicles[0]._id,
-            dateFrom: "20-10-2022",
+            dateFrom: "2022-10-20",
+            dateTo: null,
             startingLocalization: "Warsaw",
             endingLocalization: "Konstancin",
           },
           {
             driverId: allDrivers[0]._id,
             vehicleId: allVehicles[1]._id,
-            dateFrom: "15-12-2022",
+            dateFrom: "2022-12-15",
+            dateTo: null,
             startingLocalization: "Warsaw",
             endingLocalization: "London",
           },

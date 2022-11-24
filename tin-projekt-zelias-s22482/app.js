@@ -8,6 +8,9 @@ var indexRouter = require("./routes/index");
 var driverRouter = require("./routes/driverRoute");
 var transitRouter = require("./routes/transitRoute");
 var vehicleRouter = require("./routes/vehicleRoute");
+const driverApiRouter = require("./routes/api/DriverApiRoute");
+const transitApiRouter = require("./routes/api/TransitApiRoute");
+const vehicleApiRouter = require("./routes/api/VehicleApiRoute");
 
 var app = express();
 
@@ -30,6 +33,9 @@ app.use("/", indexRouter);
 app.use("/drivers", driverRouter);
 app.use("/transits", transitRouter);
 app.use("/vehicles", vehicleRouter);
+app.use("/api/drivers", driverApiRouter);
+app.use("/api/transits", transitApiRouter);
+app.use("/api/vehicles", vehicleApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
