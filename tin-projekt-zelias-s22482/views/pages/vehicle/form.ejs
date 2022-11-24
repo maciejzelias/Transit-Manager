@@ -1,6 +1,11 @@
 <%- include("../../fragments/header.ejs") %>
 
 <main>
+  <script
+    type="application/javascript"
+    src="/js/validationVehicleForm.js"
+  ></script>
+  <script type="application/javascript" src="/js/validationCommon.js"></script>
   <h2>Nowy pojazd</h2>
 
   <form class="form" novalidate onsubmit="return validateForm();">
