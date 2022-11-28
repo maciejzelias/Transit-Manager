@@ -12,7 +12,7 @@ exports.showTransitsList = (req, res, next) => {
 
 exports.showAddTransitForm = (req, res, next) => {
   let allDrivers, allVehicles;
-  TransitRepository.getTransits
+  TransitRepository.getTransits()
     .then((drivers) => {
       allDrivers = drivers;
       return VehicleRepository.getVehicles;

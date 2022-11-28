@@ -85,27 +85,27 @@ function validateForm() {
     dateFromInput.classList.add("error-input");
     erorrDateFrom.innerText("To pole jest wymagane");
   } 
-  else if (!checkDate(dateFromInput.value)) {
-    valid = false;
-    dateFromInput.classList.add("error-input");
-    erorrDateFrom.innerText(
-      "Pole powinno zawierać date w formacie : dd-mm-yyyy"
-    );
-  }
+  // else if (!checkDate(dateFromInput.value)) {
+  //   valid = false;
+  //   dateFromInput.classList.add("error-input");
+  //   erorrDateFrom.innerText(
+  //     "Pole powinno zawierać date w formacie : dd-mm-yyyy"
+  //   );
+  // }
 
-  if (checkRequired(dateToInput.value)) {
-    if (!checkDate(dateToInput.value)) {
-      valid = false;
-      dateToInput.classList.add("error-input");
-      errorDateTo.innerText(
-        "Pole powinno zawierać date w formacie : dd-mm-yyyy"
-      );
-    } else if (checkDateIsAfter(dateFromInput.value > dateToInput.value)) {
-      valid = false;
-      dateToInput.classList.add("error-input");
-      errorDateTo.innerText("Data powinna być późniejsza niz data od");
-    }
-  }
+  // if (checkRequired(dateToInput.value)) {
+  //   if (!checkDate(dateToInput.value)) {
+  //     valid = false;
+  //     dateToInput.classList.add("error-input");
+  //     errorDateTo.innerText(
+  //       "Pole powinno zawierać date w formacie : dd-mm-yyyy"
+  //     );
+  //   } else if (checkDateIsAfter(dateFromInput.value > dateToInput.value)) {
+  //     valid = false;
+  //     dateToInput.classList.add("error-input");
+  //     errorDateTo.innerText("Data powinna być późniejsza niz data od");
+  //   }
+  // }
   if (!valid) {
     errorsSummary.innerText = "Formularz zawiera błędy";
   }
