@@ -31,7 +31,7 @@ exports.createVehicle = (newVehicleData) => {
   });
 };
 
-exports.updateDriver = (vehicleId, vehicleData) => {
+exports.updateVehicle = (vehicleId, vehicleData) => {
   return Vehicle.update(vehicleData, { where: { _id: vehicleId } });
 };
 

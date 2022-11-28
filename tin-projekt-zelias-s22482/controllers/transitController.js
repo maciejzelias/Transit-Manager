@@ -33,9 +33,27 @@ exports.showAddTransitForm = (req, res, next) => {
 };
 
 exports.showTransitDetails = (req, res, next) => {
-  res.render("pages/transit/details", { navLocation: "transit" });
+  const transitId = req.params.transitId;
+  TransitRepository.getTransitById(transitId).then((transit) => {
+    res.render("pages/transit/form", {
+      transit: transit,
+      pageTitle: "Szczegóły przejazdu",
+      formMode: "showDetails",
+      formAction: "",
+      navLocation: "transit",
+    });
+  });
 };
 
 exports.showEditTransitForm = (req, res, next) => {
-  res.render("pages/transit/form-edit", { navLocation: "transit" });
+  const transitId = req.params.transitId;
+  TransitRepository.getTransitById(transitId).then((transit) => {
+    res.render("pages/transit/form", {
+      transit: transit,
+      pageTitle: "Edycja przejazdu",
+      formMode: "showDetails",
+      formAction: "",
+      navLocation: "transit",
+    });
+  });
 };

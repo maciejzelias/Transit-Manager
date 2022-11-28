@@ -6,57 +6,85 @@
     src="/js/validationTransitForm.js"
   ></script>
   <script type="application/javascript" src="/js/validationCommon.js"></script>
-  <h2>Nowy przejazd</h2>
+  <h2><%= pageTitle%></h2>
 
-  <form class="form" novalidate onsubmit="return validateForm();">
+  <form
+    class="form"
+    method="post"
+    action="<%=formAction%>"
+    novalidate
+    onsubmit="return validateForm();"
+  >
+    <input type="hidden" name="_id" id="_id" value="<%=transit._id%>" />
+
     <label for="fromWhere"> Z: <span class="symbol-required">*</span></label>
-    <input type="text" name="fromWhere" id="fromWhere" required />
+    <input type="text" name="fromWhere" id="fromWhere" value = "<%=
+    transit.fromWhere %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+    />
     <span id="errorFromWhere"></span>
 
     <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
-    <input type="text" name="toWhere" id="toWhere" required />
+    <input type="text" name="toWhere" id="toWhere" value = "<%=
+    transit.toWhere %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+    />
     <span id="errorToWhere"></span>
 
     <label for="dateFrom">
       Data Od: <span class="symbol-required">*</span></label
     >
-    <input type="date" name="dateFrom" id="dateFrom" required />
+    <input type="date" name="dateFrom" id="dateFrom" value = "<%=
+    transit.dateFrom %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorDateFrom"></span>
 
     <label for="dateTo"> Data do: </label>
-    <input type="date" name="dateTo" id="dateTo" />
+    <input type="date" name="dateTo" id="dateTo" value = "<%=
+    transit.dateTo %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorDateTo"></span>
 
     <label for="vehicle"> Pojazd: <span class="symbol-required">*</span></label>
-    <select name="vehicle" id="vehicle" required>
-      <option>-- wybierz pojazd --</option>
-      <option value="1">Mercedes 1998</option>
-      <option value="2">Scania 2000</option>
-      <option value="3">Scania 2004</option>
-    </select>
+    <select name="vehicle" id="vehicle" required
+    <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+    >
+      <option value ="" selected>-- wybierz pojazd --</option>
+      <% for (let i=0; i< allVehicles; i++) { let vehicle = allVehicles[i]; %>
+        <option value="<%= vehicle._id%>" label="<%= vehicle.brandName + ' ' + vehicle.productionYear%>"
+         <%= (transit._id && vehicle._id.toString() == transit.vehicle._id.toString()) ? 'selected' : ''%> ></option>
+<% } >
+        </select>
     <span id="errorVehicle"></span>
 
     <label for="driver">
       Kierowca: <span class="symbol-required">*</span></label
     >
-    <select name="driver" id="driver" required>
-      <option>-- wybierz kierowcę --</option>
-      <option value="1">Jan Kowalski</option>
-      <option value="2">Michał Jarosz</option>
-      <option value="3">Jakub Mazur</option>
-    </select>
+    <select name="driver" id="driver" required
+    <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+    >
+      <option value ="" selected>-- wybierz kierowce --</option>
+      <% for (let i=0; i< allDrivers; i++) { let driver = allDrivers[i]; %>
+        <option value="<%= driver._id%>" label="<%= driver.firstName + ' ' + driver.lastName %>"
+         <%= (transit._id && driver._id.toString() == transit.driver._id.toString()) ? 'selected' : ''%> ></option>
+<% } >
+        </select>
     <span id="errorDriver"></span>
 
-    <div class="form-buttons">
-      <p id="errorsSummary"></p>
-      <input
-        type="submit"
-        value="Dodaj"
-        class="form-button-submit"
-        onsubmit="console.log('elo')"
-      />
-      <a href="/transits" class="form-button-cancel">Anuluj</a>
-    </div>
+    <% if(formMode == 'showDetails'){ %>
+      <div class="form-buttons">
+        <a href="/transits/edit/<%= transit._id %>" class="list-actions-button-edit"
+          >Edytuj</a
+        >
+      </div>
+  
+      <% } %>
+
+      <div class="form-buttons">
+        <p id="errorsSummary"></p>
+        <% if(formMode != 'showDetails') { %>
+        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+        <a class="form-button-cancel" href="/transits">Anuluj</a>
+        <% } else { %>
+        <a class="form-button-cancel" href="/transits">Powrót</a>
+        <% } %>
+      </div>
   </form>
 </main>
 <%- include("../../fragments/footer.ejs") %>

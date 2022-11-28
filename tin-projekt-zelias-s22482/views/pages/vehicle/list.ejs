@@ -13,74 +13,39 @@
     </thead>
 
     <tbody>
+      <% for (let vehicle of vehicles) { %>
       <tr>
-        <td label="Marka">Mercedes</td>
-        <td label="Rok Produkcji">1998</td>
-        <td label="Rozmiar Naczepy"></td>
-        <td label="Akcje">
+        <td><%= vehicle.brandName %></td>
+        <td><%= vehicle.productionYear %></td>
+        <td><%= vehicle.semitrailerSize ? vehicle.semitrailerSize : '' %></td>
+        <td>
           <ul class="list-actions">
             <li>
-              <a href="/vehicles/details/p1" class="list-actions-button-details"
+              <a
+                href="/vehicles/details/<%=vehicle._id%>"
+                class="list-actions-button-details"
                 >Szczegóły</a
               >
             </li>
             <li>
-              <a href="/vehicles/edit/p1" class="list-actions-button-edit"
+              <a
+                href="/vehicles/edit/<%=vehicle._id%>"
+                class="list-actions-button-edit"
                 >Edytuj</a
               >
             </li>
             <li>
-              <a href="" class="list-actions-button-delete">Usuń</a>
+              <a
+                href="vehicles/delete/<%=vehicle._id%>"
+                class="list-actions-button-delete"
+                >Usuń</a
+              >
             </li>
           </ul>
         </td>
       </tr>
 
-      <tr>
-        <td>Scania</td>
-        <td>2004</td>
-        <td>5</td>
-        <td>
-          <ul class="list-actions">
-            <li>
-              <a href="/vehicles/details/p2" class="list-actions-button-details"
-                >Szczegóły</a
-              >
-            </li>
-            <li>
-              <a href="/vehicles/edit/p2" class="list-actions-button-edit"
-                >Edytuj</a
-              >
-            </li>
-            <li>
-              <a href="" class="list-actions-button-delete">Usuń</a>
-            </li>
-          </ul>
-        </td>
-      </tr>
-
-      <tr>
-        <td>Scania</td>
-        <td>2000</td>
-        <td>4</td>
-        <td>
-          <ul class="list-actions">
-            <li>
-              <a href="/vehicles/details/p3" class="list-actions-button-details"
-                >Szczegóły</a
-              >
-            </li>
-            <li>
-              <a href="/vehicles/edit/p3" class="list-actions-button-edit"
-                >Edytuj</a
-              >
-            </li>
-            <li>
-              <a href="" class="list-actions-button-delete">Usuń</a>
-            </li>
-          </ul>
-        </td>
-      </tr>
+      <% } %>
     </tbody>
   </table>
 
