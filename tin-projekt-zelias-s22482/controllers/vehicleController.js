@@ -1,5 +1,12 @@
+const VehicleRepository = require("../repository/sequelize/VehicleRepository");
+
 exports.showVehiclesList = (req, res, next) => {
-  res.render("pages/vehicle/list", { navLocation: "vehicle" });
+  VehicleRepository.getVehicles().then((vehicles) => {
+    res.render("pages/vehicle/list", {
+      vehicles: vehicles,
+      navLocation: "vehicle",
+    });
+  });
 };
 
 exports.showAddVehicleForm = (req, res, next) => {

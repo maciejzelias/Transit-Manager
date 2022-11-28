@@ -1,15 +1,70 @@
+const DriverRepository = require("../repository/sequelize/DriverRepository");
+
 exports.showDriversList = (req, res, next) => {
-  res.render("pages/driver/list", { navLocation: "driver" });
+  DriverRepository.getDrivers().then((drivers) => {
+    res.render("pages/driver/list", {
+      drivers: drivers,
+      navLocation: "driver",
+    });
+  });
+};
+
+exports.addDriver = (req, res, next) => {
+  const drvierData = { ...req.body };
+  DriverRepository.createDriver(drvierData).then((result) => {
+    res.redirect("/drivers");
+  });
+};
+
+exports.deleteDriver = (req, res, next) => {
+  const driverId = req.params.driverId;
+  DriverRepository.deleteDriver(driverId).then(() => {
+    res.redirect("/drivers");
+  });
+};
+
+exports.updateDriver = (req, res, next) => {
+  const driverId = req.body._id;
+  const driverData = { ...req.body };
+  DriverRepository.updateDriver(driverId, driverData).then((result) => {
+    res.redirect("/drivers");
+  });
 };
 
 exports.showAddDriverForm = (req, res, next) => {
-  res.render("pages/driver/form", { navLocation: "driver" });
+  res.render("pages/driver/form", {
+    driver: {},
+    pageTitle: "Nowy kierowca",
+    formMode: "createNew",
+    btnLabel: "Dodaj kierowce",
+    formAction: "/drivers/add",
+    navLocation: "driver",
+  });
 };
 
 exports.showDriverDetails = (req, res, next) => {
-  res.render("pages/driver/details", { navLocation: "driver" });
+  const driverId = req.params.driverId;
+  DriverRepository.getDriverById(driverId).then((driver) => {
+    res.render("pages/driver/form", {
+      driver: driver,
+      pageTitle: "Szczegóły kierowcy",
+      formMode: "showDetails",
+      formAction: "",
+      navLocation: "driver",
+    });
+  });
 };
 
 exports.showEditDriverForm = (req, res, next) => {
-  res.render("pages/driver/form-edit", { navLocation: "driver" });
+  const driverId = req.params.driverId;
+  DriverRepository.getDriverById(driverId).then((driver) => {
+    res.render("pages/driver/form", {
+      driver: driver,
+      pageTitle: "Edycja kierowcy",
+      formMode: "edit",
+      btnLabel: "Edytuj kierowce",
+      formAction: "/drivers/edit",
+      navLocation: "driver",
+    });
+  });
 };

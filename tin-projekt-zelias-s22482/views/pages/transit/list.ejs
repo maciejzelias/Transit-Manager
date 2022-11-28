@@ -15,54 +15,51 @@
     </thead>
 
     <tbody>
+      <% for (let transit of transits) { %>
       <tr>
-        <td>Konstancin</td>
-        <td>2022-10-20</td>
-        <td></td>
-        <td>Mercedes</td>
-        <td>Jan Kowalski</td>
+        <td><%= transit.endingLocalization %></td>
+        <td><%= transit.dateFrom.toISOString().split('T')[0] %></td>
+        <td>
+          <%= transit.dateTo ? transit.dateTo.toISOString().split('T')[0] : ''
+          %>
+        </td>
+        <td>
+          <a href="/vehicles/details/<%= transit.vehicle._id %>">
+            <%= transit.vehicle.brandName %>
+          </a>
+        </td>
+        <td>
+          <a href="/drivers/details/<%= transit.driver._id %>">
+            <%= transit.driver.firstName %>
+          </a>
+        </td>
         <td>
           <ul class="list-actions">
             <li>
-              <a href="/transits/details/p1" class="list-actions-button-details"
+              <a
+                href="/transits/details/<%=transit._id%>"
+                class="list-actions-button-details"
                 >Szczegóły</a
               >
             </li>
             <li>
-              <a href="/transits/edit/p1" class="list-actions-button-edit"
+              <a
+                href="/transits/edit/<%=transit._id%>"
+                class="list-actions-button-edit"
                 >Edytuj</a
               >
             </li>
             <li>
-              <a href="" class="list-actions-button-delete">Usuń</a>
+              <a
+                href="/transits/delete/<%=transit._id%>"
+                class="list-actions-button-delete"
+                >Usuń</a
+              >
             </li>
           </ul>
         </td>
       </tr>
-      <tr>
-        <td>Barcelona</td>
-        <td>2022-05-11</td>
-        <td>2022-05-14</td>
-        <td>Scania</td>
-        <td>Jan Kowalski</td>
-        <td>
-          <ul class="list-actions">
-            <li>
-              <a href="/transits/details/p2" class="list-actions-button-details"
-                >Szczegóły</a
-              >
-            </li>
-            <li>
-              <a href="/transits/edit/p2" class="list-actions-button-edit"
-                >Edytuj</a
-              >
-            </li>
-            <li>
-              <a href="" class="list-actions-button-delete">Usuń</a>
-            </li>
-          </ul>
-        </td>
-      </tr>
+      <% } %>
     </tbody>
   </table>
 

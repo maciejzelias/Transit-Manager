@@ -6,37 +6,86 @@
     src="/js/validationDriverForm.js"
   ></script>
   <script type="application/javascript" src="/js/validationCommon.js"></script>
-  <h2>Nowy pracownik</h2>
+  <h2><%= pageTitle%></h2>
 
-  <form class="form" novalidate onsubmit="return validateForm();">
+  <form
+    class="form"
+    method="post"
+    action="<%=formAction%>"
+    novalidate
+    onsubmit="return validateForm();"
+  >
+    <input type="hidden" name="_id" id="_id" value="<%= driver._id %>" />
+
     <label for="firstName"> Imię: <span class="symbol-required">*</span></label>
-    <input type="text" name="firstName" id="firstName" required />
+    <input type="text" name="firstName" id="firstName" value = "<%=
+    driver.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorFirstName"></span>
 
     <label for="lastName">
       Nazwisko: <span class="symbol-required">*</span></label
     >
-    <input type="text" name="lastName" id="lastName" required />
+    <input type="text" name="lastName" id="lastName" value = "<%=
+    driver.lastName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorLastName"></span>
 
     <label for="birthdayYear">
       Rok urodzenia <span class="symbol-required">*</span></label
     >
-    <input
-      type="number"
-      name="birthdayYear"
-      id="birthdayYear"
-      required
-      min="1950"
-      max="2022"
-    />
+    <input type="number" name="birthdayYear" id="birthdayYear" value = "<%=
+    driver.birthdayYear %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+    min="1950" max="2022" />
     <span id="errorBirthdayYear"></span>
+
+    <% if(formMode == 'showDetails'){ %>
+    <div class="form-buttons">
+      <a href="/drivers/edit/<%= driver._id %>" class="list-actions-button-edit"
+        >Edytuj</a
+      >
+    </div>
+
+    <% } %>
 
     <div class="form-buttons">
       <p id="errorsSummary"></p>
-      <input type="submit" value="Dodaj" class="form-button-submit" />
-      <a href="/drivers" class="form-button-cancel">Anuluj</a>
+      <% if(formMode != 'showDetails') { %>
+      <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+      <a class="form-button-cancel" href="/drivers">Anuluj</a>
+      <% } else { %>
+      <a class="form-button-cancel" href="/drivers">Powrót</a>
+      <% } %>
     </div>
   </form>
+
+  <% if(formMode=='showDetails' || formMode=='edit') { %>
+  <h2>Szczegóły przejazdów</h2>
+  <table class="table-list">
+    <thead>
+      <tr>
+        <th>Marka</th>
+        <th>Rok Produkcji</th>
+        <th>Do</th>
+        <th>Data od</th>
+        <th>Data do</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for(let d of driver.transits) { %>
+      <tr>
+        <td>
+          <a href="vehicles/details/<%= d.vehicle._id %>">
+            <%= d.vehicle.brandName %>
+          </a>
+        </td>
+        <td><%= d.vehicle.productionYear %></td>
+        <td><%= d.endingLocalization %></td>
+        <td><%= d.dateFrom.toISOString().split('T')[0] %></td>
+        <td><%= d.dateTo ? d.dateTo.toISOString().split('T')[0] : '' %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <% } %>
 </main>
 <%- include("../../fragments/footer.ejs") %>
