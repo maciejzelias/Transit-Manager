@@ -1,5 +1,6 @@
 const TransitRepository = require("../repository/sequelize/TransitRepository");
 const VehicleRepository = require("../repository/sequelize/VehicleRepository");
+const DriverRepository = require("../repository/sequelize/DriverRepository");
 
 exports.showTransitsList = (req, res, next) => {
   TransitRepository.getTransits().then((transits) => {
@@ -10,12 +11,34 @@ exports.showTransitsList = (req, res, next) => {
   });
 };
 
+exports.addTransit = (req,res,next) => {
+  const transitData = { ...req.body };
+  TransitRepository.createTransit(transitData).then((result) => {
+    res.redirect("/transits");
+  });
+}
+
+exports.updateTransit = (req,res,next) => {
+  const transitId = req.body._id;
+  const transitData = { ...req.body };
+  TransitRepository.updateTransit(transitId,transitData).then((result) => {
+    res.redirect("/transits");
+  });
+}
+
+exports.deleteTransit = (req, res, next) => {
+  const transitId = req.params.transitId;
+  TransitRepository.deleteTransit(transitId).then(() => {
+    res.redirect("/transits");
+  });
+};
+
 exports.showAddTransitForm = (req, res, next) => {
   let allDrivers, allVehicles;
-  TransitRepository.getTransits()
+  DriverRepository.getDrivers()
     .then((drivers) => {
       allDrivers = drivers;
-      return VehicleRepository.getVehicles;
+      return VehicleRepository.getVehicles();
     })
     .then((vehicles) => {
       allVehicles = vehicles;
@@ -38,6 +61,8 @@ exports.showTransitDetails = (req, res, next) => {
     res.render("pages/transit/form", {
       transit: transit,
       pageTitle: "Szczegóły przejazdu",
+      allDrivers: [],
+      allVehicles: [],
       formMode: "showDetails",
       formAction: "",
       navLocation: "transit",
@@ -51,7 +76,10 @@ exports.showEditTransitForm = (req, res, next) => {
     res.render("pages/transit/form", {
       transit: transit,
       pageTitle: "Edycja przejazdu",
-      formMode: "showDetails",
+      allDrivers: [],
+      allVehicles: [],
+      formMode: "edit",
+      btnLabel: "Edytuj przejazd",
       formAction: "",
       navLocation: "transit",
     });

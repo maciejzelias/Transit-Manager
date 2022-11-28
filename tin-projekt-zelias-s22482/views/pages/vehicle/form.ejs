@@ -25,17 +25,17 @@
     />
     <span id="errorBrandName"></span>
 
-    <label for="ProductionYear">
+    <label for="productionYear">
       Rok Produkcji: <span class="symbol-required">*</span></label
     >
-    <input type="number" name="ProductionYear" id="ProductionYear" value = "<%=
+    <input type="number" name="productionYear" id="productionYear" value = "<%=
     vehicle.productionYear %>" <%= (formMode == 'showDetails') ? 'disabled' : ''
     %> />
     <span id="errorProductionYear"></span>
 
-    <label for="SemitrailerSize"> Wielkość naczepy: </label>
+    <label for="semitrailerSize"> Wielkość naczepy: </label>
     <input value = "<%= vehicle.brandName %>" type="number"
-    name="SemitrailerSize" id="SemitrailerSize" min="1" max="10" <%= (formMode
+    name="semitrailerSize" id="semitrailerSize" min="1" max="10" <%= (formMode
     == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorSemitrailerSize"></span>
 
@@ -77,14 +77,14 @@
       <% for(let t of vehicle.transits) { %>
       <tr>
         <td>
-          <a href="drivers/details/<%= t.driver._id %>">
+          <a href="/drivers/details/<%= t.driver._id %>">
             <%= t.driver.firstName %>
           </a>
         </td>
         <td><%= t.driver.birthdayYear %></td>
         <td><%= t.endingLocalization %></td>
         <td><%= t.dateFrom.toISOString().split('T')[0] %></td>
-        <td><%= t.dateTo ? d.dateTo.toISOString().split('T')[0] : '' %></td>
+        <td><%= t.dateTo ? t.dateTo.toISOString().split('T')[0] : '' %></td>
       </tr>
       <% } %>
     </tbody>

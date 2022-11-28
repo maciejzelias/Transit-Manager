@@ -6,7 +6,7 @@
     src="/js/validationTransitForm.js"
   ></script>
   <script type="application/javascript" src="/js/validationCommon.js"></script>
-  <h2><%= pageTitle%></h2>
+  <h2><%= pageTitle %> </h2>
 
   <form
     class="form"
@@ -15,12 +15,10 @@
     novalidate
     onsubmit="return validateForm();"
   >
-    <input type="hidden" name="_id" id="_id" value="<%=transit._id%>" />
+    <input type="hidden" name="_id" id="_id" value="<%= transit._id %>" />
 
     <label for="fromWhere"> Z: <span class="symbol-required">*</span></label>
-    <input type="text" name="fromWhere" id="fromWhere" value = "<%=
-    transit.fromWhere %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-    />
+    <input type="text" name="fromWhere" id="fromWhere" value = "<%= transit.startingLocalization %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorFromWhere"></span>
 
     <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
@@ -43,13 +41,13 @@
 
     <label for="vehicle"> Pojazd: <span class="symbol-required">*</span></label>
     <select name="vehicle" id="vehicle" required
-    <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+    <%= (formMode == 'showDetails') ? 'disabled' : '' %>
     >
       <option value ="" selected>-- wybierz pojazd --</option>
-      <% for (let i=0; i< allVehicles; i++) { let vehicle = allVehicles[i]; %>
-        <option value="<%= vehicle._id%>" label="<%= vehicle.brandName + ' ' + vehicle.productionYear%>"
-         <%= (transit._id && vehicle._id.toString() == transit.vehicle._id.toString()) ? 'selected' : ''%> ></option>
-<% } >
+      <% for (let i=0; i< allVehicles.length; i++) { let vehicle = allVehicles[i]; %>
+        <option value="<%= vehicle._id %>" label="<%= vehicle.brandName + ' ' + vehicle.productionYear %>"
+         <%= (transit._id && vehicle._id.toString() == transit.vehicle._id.toString()) ? 'selected' : '' %> ><%= vehicle.brandName + ' ' + vehicle.productionYear %></option>
+<% } %>
         </select>
     <span id="errorVehicle"></span>
 
@@ -57,13 +55,13 @@
       Kierowca: <span class="symbol-required">*</span></label
     >
     <select name="driver" id="driver" required
-    <%= (formMode == 'showDetails') ? 'disabled' : ''%>
+    <%= (formMode == 'showDetails') ? 'disabled' : '' %>
     >
       <option value ="" selected>-- wybierz kierowce --</option>
-      <% for (let i=0; i< allDrivers; i++) { let driver = allDrivers[i]; %>
-        <option value="<%= driver._id%>" label="<%= driver.firstName + ' ' + driver.lastName %>"
-         <%= (transit._id && driver._id.toString() == transit.driver._id.toString()) ? 'selected' : ''%> ></option>
-<% } >
+      <% for (let i=0; i< allDrivers.length; i++) { let driver = allDrivers[i]; %>
+        <option value="<%= driver._id%>" label="<%= driver.firstName  %>"
+         <%= (transit._id && driver._id.toString() == transit.driver._id.toString()) ? 'selected' : ''%> > <%= driver.firstName + ' ' + driver.lastName %></option>
+<% } %>
         </select>
     <span id="errorDriver"></span>
 
