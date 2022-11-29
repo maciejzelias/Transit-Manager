@@ -27,12 +27,23 @@ exports.createVehicle = (newVehicleData) => {
   return Vehicle.create({
     brandName: newVehicleData.brandName,
     productionYear: newVehicleData.productionYear,
-    semitrailerSize: newVehicleData.semitrailerSize,
+    semitrailerSize:
+      newVehicleData.semitrailerSize === ""
+        ? null
+        : newVehicleData.semitrailerSize,
   });
 };
 
 exports.updateVehicle = (vehicleId, vehicleData) => {
-  return Vehicle.update(vehicleData, { where: { _id: vehicleId } });
+  return Vehicle.update(
+    {
+      brandName: vehicleData.brandName,
+      productionYear: vehicleData.productionYear,
+      semitrailerSize:
+        vehicleData.semitrailerSize === "" ? null : vehicleData.semitrailerSize,
+    },
+    { where: { _id: vehicleId } }
+  );
 };
 
 exports.deleteVehicle = (vehicleId) => {

@@ -1,13 +1,13 @@
 function validateForm() {
-  const toWhereInput = document.getElementById("fromWhere");
-  const fromWhereInput = document.getElementById("toWhere");
+  const toWhereInput = document.getElementById("startingLocalization");
+  const fromWhereInput = document.getElementById("endingLocalization");
   const dateFromInput = document.getElementById("dateFrom");
   const dateToInput = document.getElementById("dateTo");
-  const vehicleInput = document.getElementById("vehicle");
-  const driverInput = document.getElementById("driver");
+  const vehicleInput = document.getElementById("vehicleId");
+  const driverInput = document.getElementById("driverId");
 
-  const errorToWhere = document.getElementById("errorFromWhere");
-  const errorFromWhere = document.getElementById("errorToWhere");
+  const errorToWhere = document.getElementById("errorStartingLocalization");
+  const errorFromWhere = document.getElementById("errorEndingLocalization");
   const erorrDateFrom = document.getElementById("errorDateFrom");
   const errorDateTo = document.getElementById("errorDateTo");
   const errorVehicle = document.getElementById("errorVehicle");
@@ -80,32 +80,28 @@ function validateForm() {
   // }
   // const nowString = [year, month, day].join("-");
 
-  if (!checkRequired(dateFromInput.value)) {
+  if (!checkRequired(dateFromInput.value.toString())) {
     valid = false;
     dateFromInput.classList.add("error-input");
-    erorrDateFrom.innerText("To pole jest wymagane");
-  } 
-  // else if (!checkDate(dateFromInput.value)) {
-  //   valid = false;
-  //   dateFromInput.classList.add("error-input");
-  //   erorrDateFrom.innerText(
-  //     "Pole powinno zawierać date w formacie : dd-mm-yyyy"
-  //   );
-  // }
+    erorrDateFrom.innerText = "To pole jest wymagane";
+  } else if (!checkDate(dateFromInput.value)) {
+    valid = false;
+    dateFromInput.classList.add("error-input");
+    erorrDateFrom.innerText = "Zły format daty";
+  }
 
-  // if (checkRequired(dateToInput.value)) {
-  //   if (!checkDate(dateToInput.value)) {
-  //     valid = false;
-  //     dateToInput.classList.add("error-input");
-  //     errorDateTo.innerText(
-  //       "Pole powinno zawierać date w formacie : dd-mm-yyyy"
-  //     );
-  //   } else if (checkDateIsAfter(dateFromInput.value > dateToInput.value)) {
-  //     valid = false;
-  //     dateToInput.classList.add("error-input");
-  //     errorDateTo.innerText("Data powinna być późniejsza niz data od");
-  //   }
-  // }
+  if (checkRequired(dateToInput.value.toString())) {
+    if (!checkDate(dateToInput.value)) {
+      valid = false;
+      dateToInput.classList.add("error-input");
+      errorDateTo.innerText = "Zły format daty";
+    } else if (!checkDateIsAfter(dateToInput.value, dateFromInput.value)) {
+      valid = false;
+      dateToInput.classList.add("error-input");
+      errorDateTo.innerText = "Data powinna być późniejsza niz data od";
+    }
+  }
+
   if (!valid) {
     errorsSummary.innerText = "Formularz zawiera błędy";
   }

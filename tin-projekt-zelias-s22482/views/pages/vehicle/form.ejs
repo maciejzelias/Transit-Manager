@@ -28,15 +28,15 @@
     <label for="productionYear">
       Rok Produkcji: <span class="symbol-required">*</span></label
     >
-    <input type="number" name="productionYear" id="productionYear" value = "<%=
+    <input type="number" name="productionYear" id="productionYear" value ="<%=
     vehicle.productionYear %>" <%= (formMode == 'showDetails') ? 'disabled' : ''
     %> />
     <span id="errorProductionYear"></span>
 
     <label for="semitrailerSize"> Wielkość naczepy: </label>
-    <input value = "<%= vehicle.brandName %>" type="number"
-    name="semitrailerSize" id="semitrailerSize" min="1" max="10" <%= (formMode
-    == 'showDetails') ? 'disabled' : '' %> />
+    <input type="number" name="semitrailerSize" id="semitrailerSize" value="<%=
+    vehicle.semitrailerSize ? vehicle.semitrailerSize : null %>" <%= (formMode ==
+    'showDetails') ? 'disabled' : '' %> />
     <span id="errorSemitrailerSize"></span>
 
     <% if(formMode == 'showDetails'){ %>

@@ -2,6 +2,7 @@ const TransitRepository = require("../repository/sequelize/TransitRepository");
 const VehicleRepository = require("../repository/sequelize/VehicleRepository");
 const DriverRepository = require("../repository/sequelize/DriverRepository");
 
+
 exports.showTransitsList = (req, res, next) => {
   TransitRepository.getTransits().then((transits) => {
     res.render("pages/transit/list", {
@@ -11,20 +12,20 @@ exports.showTransitsList = (req, res, next) => {
   });
 };
 
-exports.addTransit = (req,res,next) => {
+exports.addTransit = (req, res, next) => {
   const transitData = { ...req.body };
   TransitRepository.createTransit(transitData).then((result) => {
     res.redirect("/transits");
   });
-}
+};
 
-exports.updateTransit = (req,res,next) => {
+exports.updateTransit = (req, res, next) => {
   const transitId = req.body._id;
   const transitData = { ...req.body };
-  TransitRepository.updateTransit(transitId,transitData).then((result) => {
+  TransitRepository.updateTransit(transitId, transitData).then((result) => {
     res.redirect("/transits");
   });
-}
+};
 
 exports.deleteTransit = (req, res, next) => {
   const transitId = req.params.transitId;
@@ -61,8 +62,8 @@ exports.showTransitDetails = (req, res, next) => {
     res.render("pages/transit/form", {
       transit: transit,
       pageTitle: "Szczegóły przejazdu",
-      allDrivers: [],
-      allVehicles: [],
+      allDrivers: [transit.driver],
+      allVehicles: [transit.vehicle],
       formMode: "showDetails",
       formAction: "",
       navLocation: "transit",
@@ -71,17 +72,26 @@ exports.showTransitDetails = (req, res, next) => {
 };
 
 exports.showEditTransitForm = (req, res, next) => {
+  let allDrivers, allVehicles;
   const transitId = req.params.transitId;
-  TransitRepository.getTransitById(transitId).then((transit) => {
-    res.render("pages/transit/form", {
-      transit: transit,
-      pageTitle: "Edycja przejazdu",
-      allDrivers: [],
-      allVehicles: [],
-      formMode: "edit",
-      btnLabel: "Edytuj przejazd",
-      formAction: "",
-      navLocation: "transit",
+  DriverRepository.getDrivers()
+    .then((drivers) => {
+      allDrivers = drivers;
+      return VehicleRepository.getVehicles();
+    })
+    .then((vehicles) => {
+      allVehicles = vehicles;
+      return TransitRepository.getTransitById(transitId).then((transit) => {
+        res.render("pages/transit/form", {
+          transit: transit,
+          pageTitle: "Edycja przejazdu",
+          allDrivers: allDrivers,
+          allVehicles: allVehicles,
+          formMode: "edit",
+          btnLabel: "Edytuj przejazd",
+          formAction: "",
+          navLocation: "transit",
+        });
+      });
     });
-  });
 };

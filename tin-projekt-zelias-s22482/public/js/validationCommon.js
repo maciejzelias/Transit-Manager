@@ -15,10 +15,7 @@ function checkRequired(value) {
   }
   value = value.toString().trim();
 
-  if (value === "") {
-    return false;
-  }
-  return true;
+  return value !== "";
 }
 
 function checkRange(value, min, max) {
@@ -64,7 +61,7 @@ function CheckVehicleYear(value) {
   if (value > currYear) {
     return false;
   }
-  if (value > 1900) {
+  if (value < 1950) {
     return false;
   }
 
@@ -75,7 +72,7 @@ function checkDate(value) {
   if (!value) {
     return false;
   }
-  const pattern = /(\d{2})-(\d{2})-(\d{4})/;
+  const pattern = /(\d{4})-(\d{2})-(\d{2})/;
   return pattern.test(value);
 }
 
@@ -86,12 +83,12 @@ function checkDateIsAfter(value, compareTo) {
   if (!compareTo) {
     return false;
   }
-  const pattern = /(\d{2})-(\d{2})-(\d{4})/;
+  const pattern = /(\d{4})-(\d{2})-(\d{2})/;
   if (!pattern.test(value)) {
     return false;
   }
 
-  if (!pattern.test(compareTo(false))) {
+  if (!pattern.test(compareTo)) {
     return false;
   }
   const valueDate = new Date(value);

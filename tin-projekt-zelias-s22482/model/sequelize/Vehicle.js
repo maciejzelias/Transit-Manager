@@ -14,7 +14,7 @@ const Vehicle = sequelize.define("Vehicle", {
   },
   productionYear: {
     type: Sequelize.INTEGER,
-    allowNull: true,
+    allowNull: false,
   },
   semitrailerSize: {
     type: Sequelize.INTEGER,

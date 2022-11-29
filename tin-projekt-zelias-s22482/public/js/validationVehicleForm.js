@@ -1,7 +1,7 @@
 function validateForm() {
   const brandNameInput = document.getElementById("brandName");
-  const ProductionYearInput = document.getElementById("ProductionYear");
-  const SemitrailerSizeInput = document.getElementById("SemitrailerSize");
+  const ProductionYearInput = document.getElementById("productionYear");
+  const SemitrailerSizeInput = document.getElementById("semitrailerSize");
 
   const errorBrandName = document.getElementById("errorBrandName");
   const errorProductionYear = document.getElementById("errorProductionYear");
@@ -30,17 +30,14 @@ function validateForm() {
     valid = false;
     ProductionYearInput.classList.add("error-input");
     errorProductionYear.innerText = "Pole jest wymagane";
-  } else if (!CheckYear(ProductionYearInput.value)) {
+  } else if (!CheckVehicleYear(ProductionYearInput.value)) {
     valid = false;
     ProductionYearInput.classList.add("error-input");
     errorProductionYear.innerText =
       "Pole musi zawierać rok mniejszy lub rowny do aktualnego i wiekszy niz 1950";
   }
 
-  if (
-    !checkRange(SemitrailerSizeInput.value) &&
-    checkRequired(SemitrailerSizeInput.value)
-  ) {
+  if (!valid) {
     errorsSummary.innerText = "Formularz zawiera błędy";
   }
 

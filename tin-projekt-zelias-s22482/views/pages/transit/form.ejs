@@ -17,30 +17,28 @@
   >
     <input type="hidden" name="_id" id="_id" value="<%= transit._id %>" />
 
-    <label for="fromWhere"> Z: <span class="symbol-required">*</span></label>
-    <input type="text" name="fromWhere" id="fromWhere" value = "<%= transit.startingLocalization %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
-    <span id="errorFromWhere"></span>
+    <label for="startingLocalization"> Z: <span class="symbol-required">*</span></label>
+    <input type="text" name="startingLocalization" id="startingLocalization" value = "<%= transit.startingLocalization %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+    <span id="errorStartingLocalization"></span>
 
-    <label for="toWhere"> Do: <span class="symbol-required">*</span></label>
-    <input type="text" name="toWhere" id="toWhere" value = "<%=
-    transit.toWhere %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
+    <label for="endingLocalization"> Do: <span class="symbol-required">*</span></label>
+    <input type="text" name="endingLocalization" id="endingLocalization" value = "<%=
+    transit.endingLocalization %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
     />
-    <span id="errorToWhere"></span>
+    <span id="errorEndingLocalization"></span>
 
     <label for="dateFrom">
       Data Od: <span class="symbol-required">*</span></label
     >
-    <input type="date" name="dateFrom" id="dateFrom" value = "<%=
-    transit.dateFrom %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+    <input type="date" name="dateFrom" id="dateFrom" value="<%= transit.dateFrom ? transit.dateFrom.toISOString().split('T')[0] : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorDateFrom"></span>
 
     <label for="dateTo"> Data do: </label>
-    <input type="date" name="dateTo" id="dateTo" value = "<%=
-    transit.dateTo %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+    <input type="date" name="dateTo" id="dateTo" value="<%= transit.dateTo ?  transit.dateTo.toISOString().split('T')[0] : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorDateTo"></span>
 
-    <label for="vehicle"> Pojazd: <span class="symbol-required">*</span></label>
-    <select name="vehicle" id="vehicle" required
+    <label for="vehicleId"> Pojazd: <span class="symbol-required">*</span></label>
+    <select name="vehicleId" id="vehicleId" required
     <%= (formMode == 'showDetails') ? 'disabled' : '' %>
     >
       <option value ="" selected>-- wybierz pojazd --</option>
@@ -51,15 +49,15 @@
         </select>
     <span id="errorVehicle"></span>
 
-    <label for="driver">
+    <label for="driverId">
       Kierowca: <span class="symbol-required">*</span></label
     >
-    <select name="driver" id="driver" required
+    <select name="driverId" id="driverId" required
     <%= (formMode == 'showDetails') ? 'disabled' : '' %>
     >
       <option value ="" selected>-- wybierz kierowce --</option>
       <% for (let i=0; i< allDrivers.length; i++) { let driver = allDrivers[i]; %>
-        <option value="<%= driver._id%>" label="<%= driver.firstName  %>"
+        <option value="<%= driver._id %>" label="<%= driver.firstName  %>"
          <%= (transit._id && driver._id.toString() == transit.driver._id.toString()) ? 'selected' : ''%> > <%= driver.firstName + ' ' + driver.lastName %></option>
 <% } %>
         </select>
