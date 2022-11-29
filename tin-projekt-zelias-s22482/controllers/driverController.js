@@ -10,10 +10,22 @@ exports.showDriversList = (req, res, next) => {
 };
 
 exports.addDriver = (req, res, next) => {
-  const drvierData = { ...req.body };
-  DriverRepository.createDriver(drvierData).then((result) => {
-    res.redirect("/drivers");
-  });
+  const driverData = { ...req.body };
+  DriverRepository.createDriver(driverData)
+    .then((result) => {
+      res.redirect("/drivers");
+    })
+    .catch((err) => {
+      res.render("pages/driver/form", {
+        driver: driverData,
+        pageTitle: "Dodawanie pracownika",
+        formMode: "createNew",
+        btnLabel: "Dodaj kierowce",
+        formAction: "/drivers/add",
+        navLocation: "driver",
+        validationErrors: err.errors,
+      });
+    });
 };
 
 exports.deleteDriver = (req, res, next) => {
@@ -26,9 +38,21 @@ exports.deleteDriver = (req, res, next) => {
 exports.updateDriver = (req, res, next) => {
   const driverId = req.body._id;
   const driverData = { ...req.body };
-  DriverRepository.updateDriver(driverId, driverData).then((result) => {
-    res.redirect("/drivers");
-  });
+  DriverRepository.updateDriver(driverId, driverData)
+    .then((result) => {
+      res.redirect("/drivers");
+    })
+    .catch((err) => {
+      res.render("pages/driver/form", {
+        driver: driverData,
+        pageTitle: "Edycja kierowcy",
+        formMode: "edit",
+        btnLabel: "Edytuj kierowce",
+        formAction: "/drivers/edit",
+        navLocation: "driver",
+        validationErrors: err.errors,
+      });
+    });
 };
 
 exports.showAddDriverForm = (req, res, next) => {
@@ -39,6 +63,7 @@ exports.showAddDriverForm = (req, res, next) => {
     btnLabel: "Dodaj kierowce",
     formAction: "/drivers/add",
     navLocation: "driver",
+    validationErrors: [],
   });
 };
 
@@ -51,6 +76,7 @@ exports.showDriverDetails = (req, res, next) => {
       formMode: "showDetails",
       formAction: "",
       navLocation: "driver",
+      validationErrors: [],
     });
   });
 };
@@ -64,6 +90,7 @@ exports.showEditDriverForm = (req, res, next) => {
       formMode: "edit",
       btnLabel: "Edytuj kierowce",
       formAction: "/drivers/edit",
+      validationErrors: [],
       navLocation: "driver",
     });
   });

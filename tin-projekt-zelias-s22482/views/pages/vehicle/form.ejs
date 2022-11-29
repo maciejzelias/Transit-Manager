@@ -8,36 +8,46 @@
   <script type="application/javascript" src="/js/validationCommon.js"></script>
   <h2><%= pageTitle%></h2>
 
-  <form
-    class="form"
-    method="post"
-    action="<%=formAction%>"
-    novalidate
-    onsubmit="return validateForm();"
-  >
+  <form class="form" method="post" action="<%=formAction%>" novalidate>
     <input type="hidden" name="_id" id="_id" value="<%= vehicle._id %>" />
 
     <label for="brandName">
       Marka: <span class="symbol-required">*</span></label
     >
-    <input type="text" name="brandName" id="brandName" value = "<%=
-    vehicle.brandName %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
-    />
-    <span id="errorBrandName"></span>
+    <input class="<%= validationErrors.find(e => e.path.includes('brandName')) ?
+    'error-input' : '' %>" type="text" name="brandName" id="brandName" value =
+    "<%= vehicle.brandName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''
+    %> />
+    <span id="errorBrandName" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('brandName'))) { %> <%=
+      validationErrors.find(e => e.path.includes('brandName')).message %> <% }
+      %>
+    </span>
 
     <label for="productionYear">
       Rok Produkcji: <span class="symbol-required">*</span></label
     >
-    <input type="number" name="productionYear" id="productionYear" value ="<%=
-    vehicle.productionYear %>" <%= (formMode == 'showDetails') ? 'disabled' : ''
-    %> />
-    <span id="errorProductionYear"></span>
+    <input class="<%= validationErrors.find(e => e.path.includes('productionYear')) ?
+    'error-input' : '' %>" type="number" name="productionYear"
+    id="productionYear" value ="<%= vehicle.productionYear %>" <%= (formMode ==
+    'showDetails') ? 'disabled' : '' %> />
+    <span id="errorProductionYear" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('productionYear'))) { %> <%=
+      validationErrors.find(e => e.path.includes('productionYear')).message %> <% }
+      %>
+    </span>
 
     <label for="semitrailerSize"> Wielkość naczepy: </label>
-    <input type="number" name="semitrailerSize" id="semitrailerSize" value="<%=
-    vehicle.semitrailerSize ? vehicle.semitrailerSize : null %>" <%= (formMode ==
-    'showDetails') ? 'disabled' : '' %> />
-    <span id="errorSemitrailerSize"></span>
+    <input class="<%= validationErrors.find(e => e.path.includes('semitrailerSize')) ?
+    'error-input' : '' %>" type="number" name="semitrailerSize"
+    id="semitrailerSize" value="<%= vehicle.semitrailerSize ?
+    vehicle.semitrailerSize : null %>" <%= (formMode == 'showDetails') ?
+    'disabled' : '' %> />
+    <span id="errorSemitrailerSize" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('semitrailerSize'))) { %> <%=
+      validationErrors.find(e => e.path.includes('semitrailerSize')).message %> <% }
+      %>
+    </span>
 
     <% if(formMode == 'showDetails'){ %>
     <div class="form-buttons">

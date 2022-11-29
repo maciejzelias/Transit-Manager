@@ -11,6 +11,11 @@ const Transit = sequelize.define("Transit", {
   dateFrom: {
     type: Sequelize.DATE,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+    },
   },
   dateTo: {
     type: Sequelize.DATE,
@@ -19,8 +24,29 @@ const Transit = sequelize.define("Transit", {
   startingLocalization: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+      len: {
+        args: [2, 60],
+        msg: "Pole powinno zawierać od 2 do 60 znaków",
+      },
+    },
   },
-  endingLocalization: { type: Sequelize.STRING, allowNull: false },
+  endingLocalization: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+      len: {
+        args: [2, 60],
+        msg: "Pole powinno zawierać od 2 do 60 znaków",
+      },
+    },
+  },
   driverId: {
     type: Sequelize.INTEGER,
     allowNull: false,

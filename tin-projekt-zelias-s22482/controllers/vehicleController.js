@@ -2,17 +2,41 @@ const VehicleRepository = require("../repository/sequelize/VehicleRepository");
 
 exports.addVehicle = (req, res, next) => {
   const vehicleData = { ...req.body };
-  VehicleRepository.createVehicle(vehicleData).then((result) => {
-    res.redirect("/vehicles");
-  });
+  VehicleRepository.createVehicle(vehicleData)
+    .then((result) => {
+      res.redirect("/vehicles");
+    })
+    .catch((err) => {
+      res.render("pages/vehicle/form", {
+        vehicle: vehicleData,
+        pageTitle: "Nowy pojazd",
+        formMode: "createNew",
+        btnLabel: "Dodaj pojazd",
+        formAction: "/vehicles/add",
+        navLocation: "vehicle",
+        validationErrors: err.errors,
+      });
+    });
 };
 
 exports.updateVehicle = (req, res, next) => {
   const vehicleId = req.body._id;
   const vehicleData = { ...req.body };
-  VehicleRepository.updateVehicle(vehicleId, vehicleData).then((result) => {
-    res.redirect("/vehicles");
-  });
+  VehicleRepository.updateVehicle(vehicleId, vehicleData)
+    .then((result) => {
+      res.redirect("/vehicles");
+    })
+    .catch((err) => {
+      res.render("pages/vehicle/form", {
+        vehicle: vehicleData,
+        pageTitle: "Edycja pojazdu",
+        formMode: "edit",
+        btnLabel: "Edytuj pojazd",
+        formAction: "/vehicles/edit",
+        navLocation: "vehicle",
+        validationErrors: err.errors,
+      });
+    });
 };
 
 exports.deleteVehicle = (req, res, next) => {
@@ -39,6 +63,7 @@ exports.showAddVehicleForm = (req, res, next) => {
     btnLabel: "Dodaj pojazd",
     formAction: "/vehicles/add",
     navLocation: "vehicle",
+    validationErrors: [],
   });
 };
 
@@ -51,6 +76,7 @@ exports.showVehicleDetails = (req, res, next) => {
       formMode: "showDetails",
       formAction: "",
       navLocation: "vehicle",
+      validationErrors: [],
     });
   });
 };
@@ -65,6 +91,7 @@ exports.showEditVehicleForm = (req, res, next) => {
       btnLabel: "Edytuj pojazd",
       formAction: "/vehicles/edit",
       navLocation: "vehicle",
+      validationErrors: [],
     });
   });
 };

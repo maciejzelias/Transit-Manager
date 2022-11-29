@@ -2,7 +2,6 @@ const TransitRepository = require("../repository/sequelize/TransitRepository");
 const VehicleRepository = require("../repository/sequelize/VehicleRepository");
 const DriverRepository = require("../repository/sequelize/DriverRepository");
 
-
 exports.showTransitsList = (req, res, next) => {
   TransitRepository.getTransits().then((transits) => {
     res.render("pages/transit/list", {
@@ -14,17 +13,45 @@ exports.showTransitsList = (req, res, next) => {
 
 exports.addTransit = (req, res, next) => {
   const transitData = { ...req.body };
-  TransitRepository.createTransit(transitData).then((result) => {
-    res.redirect("/transits");
-  });
+  TransitRepository.createTransit(transitData)
+    .then((result) => {
+      res.redirect("/transits");
+    })
+    .catch((err) => {
+      res.render("pages/transit/form", {
+        transit: transitData,
+        formMode: "createNew",
+        pageTitle: "Nowe przejazdy",
+        btnLabel: "Dodaj przejazd",
+        allDrivers: [],
+        allVehicles: [],
+        formAction: "/transits/add",
+        navLocation: "transit",
+        validationErrors: err.errors,
+      });
+    });
 };
 
 exports.updateTransit = (req, res, next) => {
   const transitId = req.body._id;
   const transitData = { ...req.body };
-  TransitRepository.updateTransit(transitId, transitData).then((result) => {
-    res.redirect("/transits");
-  });
+  TransitRepository.updateTransit(transitId, transitData)
+    .then((result) => {
+      res.redirect("/transits");
+    })
+    .catch((err) => {
+      res.render("pages/transit/form", {
+        transit: transitData,
+        pageTitle: "Edycja przejazdu",
+        formMode: "edit",
+        btnLabel: "Edytuj przejazd",
+        allDrivers: [],
+        allVehicles: [],
+        formAction: "",
+        navLocation: "transit",
+        validationErrors: err.errors,
+      });
+    });
 };
 
 exports.deleteTransit = (req, res, next) => {
@@ -52,6 +79,7 @@ exports.showAddTransitForm = (req, res, next) => {
         btnLabel: "Dodaj przejazd",
         formAction: "/transits/add",
         navLocation: "transit",
+        validationErrors: [],
       });
     });
 };
@@ -67,6 +95,7 @@ exports.showTransitDetails = (req, res, next) => {
       formMode: "showDetails",
       formAction: "",
       navLocation: "transit",
+      validationErrors: [],
     });
   });
 };
@@ -91,6 +120,7 @@ exports.showEditTransitForm = (req, res, next) => {
           btnLabel: "Edytuj przejazd",
           formAction: "",
           navLocation: "transit",
+          validationErrors: [],
         });
       });
     });

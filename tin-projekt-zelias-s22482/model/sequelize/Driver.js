@@ -11,14 +11,41 @@ const Driver = sequelize.define("Driver", {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+      len: {
+        args: [2, 60],
+        msg: "Pole powinno zawierać od 2 do 60 znaków",
+      },
+    },
   },
   lastName: {
     type: Sequelize.STRING,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+      len: {
+        args: [2, 60],
+        msg: "Pole powinno zawierać od 2 do 60 znaków",
+      },
+    },
   },
   birthdayYear: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+      len: {
+        args: [4, 4],
+        msg: "Pole powinno zawierać 4 znaki",
+      },
+    },
   },
 });
 
