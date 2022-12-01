@@ -37,6 +37,7 @@ const Driver = sequelize.define("Driver", {
   birthdayYear: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    unique: true,
     validate: {
       notEmpty: {
         msg: "Pole jest wymagane",
