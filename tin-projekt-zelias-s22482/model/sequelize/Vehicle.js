@@ -67,6 +67,20 @@ const Vehicle = sequelize.define("Vehicle", {
       },
     },
   },
+  registrationPlate: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+      len: {
+        args: [2, 10],
+        msg: "Pole powinno zawierać od 2 do 10 znaków",
+      },
+    },
+  },
 });
 
 module.exports = Vehicle;

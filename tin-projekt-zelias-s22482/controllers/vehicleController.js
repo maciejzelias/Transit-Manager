@@ -7,6 +7,14 @@ exports.addVehicle = (req, res, next) => {
       res.redirect("/vehicles");
     })
     .catch((err) => {
+      err.errors.forEach((error) => {
+        if (
+          error.path.includes("registrationPlate") &&
+          error.type == "unique violation"
+        ) {
+          error.message = "ta rejestracja jest juz zajeta !";
+        }
+      });
       res.render("pages/vehicle/form", {
         vehicle: vehicleData,
         pageTitle: "Nowy pojazd",
@@ -27,6 +35,14 @@ exports.updateVehicle = (req, res, next) => {
       res.redirect("/vehicles");
     })
     .catch((err) => {
+      err.errors.forEach((error) => {
+        if (
+          error.path.includes("registrationPlate") &&
+          error.type == "unique violation"
+        ) {
+          error.message = "ta rejestracja jest juz zajeta !";
+        }
+      });
       VehicleRepository.getVehicleById(vehicleId).then((vehicle) => {
         res.render("pages/vehicle/form", {
           vehicle: { ...vehicleData, ...vehicle },

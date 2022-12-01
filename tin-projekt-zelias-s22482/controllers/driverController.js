@@ -16,14 +16,6 @@ exports.addDriver = (req, res, next) => {
       res.redirect("/drivers");
     })
     .catch((err) => {
-      err.errors.forEach((error) => {
-        if (
-          error.path.includes("birthdayYear") &&
-          error.type == "unique violation"
-        ) {
-          error.message = "ta data urodzenia jest juz uzywana !";
-        }
-      });
       res.render("pages/driver/form", {
         driver: driverData,
         pageTitle: "Dodawanie pracownika",

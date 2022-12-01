@@ -56,9 +56,23 @@ module.exports = () => {
     .then((vehicles) => {
       if (!vehicles || vehicles.length == 0) {
         return Vehicle.bulkCreate([
-          { brandName: "Scania", productionYear: 2004, semitrailerSize: 5 },
-          { brandName: "Scania", productionYear: 2000, semitrailerSize: 4 },
-          { brandName: "Mercedes", productionYear: 1998 },
+          {
+            brandName: "Scania",
+            productionYear: 2004,
+            semitrailerSize: 5,
+            registrationPlate: "WU 1243",
+          },
+          {
+            brandName: "Scania",
+            productionYear: 2000,
+            semitrailerSize: 4,
+            registrationPlate: "WE 1052S",
+          },
+          {
+            brandName: "Mercedes",
+            productionYear: 1998,
+            registrationPlate: "TSA 88SA",
+          },
         ]).then(() => {
           return Driver.findAll();
         });

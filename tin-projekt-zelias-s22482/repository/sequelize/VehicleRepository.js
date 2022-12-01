@@ -27,6 +27,7 @@ exports.createVehicle = (newVehicleData) => {
   return Vehicle.create({
     brandName: newVehicleData.brandName,
     productionYear: newVehicleData.productionYear,
+    registrationPlate: newVehicleData.registrationPlate,
     semitrailerSize:
       newVehicleData.semitrailerSize === ""
         ? null
@@ -39,6 +40,7 @@ exports.updateVehicle = (vehicleId, vehicleData) => {
     {
       brandName: vehicleData.brandName,
       productionYear: vehicleData.productionYear,
+      registrationPlate: vehicleData.registrationPlate,
       semitrailerSize:
         vehicleData.semitrailerSize === "" ? null : vehicleData.semitrailerSize,
     },
