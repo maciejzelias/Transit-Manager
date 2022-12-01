@@ -45,6 +45,17 @@ const Driver = sequelize.define("Driver", {
         args: [4, 4],
         msg: "Pole powinno zawierać 4 znaki",
       },
+      isDecimal: {
+        msg: "Pole powinno być liczbą",
+      },
+      max: {
+        args: new Date().getFullYear(),
+        msg: "Rok urodzenia powinien byc mniejszy niz aktualny !!!",
+      },
+      min: {
+        args: 1901,
+        msg: "Rok urodzenia powinien byc wiekszy niz 1900",
+      },
     },
   },
 });

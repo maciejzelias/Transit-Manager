@@ -15,11 +15,23 @@ const Transit = sequelize.define("Transit", {
       notEmpty: {
         msg: "Pole jest wymagane",
       },
+      isDate: {
+        msg: "pole nie jest datą !",
+      },
     },
   },
   dateTo: {
     type: Sequelize.DATE,
     allowNull: true,
+    validate: {
+      isDate: {
+        msg: "pole nie jest datą !",
+      },
+      // isAfter: {
+      //   args:  ,
+      //   msg: "Data powinna byc pozniejsza niz data od !"
+      // }
+    },
   },
   startingLocalization: {
     type: Sequelize.STRING,
@@ -50,10 +62,20 @@ const Transit = sequelize.define("Transit", {
   driverId: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+    },
   },
   vehicleId: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+    },
   },
 });
 

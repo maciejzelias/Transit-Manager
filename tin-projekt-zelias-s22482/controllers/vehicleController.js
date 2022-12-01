@@ -27,14 +27,16 @@ exports.updateVehicle = (req, res, next) => {
       res.redirect("/vehicles");
     })
     .catch((err) => {
-      res.render("pages/vehicle/form", {
-        vehicle: vehicleData,
-        pageTitle: "Edycja pojazdu",
-        formMode: "edit",
-        btnLabel: "Edytuj pojazd",
-        formAction: "/vehicles/edit",
-        navLocation: "vehicle",
-        validationErrors: err.errors,
+      VehicleRepository.getVehicleById(vehicleId).then((vehicle) => {
+        res.render("pages/vehicle/form", {
+          vehicle: { ...vehicleData, ...vehicle },
+          pageTitle: "Edycja pojazdu",
+          formMode: "edit",
+          btnLabel: "Edytuj pojazd",
+          formAction: "/vehicles/edit",
+          navLocation: "vehicle",
+          validationErrors: err.errors,
+        });
       });
     });
 };

@@ -43,14 +43,16 @@ exports.updateDriver = (req, res, next) => {
       res.redirect("/drivers");
     })
     .catch((err) => {
-      res.render("pages/driver/form", {
-        driver: driverData,
-        pageTitle: "Edycja kierowcy",
-        formMode: "edit",
-        btnLabel: "Edytuj kierowce",
-        formAction: "/drivers/edit",
-        navLocation: "driver",
-        validationErrors: err.errors,
+      DriverRepository.getDriverById(driverId).then((driver) => {
+        res.render("pages/driver/form", {
+          driver: { ...driverData, ...driver },
+          pageTitle: "Edycja kierowcy",
+          formMode: "edit",
+          btnLabel: "Edytuj kierowce",
+          formAction: "/drivers/edit",
+          navLocation: "driver",
+          validationErrors: err.errors,
+        });
       });
     });
 };

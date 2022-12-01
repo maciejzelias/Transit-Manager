@@ -18,39 +18,59 @@ exports.addTransit = (req, res, next) => {
       res.redirect("/transits");
     })
     .catch((err) => {
-      res.render("pages/transit/form", {
-        transit: transitData,
-        formMode: "createNew",
-        pageTitle: "Nowe przejazdy",
-        btnLabel: "Dodaj przejazd",
-        allDrivers: [],
-        allVehicles: [],
-        formAction: "/transits/add",
-        navLocation: "transit",
-        validationErrors: err.errors,
-      });
+      let allDrivers, allVehicles;
+      DriverRepository.getDrivers()
+        .then((drivers) => {
+          allDrivers = drivers;
+          return VehicleRepository.getVehicles();
+        })
+        .then((vehicles) => {
+          allVehicles = vehicles;
+          res.render("pages/transit/form", {
+            transit: transitData,
+            formMode: "createNew",
+            pageTitle: "Nowe przejazdy",
+            btnLabel: "Dodaj przejazd",
+            allDrivers: allDrivers,
+            allVehicles: allVehicles,
+            formAction: "/transits/add",
+            navLocation: "transit",
+            validationErrors: err.errors,
+          });
+        });
     });
 };
 
 exports.updateTransit = (req, res, next) => {
-  const transitId = req.body._id;
   const transitData = { ...req.body };
+  const transitId = req.body._id;
   TransitRepository.updateTransit(transitId, transitData)
     .then((result) => {
       res.redirect("/transits");
     })
     .catch((err) => {
-      res.render("pages/transit/form", {
-        transit: transitData,
-        pageTitle: "Edycja przejazdu",
-        formMode: "edit",
-        btnLabel: "Edytuj przejazd",
-        allDrivers: [],
-        allVehicles: [],
-        formAction: "",
-        navLocation: "transit",
-        validationErrors: err.errors,
-      });
+      let allDrivers, allVehicles;
+      DriverRepository.getDrivers()
+        .then((drivers) => {
+          allDrivers = drivers;
+          return VehicleRepository.getVehicles();
+        })
+        .then((vehicles) => {
+          allVehicles = vehicles;
+          TransitRepository.getTransitById(transitId).then((transit) => {
+            res.render("pages/transit/form", {
+              transit: Object.assign(transit, transitData),
+              pageTitle: "Edycja przejazdu",
+              formMode: "edit",
+              btnLabel: "Edytuj przejazd",
+              allDrivers: allDrivers,
+              allVehicles: allVehicles,
+              formAction: "/transits/edit",
+              navLocation: "transit",
+              validationErrors: err.errors,
+            });
+          });
+        });
     });
 };
 
@@ -118,7 +138,7 @@ exports.showEditTransitForm = (req, res, next) => {
           allVehicles: allVehicles,
           formMode: "edit",
           btnLabel: "Edytuj przejazd",
-          formAction: "",
+          formAction: "/transits/edit",
           navLocation: "transit",
           validationErrors: [],
         });
