@@ -28,6 +28,13 @@ exports.createDriver = (newDriverData) => {
     firstName: newDriverData.firstName,
     lastName: newDriverData.lastName,
     birthdayYear: newDriverData.birthdayYear,
+    login: newDriverData.login,
+  });
+};
+
+exports.findByLogin = (login) => {
+  return Driver.findOne({
+    where: { login: login },
   });
 };
 

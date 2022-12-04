@@ -58,6 +58,24 @@ const Driver = sequelize.define("Driver", {
       },
     },
   },
+  login: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: {
+        msg: "Pole jest wymagane",
+      },
+      len: {
+        args: [2, 20],
+        msg: "Pole powinno zawierać od 2 do 20 znakow",
+      },
+    },
+  },
+  password: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
 });
 
 module.exports = Driver;

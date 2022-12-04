@@ -10,6 +10,27 @@
     <header>
       <h1>QTransit Manager</h1>
       <img src="/images/logo.png" alt=" QTransit Company Logo" />
+      <% if(!loggedUser) { %>
+      <div id="login">
+        <h5>Logowanie</h5>
+        <form method="post" action="login" novalidate>
+          <label for="loginName"> Login: </label>
+          <input type="text" id="loginName" name="login" />
+
+          <label for="loginPassword"> Login: </label>
+          <input type="password" id="loginPassword" name="password" />
+
+          <input type="submit" value="zaloguj się" />
+          <span id="LoginError"> <%= loginError ? loginError : '' %></span>
+        </form>
+      </div>
+      <% } else { %>
+      <span>
+        Jestes zalogowany jako: <%= loggedUser.firstName + " " +
+        loggedUser.lastName %>
+      </span>
+      <a href="/logout">Wyloguj się</a>
+      <% } %>
     </header>
 
     <nav>
@@ -19,30 +40,29 @@
             Strona główna</a
           >
         </li>
+        <% if(loggedUser) { %>
         <li>
           <a
             href="/drivers"
-            class="<%= navLocation == 'driver' ? 'active' : ''%>"
-          >
+            class="<%= navLocation == 'driver' ? 'active' : ''%>">
             Kierowcy
           </a>
         </li>
         <li>
           <a
             href="/transits"
-            class="<%= navLocation == 'transit' ? 'active' : ''%>"
-          >
+            class="<%= navLocation == 'transit' ? 'active' : ''%>">
             Przejazdy
           </a>
         </li>
         <li>
           <a
             href="/vehicles"
-            class="<%= navLocation == 'vehicle' ? 'active' : ''%>"
-          >
+            class="<%= navLocation == 'vehicle' ? 'active' : ''%>">
             Pojazdy
           </a>
         </li>
+        <% } %>
       </ul>
     </nav>
   </body>

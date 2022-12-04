@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const authUtils = require("./util/authUtils");
 
 var indexRouter = require("./routes/index");
 var driverRouter = require("./routes/driverRoute");
@@ -38,13 +39,22 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  const loggedUser = req.session.loggedUser;
+  res.locals.loggedUser = loggedUser;
+  if (!res.locals.loginError) {
+    res.locals.loginError = undefined;
+  }
+  next();
+});
+
 app.use("/", indexRouter);
-app.use("/drivers", driverRouter);
-app.use("/transits", transitRouter);
-app.use("/vehicles", vehicleRouter);
-app.use("/api/drivers", driverApiRouter);
-app.use("/api/transits", transitApiRouter);
-app.use("/api/vehicles", vehicleApiRouter);
+app.use("/drivers", authUtils.permitAuthenticatedUser, driverRouter);
+app.use("/transits", authUtils.permitAuthenticatedUser, transitRouter);
+app.use("/vehicles", authUtils.permitAuthenticatedUser, vehicleRouter);
+// app.use("/api/drivers", driverApiRouter);
+// app.use("/api/transits", transitApiRouter);
+// app.use("/api/vehicles", vehicleApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -16,6 +16,11 @@ exports.addDriver = (req, res, next) => {
       res.redirect("/drivers");
     })
     .catch((err) => {
+      err.errors.forEach((error) => {
+        if (error.path.includes("login") && error.type == "unique violation") {
+          error.message = "ten login jest juz zajety !";
+        }
+      });
       res.render("pages/driver/form", {
         driver: driverData,
         pageTitle: "Dodawanie pracownika",
@@ -43,6 +48,11 @@ exports.updateDriver = (req, res, next) => {
       res.redirect("/drivers");
     })
     .catch((err) => {
+      err.errors.forEach((error) => {
+        if (error.path.includes("login") && error.type == "unique violation") {
+          error.message = "ten login jest juz zajety !";
+        }
+      });
       DriverRepository.getDriverById(driverId).then((driver) => {
         res.render("pages/driver/form", {
           driver: { ...driverData, ...driver },

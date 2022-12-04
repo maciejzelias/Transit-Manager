@@ -12,6 +12,8 @@ main h2 {
   margin-bottom: 2rem;
 }
 
+
+
 footer {
   text-align: center;
   border: outset;
@@ -201,7 +203,7 @@ textarea {
   overflow: auto;
 }
 
-.form {
+.form{
   display: grid;
   grid-template-columns: 150px 300px 1fr;
   gap: 1rem;
