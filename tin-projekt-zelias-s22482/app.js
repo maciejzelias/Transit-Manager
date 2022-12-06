@@ -13,6 +13,14 @@ const driverApiRouter = require("./routes/api/DriverApiRoute");
 const transitApiRouter = require("./routes/api/TransitApiRoute");
 const vehicleApiRouter = require("./routes/api/VehicleApiRoute");
 
+const i18n = require("i18n");
+i18n.configure({
+  locales: ["pl", "eng"],
+  directory: path.join(__dirname, "locales"),
+  objectNotation: true,
+  cookie: "acme-hr-lang",
+});
+
 var app = express();
 
 const sequelizeInit = require("./config/sequelize/init");
@@ -28,10 +36,20 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cookieParser("secret"));
 app.use(express.static(path.join(__dirname, "public")));
+
+// app.use((req, rest, next) => {
+//   const currentLang = req.cookies["acme-hr-lang"];
+//   res.locals.lang = currentLang;
+//   if (!res.locals.lang) {
+//   }
+//   next();
+// });
 
 //adding sessions
 const session = require("express-session");
+const res = require("express/lib/response");
 app.use(
   session({
     secret: "my_secret_password",

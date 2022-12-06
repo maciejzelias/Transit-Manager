@@ -1,0 +1,59 @@
+{
+  "main-page": {
+    "content": "Strona główna"
+  },
+  "nav": {
+    "main-page": "Strona główna",
+    "drivers": "Kierowcy",
+    "transits": "Przejazdy",
+    "vehicles": "Pojazdy"
+  },
+  "list": {
+    "actions": {
+      "title": "Akcje",
+      "details": "Szczegóły",
+      "edit": "Edytuj",
+      "delete": "Usuń"
+    }
+  },
+  "form": {
+    "actions": {
+      "return": "Powrót",
+      "edit": "Edytuj",
+      "cancel": "Anuluj"
+    }
+  },
+  "driver": {
+    "fields": {
+      "firstName": "Imię",
+      "lastName": "Naziwsko",
+      "birthdayYear": "Rok urodzenia",
+      "login": "login uzytkownika"
+    },
+    "list": {
+      "title": "Kierowcy",
+      "addNew": "Dodaj nowego kierowce",
+      "noData": "Brak kierowców w bazie",
+      "pageTitle": "Lista kierowców"
+    },
+    "form": {
+      "transit": "Historia przejazdów",
+      "add": {
+        "pageTitle": "Dodanie kierowcy",
+        "btnLabel": "Dodaj kierowce",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie dodano kierowce"
+        }
+      },
+      "edit": {
+        "pageTitle": "Edycja kierowcy",
+        "btnLabel": "Zapisz zmiany",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie zaktualizowano kierowce"
+        }
+      }
+    }
+  }
+}

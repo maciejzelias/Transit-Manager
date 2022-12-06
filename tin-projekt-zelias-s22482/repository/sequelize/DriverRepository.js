@@ -29,6 +29,7 @@ exports.createDriver = (newDriverData) => {
     lastName: newDriverData.lastName,
     birthdayYear: newDriverData.birthdayYear,
     login: newDriverData.login,
+    password: newDriverData.password,
   });
 };
 

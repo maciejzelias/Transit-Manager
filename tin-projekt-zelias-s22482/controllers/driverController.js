@@ -1,4 +1,5 @@
 const DriverRepository = require("../repository/sequelize/DriverRepository");
+const authUtil = require("../util/authUtils");
 
 exports.showDriversList = (req, res, next) => {
   DriverRepository.getDrivers().then((drivers) => {
@@ -10,7 +11,8 @@ exports.showDriversList = (req, res, next) => {
 };
 
 exports.addDriver = (req, res, next) => {
-  const driverData = { ...req.body };
+  const password = authUtil.hashPassword(req.body.password);
+  const driverData = { ...req.body, password: password };
   DriverRepository.createDriver(driverData)
     .then((result) => {
       res.redirect("/drivers");
@@ -42,7 +44,8 @@ exports.deleteDriver = (req, res, next) => {
 
 exports.updateDriver = (req, res, next) => {
   const driverId = req.body._id;
-  const driverData = { ...req.body };
+  const password = req.body.password;
+  const driverData = { ...req.body, password: password };
   DriverRepository.updateDriver(driverId, driverData)
     .then((result) => {
       res.redirect("/drivers");

@@ -10,34 +10,40 @@
     <header>
       <h1>QTransit Manager</h1>
       <img src="/images/logo.png" alt=" QTransit Company Logo" />
+    </header>
+    <p>
       <% if(!loggedUser) { %>
-      <div id="login">
+      <div id="login" class="loginDiv">
         <h5>Logowanie</h5>
         <form method="post" action="login" novalidate>
           <label for="loginName"> Login: </label>
           <input type="text" id="loginName" name="login" />
-
-          <label for="loginPassword"> Login: </label>
+  
+          <label for="loginPassword"> Hasło: </label>
           <input type="password" id="loginPassword" name="password" />
-
-          <input type="submit" value="zaloguj się" />
+  
+          <input type="submit" value="zaloguj się" class="login-button" />
           <span id="LoginError"> <%= loginError ? loginError : '' %></span>
         </form>
       </div>
       <% } else { %>
-      <span>
-        Jestes zalogowany jako: <%= loggedUser.firstName + " " +
-        loggedUser.lastName %>
-      </span>
-      <a href="/logout">Wyloguj się</a>
+      <div class="logoutDiv">
+        <span>
+          Jestes zalogowany jako: <%= loggedUser.firstName + " " +
+          loggedUser.lastName %>
+        </span>
+        <a href="/logout">Wyloguj się</a>
+      </div>
       <% } %>
-    </header>
+    </p>
 
     <nav>
       <ul>
         <li>
           <a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">
-            Strona główna</a
+        
+            Strona
+            </a
           >
         </li>
         <% if(loggedUser) { %>

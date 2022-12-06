@@ -12,8 +12,6 @@ main h2 {
   margin-bottom: 2rem;
 }
 
-
-
 footer {
   text-align: center;
   border: outset;
@@ -68,6 +66,7 @@ a {
 .list-actions-button-edit,
 .list-actions-button-delete,
 .button-add,
+.login-button,
 .button-return,
 .form-button-submit,
 .form-button-cancel {
@@ -80,6 +79,10 @@ a {
   text-decoration: none;
   text-align: center;
   font-size: 0.8rem;
+}
+
+.login-button {
+  background-color: gray;
 }
 
 .list-actions-button-details,
@@ -162,7 +165,7 @@ a {
 
 .form select option,
 .form input[type="text"],
-.form input[type="number"],
+.form input[type="password"] .form input[type="number"],
 .form input[type="date"],
 .form input[type="email"] {
   border: 1px solid #7f8c8d;
@@ -203,12 +206,11 @@ textarea {
   overflow: auto;
 }
 
-.form{
+.form {
   display: grid;
   grid-template-columns: 150px 300px 1fr;
   gap: 1rem;
 }
-
 
 .form label {
   display: block;
@@ -235,6 +237,28 @@ footer {
   background-color: rgba(48, 48, 48, 0.959);
   color: white;
   padding: 1rem;
+}
+
+.loginDiv,
+.logoutDiv {
+  display: flex;
+  flex-direction: column;
+  background: rgb(226, 0, 2);
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 150px;
+  margin-left: 150px;
+  border-radius: 8px;
+}
+
+.logoutDiv span {
+  color: white;
+}
+.logoutDiv a {
+  color: grey;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 header {

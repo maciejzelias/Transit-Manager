@@ -1,0 +1,59 @@
+{
+  "main-page": {
+    "content": "Main Page"
+  },
+  "nav": {
+    "main-page": "Main Page",
+    "drivers": "Drivers",
+    "transits": "Transits",
+    "vehicles": "Vehicles"
+  },
+  "list": {
+    "actions": {
+      "title": "Actions",
+      "details": "Details",
+      "edit": "Edit",
+      "delete": "Delete"
+    }
+  },
+  "form": {
+    "actions": {
+      "return": "Return",
+      "edit": "Edit",
+      "cancel": "Cancel"
+    }
+  },
+  "driver": {
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "birthdayYear": "Birthday year",
+      "login": "Login"
+    },
+    "list": {
+      "title": "Drivers",
+      "addNew": "Add new driver",
+      "noData": "No drivers in database",
+      "pageTitle": "List of drivers"
+    },
+    "form": {
+      "transit": "History of transits",
+      "add": {
+        "pageTitle": "Adding a new driver",
+        "btnLabel": "Add the driver",
+        "confirm": {
+          "header": "Confirmation",
+          "text": "The new driver has been successfully created"
+        }
+      },
+      "edit": {
+        "pageTitle": "Editing a driver",
+        "btnLabel": "Save changes",
+        "confirm": {
+          "header": "Confirmation",
+          "text": "The driver has been successfully updated"
+        }
+      }
+    }
+  }
+}
