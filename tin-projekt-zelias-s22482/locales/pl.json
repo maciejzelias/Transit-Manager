@@ -1,6 +1,12 @@
 {
   "main-page": {
-    "content": "Strona główna"
+    "content": "Strona główna",
+    "header" : "Logowanie",
+    "login" : "login",
+    "password" : "hasło",
+    "log-in" : "Zaloguj się",
+    "loggedIn" : "Jesteś zalogowany jako : ",
+    "log-out" : "Wyloguj się"
   },
   "nav": {
     "main-page": "Strona główna",

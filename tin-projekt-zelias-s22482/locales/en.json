@@ -1,6 +1,12 @@
 {
   "main-page": {
-    "content": "Main Page"
+    "content": "Main Page",
+    "header": "SignUp",
+    "login": "login",
+    "password": "password",
+    "log-in": "Log In",
+    "loggedIn": "You are logged as : ",
+    "log-out": "Log out"
   },
   "nav": {
     "main-page": "Main Page",

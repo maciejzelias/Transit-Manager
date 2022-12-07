@@ -14,25 +14,25 @@
     <p>
       <% if(!loggedUser) { %>
       <div id="login" class="loginDiv">
-        <h5>Logowanie</h5>
+        <h5> <%= __('main-page.header') %> </h5>
         <form method="post" action="login" novalidate>
-          <label for="loginName"> Login: </label>
+          <label for="loginName"> <%= __('main-page.login') %> : </label>
           <input type="text" id="loginName" name="login" />
   
-          <label for="loginPassword"> Hasło: </label>
+          <label for="loginPassword"> <%= __('main-page.password') %> : </label>
           <input type="password" id="loginPassword" name="password" />
   
-          <input type="submit" value="zaloguj się" class="login-button" />
+          <input type="submit" value="<%= __('main-page.log-in') %>" class="login-button" />
           <span id="LoginError"> <%= loginError ? loginError : '' %></span>
         </form>
       </div>
       <% } else { %>
       <div class="logoutDiv">
         <span>
-          Jestes zalogowany jako: <%= loggedUser.firstName + " " +
+          <%= __('main-page.loggedIn') %><%= loggedUser.firstName + " " +
           loggedUser.lastName %>
         </span>
-        <a href="/logout">Wyloguj się</a>
+        <a href="/logout"><%= __('main-page.log-out') %></a>
       </div>
       <% } %>
     </p>
@@ -41,8 +41,7 @@
       <ul>
         <li>
           <a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">
-        
-            Strona
+            <%= __('nav.main-page') %>
             </a
           >
         </li>
@@ -51,21 +50,21 @@
           <a
             href="/drivers"
             class="<%= navLocation == 'driver' ? 'active' : ''%>">
-            Kierowcy
+            <%= __('nav.drivers') %>
           </a>
         </li>
         <li>
           <a
             href="/transits"
             class="<%= navLocation == 'transit' ? 'active' : ''%>">
-            Przejazdy
+            <%= __('nav.transits') %>
           </a>
         </li>
         <li>
           <a
             href="/vehicles"
             class="<%= navLocation == 'vehicle' ? 'active' : ''%>">
-            Pojazdy
+            <%= __('nav.vehicles') %>
           </a>
         </li>
         <% } %>

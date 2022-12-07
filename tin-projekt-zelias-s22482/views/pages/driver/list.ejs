@@ -1,14 +1,14 @@
 <%- include("../../fragments/header.ejs") %>
 
 <main>
-  <h2>Lista kierowcow</h2>
+  <h2><%= __('driver.list.pageTitle') %></h2>
   <table class="table-list">
     <thead>
       <tr>
-        <th>Imie</th>
-        <th>Nazwisko</th>
-        <th>Rok urodzenia</th>
-        <th>Akcje</th>
+        <th><%= __('driver.fields.firstName') %></th>
+        <th><%= __('driver.fields.lastName') %></th>
+        <th><%= __('driver.fields.birthdayYear') %></th>
+        <th><%= __('list.actions.title') %></th>
       </tr>
     </thead>
 
@@ -24,21 +24,21 @@
               <a
                 href="/drivers/details/<%=driver._id%>"
                 class="list-actions-button-details"
-                >Szczegoły</a
+                ><%= __('list.actions.details') %></a
               >
             </li>
             <li>
               <a
                 href="/drivers/edit/<%=driver._id%>"
                 class="list-actions-button-edit"
-                >Edytuj</a
+                ><%= __('list.actions.edit') %></a
               >
             </li>
             <li>
               <a
                 href="/drivers/delete/<%=driver._id%>"
                 class="list-actions-button-delete"
-                >Usuń</a
+                ><%= __('list.actions.delete') %></a
               >
             </li>
           </ul>
@@ -49,7 +49,7 @@
   </table>
 
   <p class="button-add">
-    <a href="/drivers/add"> Dodaj nowego pracownika </a>
+    <a href="/drivers/add"> <%= __('driver.list.addNew') %> </a>
   </p>
 </main>
 <%- include("../../fragments/footer.ejs") %>
