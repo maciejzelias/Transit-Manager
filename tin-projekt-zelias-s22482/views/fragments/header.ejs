@@ -40,6 +40,12 @@
     <nav>
       <ul>
         <li>
+          <a href="/changeLang/pl" class="<%= lang == 'pl' ? 'active' : '' %>">PL</a>
+        </li>
+        <li>
+          <a href="/changeLang/en" class="<%= lang == 'en' ? 'active' : '' %>">EN</a>
+        </li>
+        <li>
           <a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">
             <%= __('nav.main-page') %>
             </a

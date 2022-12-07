@@ -25,9 +25,9 @@ exports.addDriver = (req, res, next) => {
       });
       res.render("pages/driver/form", {
         driver: driverData,
-        pageTitle: "Dodawanie pracownika",
+        pageTitle: req.__("driver.form.add.pageTitle"),
         formMode: "createNew",
-        btnLabel: "Dodaj kierowce",
+        btnLabel: req.__("driver.form.add.btnLabel"),
         formAction: "/drivers/add",
         navLocation: "driver",
         validationErrors: err.errors,
@@ -59,9 +59,9 @@ exports.updateDriver = (req, res, next) => {
       DriverRepository.getDriverById(driverId).then((driver) => {
         res.render("pages/driver/form", {
           driver: { ...driverData, ...driver },
-          pageTitle: "Edycja kierowcy",
+          pageTitle: req.__("driver.form.edit.pageTitle"),
           formMode: "edit",
-          btnLabel: "Edytuj kierowce",
+          btnLabel: req.__("driver.form.edit.btnLabel"),
           formAction: "/drivers/edit",
           navLocation: "driver",
           validationErrors: err.errors,
@@ -73,9 +73,9 @@ exports.updateDriver = (req, res, next) => {
 exports.showAddDriverForm = (req, res, next) => {
   res.render("pages/driver/form", {
     driver: {},
-    pageTitle: "Nowy kierowca",
+    pageTitle: req.__("driver.form.add.pageTitle"),
     formMode: "createNew",
-    btnLabel: "Dodaj kierowce",
+    btnLabel: req.__("driver.form.add.pageTitle"),
     formAction: "/drivers/add",
     navLocation: "driver",
     validationErrors: [],
@@ -87,7 +87,7 @@ exports.showDriverDetails = (req, res, next) => {
   DriverRepository.getDriverById(driverId).then((driver) => {
     res.render("pages/driver/form", {
       driver: driver,
-      pageTitle: "Szczegóły kierowcy",
+      pageTitle: req.__("driver.form.details.pageTitle"),
       formMode: "showDetails",
       formAction: "",
       navLocation: "driver",
@@ -101,9 +101,9 @@ exports.showEditDriverForm = (req, res, next) => {
   DriverRepository.getDriverById(driverId).then((driver) => {
     res.render("pages/driver/form", {
       driver: driver,
-      pageTitle: "Edycja kierowcy",
+      pageTitle: req.__("driver.form.edit.pageTitle"),
       formMode: "edit",
-      btnLabel: "Edytuj kierowce",
+      btnLabel: req.__("driver.form.edit.btnLabel"),
       formAction: "/drivers/edit",
       validationErrors: [],
       navLocation: "driver",

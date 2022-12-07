@@ -29,8 +29,8 @@ exports.addTransit = (req, res, next) => {
           res.render("pages/transit/form", {
             transit: transitData,
             formMode: "createNew",
-            pageTitle: "Nowe przejazdy",
-            btnLabel: "Dodaj przejazd",
+            pageTitle: req.__("transit.form.add.pageTitle"),
+            btnLabel: req.__("transit.form.add.btnLabel"),
             allDrivers: allDrivers,
             allVehicles: allVehicles,
             formAction: "/transits/add",
@@ -60,9 +60,9 @@ exports.updateTransit = (req, res, next) => {
           TransitRepository.getTransitById(transitId).then((transit) => {
             res.render("pages/transit/form", {
               transit: Object.assign(transit, transitData),
-              pageTitle: "Edycja przejazdu",
+              pageTitle: req.__("transit.form.edit.pageTitle"),
               formMode: "edit",
-              btnLabel: "Edytuj przejazd",
+              btnLabel: req.__("transit.form.edit.btnLabel"),
               allDrivers: allDrivers,
               allVehicles: allVehicles,
               formAction: "/transits/edit",
@@ -95,8 +95,8 @@ exports.showAddTransitForm = (req, res, next) => {
         formMode: "createNew",
         allDrivers: allDrivers,
         allVehicles: allVehicles,
-        pageTitle: "Nowe przejazdy",
-        btnLabel: "Dodaj przejazd",
+        pageTitle: req.__("transit.form.add.pageTitle"),
+        btnLabel: req.__("transit.form.add.btnLabel"),
         formAction: "/transits/add",
         navLocation: "transit",
         validationErrors: [],
@@ -109,7 +109,7 @@ exports.showTransitDetails = (req, res, next) => {
   TransitRepository.getTransitById(transitId).then((transit) => {
     res.render("pages/transit/form", {
       transit: transit,
-      pageTitle: "Szczegóły przejazdu",
+      pageTitle: req.__("transit.form.details.pageTitle"),
       allDrivers: [transit.driver],
       allVehicles: [transit.vehicle],
       formMode: "showDetails",
@@ -133,11 +133,11 @@ exports.showEditTransitForm = (req, res, next) => {
       return TransitRepository.getTransitById(transitId).then((transit) => {
         res.render("pages/transit/form", {
           transit: transit,
-          pageTitle: "Edycja przejazdu",
+          pageTitle: req.__("transit.form.edit.pageTitle"),
           allDrivers: allDrivers,
           allVehicles: allVehicles,
           formMode: "edit",
-          btnLabel: "Edytuj przejazd",
+          btnLabel: req.__("transit.form.edit.btnLabel"),
           formAction: "/transits/edit",
           navLocation: "transit",
           validationErrors: [],

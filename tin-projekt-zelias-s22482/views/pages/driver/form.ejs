@@ -3,14 +3,18 @@
 <main>
   <script
     type="application/javascript"
-    src="/js/validationDriverForm.js"></script>
+    src="/js/validationDriverForm.js"
+  ></script>
   <script type="application/javascript" src="/js/validationCommon.js"></script>
-  <h2><%= __('driver.list.pageTitle') %></h2>
+  <h2><%= pageTitle %></h2>
 
   <form class="form" method="post" action="<%=formAction%>" novalidate>
     <input type="hidden" name="_id" id="_id" value="<%= driver._id %>" />
 
-    <label for="firstName"> Imię: <span class="symbol-required">*</span></label>
+    <label for="firstName">
+      <%= __('driver.fields.firstName') %> :
+      <span class="symbol-required">*</span></label
+    >
     <input class="<%= validationErrors.find(e => e.path.includes('firstName')) ?
     'error-input' : '' %>" type="text" name="firstName" id="firstName" value =
     "<%= driver.firstName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''
@@ -22,7 +26,8 @@
     </span>
 
     <label for="lastName">
-      Nazwisko: <span class="symbol-required">*</span></label
+      <%= __('driver.fields.lastName') %> :
+      <span class="symbol-required">*</span></label
     >
     <input class="<%= validationErrors.find(e => e.path.includes('lastName')) ?
     'error-input' : '' %>" type="text" name="lastName" id="lastName" value =
@@ -34,7 +39,8 @@
     </span>
 
     <label for="birthdayYear">
-      Rok urodzenia <span class="symbol-required">*</span></label
+      <%= __('driver.fields.birthdayYear') %> :
+      <span class="symbol-required">*</span></label
     >
     <input class="<%= validationErrors.find(e =>
     e.path.includes('birthdayYear')) ? 'error-input' : '' %>" type="number"
@@ -47,7 +53,10 @@
       <% } %>
     </span>
 
-    <label for="login"> Login <span class="symbol-required">*</span></label>
+    <label for="login">
+      <%= __('driver.fields.login') %> :
+      <span class="symbol-required">*</span></label
+    >
     <input class="<%= validationErrors.find(e => e.path.includes('login')) ?
     'error-input' : '' %>" type="text" name="login" id="login" value = "<%=
     driver.login %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
@@ -61,7 +70,7 @@
     <% if(formMode == 'showDetails'){ %>
     <div class="form-buttons">
       <a href="/drivers/edit/<%= driver._id %>" class="list-actions-button-edit"
-        >Edytuj</a
+        ><%= __('form.actions.edit') %></a
       >
     </div>
 
@@ -71,23 +80,27 @@
       <p id="errorsSummary"></p>
       <% if(formMode != 'showDetails') { %>
       <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-      <a class="form-button-cancel" href="/drivers">Anuluj</a>
+      <a class="form-button-cancel" href="/drivers"
+        ><%= __('form.actions.cancel') %></a
+      >
       <% } else { %>
-      <a class="form-button-cancel" href="/drivers">Powrót</a>
+      <a class="form-button-cancel" href="/drivers"
+        ><%= __('form.actions.return') %></a
+      >
       <% } %>
     </div>
   </form>
 
   <% if(formMode=='showDetails' || formMode=='edit') { %>
-  <h2>Szczegóły przejazdów</h2>
+  <h2><%= __('form.transit') %></h2>
   <table class="table-list">
     <thead>
       <tr>
-        <th>Marka</th>
-        <th>Rok Produkcji</th>
-        <th>Do</th>
-        <th>Data od</th>
-        <th>Data do</th>
+        <th><%= __('vehicle.fields.brandName') %></th>
+        <th><%= __('vehicle.fields.productionYear') %></th>
+        <th><%= __('transit.fields.endingLocalization') %></th>
+        <th><%= __('transit.fields.dateFrom') %></th>
+        <th><%= __('transit.fields.dateTo') %></th>
       </tr>
     </thead>
 

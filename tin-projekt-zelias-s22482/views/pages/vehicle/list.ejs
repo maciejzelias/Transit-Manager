@@ -5,10 +5,10 @@
   <table class="table-list">
     <thead>
       <tr>
-        <th>Marka</th>
-        <th>Rok produkcji</th>
-        <th>Rozmiar naczepy</th>
-        <th>Akcje</th>
+        <th><%= __('vehicle.fields.brandName') %></th>
+        <th><%= __('vehicle.fields.productionYear') %></th>
+        <th><%= __('vehicle.fields.semitrailerSize') %></th>
+        <th><%= __('list.actions.title') %></th>
       </tr>
     </thead>
 
@@ -24,21 +24,21 @@
               <a
                 href="/vehicles/details/<%=vehicle._id%>"
                 class="list-actions-button-details"
-                >Szczegóły</a
+                ><%= __('list.actions.details') %></a
               >
             </li>
             <li>
               <a
                 href="/vehicles/edit/<%=vehicle._id%>"
                 class="list-actions-button-edit"
-                >Edytuj</a
+                ><%= __('list.actions.edit') %></a
               >
             </li>
             <li>
               <a
                 href="vehicles/delete/<%=vehicle._id%>"
                 class="list-actions-button-delete"
-                >Usuń</a
+                ><%= __('list.actions.delete') %></a
               >
             </li>
           </ul>
@@ -50,7 +50,7 @@
   </table>
 
   <p class="button-add">
-    <a href="/vehicles/add"> Dodaj nowy pojazd </a>
+    <a href="/vehicles/add"> <%= __('vehicle.list.addNew') %> </a>
   </p>
 </main>
 <%- include("../../fragments/footer.ejs") %>

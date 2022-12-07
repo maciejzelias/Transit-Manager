@@ -3,7 +3,8 @@
 <main>
   <script
     type="application/javascript"
-    src="/js/validationVehicleForm.js"></script>
+    src="/js/validationVehicleForm.js"
+  ></script>
   <script type="application/javascript" src="/js/validationCommon.js"></script>
   <h2><%= pageTitle%></h2>
 
@@ -11,7 +12,8 @@
     <input type="hidden" name="_id" id="_id" value="<%= vehicle._id %>" />
 
     <label for="brandName">
-      Marka: <span class="symbol-required">*</span></label
+      <%= __('vehicle.fields.brandName') %>:
+      <span class="symbol-required">*</span></label
     >
     <input class="<%= validationErrors.find(e => e.path.includes('brandName')) ?
     'error-input' : '' %>" type="text" name="brandName" id="brandName" value =
@@ -24,7 +26,8 @@
     </span>
 
     <label for="productionYear">
-      Rok Produkcji: <span class="symbol-required">*</span></label
+      <%= __('vehicle.fields.productionYear') %>:
+      <span class="symbol-required">*</span></label
     >
     <input class="<%= validationErrors.find(e =>
     e.path.includes('productionYear')) ? 'error-input' : '' %>" type="number"
@@ -36,7 +39,9 @@
       %> <% } %>
     </span>
 
-    <label for="semitrailerSize"> Wielkość naczepy: </label>
+    <label for="semitrailerSize">
+      <%= __('vehicle.fields.semitrailerSize') %>:
+    </label>
     <input class="<%= validationErrors.find(e =>
     e.path.includes('semitrailerSize')) ? 'error-input' : '' %>" type="number"
     name="semitrailerSize" id="semitrailerSize" value="<%=
@@ -49,7 +54,8 @@
     </span>
 
     <label for="registrationPlate">
-      Rejestracja: <span class="symbol-required">*</span>
+      <%= __('vehicle.fields.registrationPlate') %>:
+      <span class="symbol-required">*</span>
     </label>
     <input class="<%= validationErrors.find(e =>
     e.path.includes('registrationPlate')) ? 'error-input' : '' %>" type="text"
@@ -67,7 +73,7 @@
       <a
         href="/vehicles/edit/<%= vehicle._id %>"
         class="list-actions-button-edit"
-        >Edytuj</a
+        ><%= __('form.actions.edit') %></a
       >
     </div>
 
@@ -76,23 +82,27 @@
       <p id="errorsSummary"></p>
       <% if(formMode != 'showDetails') { %>
       <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-      <a class="form-button-cancel" href="/vehicles">Anuluj</a>
+      <a class="form-button-cancel" href="/vehicles"
+        ><%= __('form.actions.cancel') %></a
+      >
       <% } else { %>
-      <a class="form-button-cancel" href="/vehicles">Powrót</a>
+      <a class="form-button-cancel" href="/vehicles"
+        ><%= __('form.actions.return') %></a
+      >
       <% } %>
     </div>
   </form>
 
   <% if(formMode=='showDetails' || formMode=='edit') { %>
-  <h2>Szczegóły przejazdów</h2>
+  <h2><%= __('vehicle.form.transit') %></h2>
   <table class="table-list">
     <thead>
       <tr>
-        <th>Kierowca</th>
-        <th>Rok Urodzenia</th>
-        <th>Do</th>
-        <th>Data od</th>
-        <th>Data do</th>
+        <th><%= __('transit.fields.driver') %></th>
+        <th><%= __('driver.fields.birthdayYear') %></th>
+        <th><%= __('transit.fields.endingLocalization') %></th>
+        <th><%= __('transit.fields.dateFrom') %></th>
+        <th><%= __('transit.fields.dateTo') %></th>
       </tr>
     </thead>
 

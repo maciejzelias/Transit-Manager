@@ -16,7 +16,7 @@
   >
     <input type="hidden" name="_id" id="_id" value="<%= transit._id %>" />
 
-    <label for="startingLocalization"> Z: <span class="symbol-required">*</span></label>
+    <label for="startingLocalization"> <%= __('transit.fields.startingLocalization') %>: <span class="symbol-required">*</span></label>
     <input class="<%= validationErrors.find(e => e.path.includes('startingLocalization')) ?
     'error-input' : '' %>" type="text" name="startingLocalization" id="startingLocalization" value = "<%= transit.startingLocalization %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorStartingLocalization" class="errors-text">
@@ -25,7 +25,7 @@
         %>
     </span>
 
-    <label for="endingLocalization"> Do: <span class="symbol-required">*</span></label>
+    <label for="endingLocalization"> <%= __('transit.fields.endingLocalization') %>: <span class="symbol-required">*</span></label>
     <input class="<%= validationErrors.find(e => e.path.includes('endingLocalization')) ?
     'error-input' : '' %>" type="text" name="endingLocalization" id="endingLocalization" value = "<%=
     transit.endingLocalization %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %>
@@ -37,7 +37,7 @@
     </span>
 
     <label for="dateFrom">
-      Data Od: <span class="symbol-required">*</span></label
+      <%= __('transit.fields.dateFrom') %>: <span class="symbol-required">*</span></label
     >
     <input class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ?
     'error-input' : '' %>" type="date" name="dateFrom" id="dateFrom" value="<%= transit.dateFrom ? ((typeof transit.dateFrom == 'undefined') ? transit.dateFrom : transit.dateFrom.toISOString().split('T')[0]) : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
@@ -47,7 +47,7 @@
         %>
     </span>
 
-    <label for="dateTo"> Data do: </label>
+    <label for="dateTo"> <%= __('transit.fields.dateTo') %>: </label>
     <input class="<%= validationErrors.find(e => e.path.includes('dateTo')) ?
     'error-input' : '' %>" type="date" name="dateTo" id="dateTo" value="<%= transit.dateTo ? ((typeof transit.dateTo == 'undefined') ?  transit.dateTo : transit.dateTo.toISOString().split('T')[0] ) : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorDateTo" class="errors-text">
@@ -56,12 +56,12 @@
         %>
     </span>
 
-    <label for="vehicleId"> Pojazd: <span class="symbol-required">*</span></label>
+    <label for="vehicleId"> <%= __('transit.fields.vehicle') %>: <span class="symbol-required">*</span></label>
     <select class="<%= validationErrors.find(e => e.path.includes('vehicleId')) ?
       'error-input' : '' %>" name="vehicleId" id="vehicleId" required
     <%= (formMode == 'showDetails') ? 'disabled' : '' %>
     >
-      <option value ="" selected>-- wybierz pojazd --</option>
+      <option value ="" selected><%= __('transit.form.choose.vehicles') %></option>
       <% for (let i=0; i< allVehicles.length; i++) { let vehicle = allVehicles[i]; %>
         <option value="<%= vehicle._id %>" label="<%= vehicle.brandName + ' ' + vehicle.productionYear %>"
          <%= transit.vehicle ? ((transit._id && vehicle._id.toString() == transit.vehicle._id.toString()) ? 'selected' : '' ) : '' %> ><%= vehicle.brandName + ' ' + vehicle.productionYear %></option>
@@ -74,13 +74,13 @@
     </span>
 
     <label for="driverId">
-      Kierowca: <span class="symbol-required">*</span></label
+      <%= __('transit.fields.driver') %>: <span class="symbol-required">*</span></label
     >
     <select class="<%= validationErrors.find(e => e.path.includes('driverId')) ?
       'error-input' : '' %>" name="driverId" id="driverId" required
     <%= (formMode == 'showDetails') ? 'disabled' : '' %>
     >
-      <option value ="" selected>-- wybierz kierowce --</option>
+      <option value ="" selected><%= __('transit.form.choose.drivers') %></option>
       <% for (let i=0; i< allDrivers.length; i++) { let driver = allDrivers[i]; %>
         <option value="<%= driver._id %>" label="<%= driver.firstName  %>"
          <%= transit.vehicle ? ((transit._id && driver._id.toString() == transit.driver._id.toString()) ? 'selected' : '' ) : '' %> > <%= driver.firstName + ' ' + driver.lastName %></option>
@@ -95,7 +95,7 @@
     <% if(formMode == 'showDetails'){ %>
       <div class="form-buttons">
         <a href="/transits/edit/<%= transit._id %>" class="list-actions-button-edit"
-          >Edytuj</a
+          ><%= __('form.actions.edit') %></a
         >
       </div>
   
@@ -105,9 +105,9 @@
         <p id="errorsSummary"></p>
         <% if(formMode != 'showDetails') { %>
         <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
-        <a class="form-button-cancel" href="/transits">Anuluj</a>
+        <a class="form-button-cancel" href="/transits"><%= __('form.actions.cancel') %></a>
         <% } else { %>
-        <a class="form-button-cancel" href="/transits">Powrót</a>
+        <a class="form-button-cancel" href="/transits"><%= __('form.actions.return') %></a>
         <% } %>
       </div>
   </form>

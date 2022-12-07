@@ -17,9 +17,9 @@ exports.addVehicle = (req, res, next) => {
       });
       res.render("pages/vehicle/form", {
         vehicle: vehicleData,
-        pageTitle: "Nowy pojazd",
+        pageTitle: req.__("vehicle.form.add.pageTitle"),
         formMode: "createNew",
-        btnLabel: "Dodaj pojazd",
+        btnLabel: req.__("vehicle.form.add.btnLabel"),
         formAction: "/vehicles/add",
         navLocation: "vehicle",
         validationErrors: err.errors,
@@ -46,9 +46,9 @@ exports.updateVehicle = (req, res, next) => {
       VehicleRepository.getVehicleById(vehicleId).then((vehicle) => {
         res.render("pages/vehicle/form", {
           vehicle: { ...vehicleData, ...vehicle },
-          pageTitle: "Edycja pojazdu",
+          pageTitle: req.__("vehicle.form.edit.pageTitle"),
           formMode: "edit",
-          btnLabel: "Edytuj pojazd",
+          btnLabel: req.__("vehicle.form.edit.btnLabel"),
           formAction: "/vehicles/edit",
           navLocation: "vehicle",
           validationErrors: err.errors,
@@ -76,9 +76,9 @@ exports.showVehiclesList = (req, res, next) => {
 exports.showAddVehicleForm = (req, res, next) => {
   res.render("pages/vehicle/form", {
     vehicle: {},
-    pageTitle: "Nowy pojazd",
+    pageTitle: req.__("vehicle.form.add.pageTitle"),
     formMode: "createNew",
-    btnLabel: "Dodaj pojazd",
+    btnLabel: req.__("vehicle.form.add.btnLabel"),
     formAction: "/vehicles/add",
     navLocation: "vehicle",
     validationErrors: [],
@@ -90,7 +90,7 @@ exports.showVehicleDetails = (req, res, next) => {
   VehicleRepository.getVehicleById(vehicleId).then((vehicle) => {
     res.render("pages/vehicle/form", {
       vehicle: vehicle,
-      pageTitle: "Szczegóły pojazdu",
+      pageTitle: req.__("vehicle.form.details.pageTitle"),
       formMode: "showDetails",
       formAction: "",
       navLocation: "vehicle",
@@ -104,9 +104,9 @@ exports.showEditVehicleForm = (req, res, next) => {
   VehicleRepository.getVehicleById(vehicleId).then((vehicle) => {
     res.render("pages/vehicle/form", {
       vehicle: vehicle,
-      pageTitle: "Edycja pojazdu",
+      pageTitle: req.__("vehicle.form.edit.pageTitle"),
       formMode: "edit",
-      btnLabel: "Edytuj pojazd",
+      btnLabel: req.__("vehicle.form.edit.btnLabel"),
       formAction: "/vehicles/edit",
       navLocation: "vehicle",
       validationErrors: [],

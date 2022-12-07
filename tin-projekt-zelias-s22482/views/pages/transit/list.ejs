@@ -1,16 +1,16 @@
 <%- include("../../fragments/header.ejs") %>
 
 <main>
-  <h2>Lista przejazdów</h2>
+  <h2><%= __('transit.list.pageTitle') %></h2>
   <table class="table-list">
     <thead>
       <tr>
-        <th>Do</th>
-        <th>Data Od</th>
-        <th>Data do</th>
-        <th>Pojazd</th>
-        <th>Kierowca</th>
-        <th>Akcje</th>
+        <th><%= __('transit.fields.endingLocalization') %></th>
+        <th><%= __('transit.fields.dateFrom') %></th>
+        <th><%= __('transit.fields.dateTo') %></th>
+        <th><%= __('transit.fields.vehicle') %></th>
+        <th><%= __('transit.fields.driver') %></th>
+        <th><%= __('list.actions.title') %></th>
       </tr>
     </thead>
 
@@ -39,21 +39,21 @@
               <a
                 href="/transits/details/<%=transit._id%>"
                 class="list-actions-button-details"
-                >Szczegóły</a
+                ><%= __('list.actions.details') %></a
               >
             </li>
             <li>
               <a
                 href="/transits/edit/<%=transit._id%>"
                 class="list-actions-button-edit"
-                >Edytuj</a
+                ><%= __('list.actions.edit') %></a
               >
             </li>
             <li>
               <a
                 href="/transits/delete/<%=transit._id%>"
                 class="list-actions-button-delete"
-                >Usuń</a
+                ><%= __('list.actions.delete') %></a
               >
             </li>
           </ul>
@@ -64,7 +64,7 @@
   </table>
 
   <p class="button-add">
-    <a href="/transits/add"> Dodaj nowy przejazd </a>
+    <a href="/transits/add"> <%= __('transit.list.addNew') %> </a>
   </p>
 </main>
 <%- include("../../fragments/footer.ejs") %>
