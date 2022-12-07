@@ -1,6 +1,7 @@
 {
   "main-page": {
     "content": "Main Page",
+    "paragraphContent": "Web Transit Manager intended for QTransit Company",
     "header": "SignUp",
     "login": "login",
     "password": "password",

@@ -41,6 +41,22 @@ app.use(
   })
 );
 
+i18n.configure({
+  locales: ["pl", "en"],
+  directory: path.join(__dirname, "locales"),
+  objectNotation: true,
+  cookie: "acme-hr-lang",
+});
+
+app.use(i18n.init);
+
+app.use((req, res, next) => {
+  if (!res.locals.lang) {
+    const currentLang = req.cookies["acme-hr-lang"];
+    res.locals.lang = currentLang;
+  }
+  next();
+});
 app.use((req, res, next) => {
   const loggedUser = req.session.loggedUser;
   res.locals.loggedUser = loggedUser;
@@ -50,23 +66,7 @@ app.use((req, res, next) => {
   next();
 });
 
-i18n.configure({
-  locales: ["pl", "en"],
-  directory: path.join(__dirname, "locales"),
-  objectNotation: true,
-  cookie: "acme-hr-lang",
-});
-
 app.use("/", indexRouter);
-
-app.use((req, rest, next) => {
-  if (!res.locals.lang) {
-    const currentLang = req.cookies["acme-hr-lang"];
-    res.locals.lang = currentLang;
-  }
-  next();
-});
-
 app.use("/drivers", authUtils.permitAuthenticatedUser, driverRouter);
 app.use("/transits", authUtils.permitAuthenticatedUser, transitRouter);
 app.use("/vehicles", authUtils.permitAuthenticatedUser, vehicleRouter);

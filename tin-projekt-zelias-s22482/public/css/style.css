@@ -298,6 +298,25 @@ nav ul {
   margin-right: 50px;
 }
 
+.footerdiv {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+footer div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.footer {
+  text-align: center;
+  flex-direction: column;
+}
+
+footer ul li a.active {
+  text-decoration: underline;
+}
+
 nav ul li {
   margin: 0px;
   background-color: rgba(48, 48, 48, 0.959);
