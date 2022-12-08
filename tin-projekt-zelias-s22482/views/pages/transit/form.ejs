@@ -40,7 +40,7 @@
       <%= __('transit.fields.dateFrom') %>: <span class="symbol-required">*</span></label
     >
     <input class="<%= validationErrors.find(e => e.path.includes('dateFrom')) ?
-    'error-input' : '' %>" type="date" name="dateFrom" id="dateFrom" value="<%= transit.dateFrom ? transit.dateFrom.toISOString().split('T')[0] : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+    'error-input' : '' %>" type="date" name="dateFrom" id="dateFrom" value="<%= transit.dateFrom ? ((formMode == 'createNew') ?  transit.dateFrom : transit.dateFrom.toISOString().split('T')[0] ) : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorDateFrom" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('dateFrom'))) { %> <%=
         validationErrors.find(e => e.path.includes('dateFrom')).message %> <% }
@@ -49,7 +49,7 @@
 
     <label for="dateTo"> <%= __('transit.fields.dateTo') %>: </label>
     <input class="<%= validationErrors.find(e => e.path.includes('dateTo')) ?
-    'error-input' : '' %>" type="date" name="dateTo" id="dateTo" value="<%= transit.dateTo ? ((typeof transit.dateTo == 'undefined') ?  transit.dateTo : transit.dateTo.toISOString().split('T')[0] ) : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+    'error-input' : '' %>" type="date" name="dateTo" id="dateTo" value="<%= transit.dateTo ? ((formMode == 'createNew') ?  transit.dateTo : transit.dateTo.toISOString().split('T')[0] ) : '' %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
     <span id="errorDateTo" class="errors-text">
       <% if(validationErrors.find(e => e.path.includes('dateTo'))) { %> <%=
         validationErrors.find(e => e.path.includes('dateTo')).message %> <% }
