@@ -18,66 +18,38 @@ export default function DriverList() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Jan</td>
-            <td>Kowalski</td>
-            <td>1986</td>
-            <td>
-              <ul className="list-actions">
-                <li>
-                  <Link
-                    to="/drivers/details/1"
-                    className="list-actions-button-details">
-                    Szczegóły
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/drivers/edit/1"
-                    className="list-actions-button-edit">
-                    Edytuj
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/drivers/delete/1"
-                    className="list-actions-button-delete">
-                    Usuń
-                  </Link>
-                </li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>Adam</td>
-            <td>Nowak</td>
-            <td>123</td>
-            <td>
-              <ul className="list-actions">
-                <li>
-                  <Link
-                    to="/drivers/details/2"
-                    className="list-actions-button-details">
-                    Szczegóły
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/drivers/edit/2"
-                    className="list-actions-button-edit">
-                    Edytuj
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/drivers/edit/2"
-                    className="list-actions-button-delete">
-                    Usuń
-                  </Link>
-                </li>
-              </ul>
-            </td>
-          </tr>
+          {driverList.map((driver) => (
+            <tr key={driver._id}>
+              <td>{driver.firstName}</td>
+              <td>{driver.lastName}</td>
+              <td>{driver.birthdayYear}</td>
+              <td>
+                <ul className="list-actions">
+                  <li>
+                    <Link
+                      to={`/drivers/details/${driver._id}`}
+                      className="list-actions-button-details">
+                      Szczegóły
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to={`/drivers/edit/${driver._id}`}
+                      className="list-actions-button-edit">
+                      Edytuj
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to={`/drivers/delete/${driver._id}`}
+                      className="list-actions-button-delete">
+                      Usuń
+                    </Link>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <p className="section-buttons">
