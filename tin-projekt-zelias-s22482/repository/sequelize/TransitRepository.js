@@ -30,17 +30,24 @@ exports.getTransitById = (transitId) => {
 
 exports.createTransit = (data) => {
   return Transit.create({
-    dateFrom: data.dateFrom,
-    dateTo: data.dateTo,
+    dateFrom: data.dateFrom === "" ? null : data.dateFrom,
+    dateTo: data.dateTo === "" ? null: data.dateTo,
     startingLocalization: data.startingLocalization,
-    endingLocalization: data.endingLocalization,
+    endingLocalization: data.endingLocalization ,
     driverId: data.driverId,
     vehicleId: data.vehicleId,
   });
 };
 
 exports.updateTransit = (transitId, data) => {
-  return Transit.update(data, { where: { _id: transitId } });
+  return Transit.update({
+    dateFrom: data.dateFrom === "" ? null : data.dateFrom,
+    dateTo: data.dateTo === "" ? null: data.dateTo,
+    startingLocalization: data.startingLocalization,
+    endingLocalization: data.endingLocalization ,
+    driverId: data.driverId,
+    vehicleId: data.vehicleId,
+  }, { where: { _id: transitId } });
 };
 
 exports.deleteTransit = (transitId) => {
