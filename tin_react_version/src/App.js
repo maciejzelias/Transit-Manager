@@ -5,6 +5,9 @@ import Footer from "./components/fragments/Footer";
 import DriverList from "./components/driver/DriverList";
 import DriverDetails from "./components/driver/DriverDetails";
 import DriverForm from "./components/driver/DriverForm";
+import TransitList from "./components/transit/TransitList";
+import TransitDetails from "./components/transit/TransitDetails";
+import TransitForm from "./components/transit/TransitForm";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -19,7 +22,13 @@ function App() {
         <Route path="/drivers/add" element={<DriverForm />} />
         <Route path="/drivers/edit/:driverId" element={<DriverForm />} />
         <Route path="/drivers/details/:driverId" element={<DriverDetails />} />
-        <Route path="/transits" />
+        <Route path="/transits" element={<TransitList />} />
+        <Route path="/transits/add" element={<TransitForm />} />
+        <Route path="/transits/edit/:transitId" element={<TransitForm />} />
+        <Route
+          path="/transits/details/:transitId"
+          element={<TransitDetails />}
+        />
         <Route path="/vehicles" />
       </Routes>
       <Footer />
