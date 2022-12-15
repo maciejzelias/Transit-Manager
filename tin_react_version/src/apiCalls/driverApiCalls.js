@@ -1,7 +1,12 @@
-import { driverList, driverDetailsList } from "./driverApiMockData";
+import { driverDetailsList } from "./driverApiMockData";
+
+const driversBaseUrl = "http://localhost:3000/api/drivers";
 
 export const getDriversApiCall = () => {
-  return driverList;
+  const promise = fetch(driversBaseUrl, {
+    method: "GET",
+  });
+  return promise;
 };
 
 export const getDriverByIdCall = (driverId) => {
