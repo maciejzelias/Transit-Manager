@@ -1,5 +1,7 @@
-import { vehicleList } from "./vehicleApiMockData";
-
 export function getVehiclesApiCall() {
-  return vehicleList;
+  return "http://localhost:3000/api/vehicles";
+}
+
+export function getVehicleByIdApiCall(vehicleId) {
+  return `http://localhost:3000/api/vehicles/${vehicleId}`;
 }

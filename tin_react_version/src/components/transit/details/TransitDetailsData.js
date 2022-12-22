@@ -11,7 +11,7 @@ export default function TransitDetailsData(props) {
         Data od: {transit.dateFrom ? getFormattedDate(transit.dateFrom) : ""}{" "}
       </p>
       <p>Data od: {transit.dateTo ? getFormattedDate(transit.dateTo) : ""} </p>
-      {/* <p>
+      <p>
         Kierowca: {transit.driver.firstName}
         <span> </span>
         {transit.driver.lastName}
@@ -20,7 +20,7 @@ export default function TransitDetailsData(props) {
         Pojazd: {transit.vehicle.brandName}
         <span> </span>
         {transit.vehicle.productionYear}
-      </p> */}
+      </p>
     </Fragment>
   );
 }

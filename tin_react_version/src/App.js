@@ -8,6 +8,9 @@ import DriverForm from "./components/driver/DriverForm";
 import TransitList from "./components/transit/list/TransitList";
 import TransitDetails from "./components/transit/details/TransitDetails";
 import TransitForm from "./components/transit/TransitForm";
+import VehicleList from "./components/vehicle/list/VehicleList";
+import VehicleDetails from "./components/vehicle/details/VehicleDetails";
+import VehicleForm from "./components/vehicle/VehicleForm";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -29,7 +32,13 @@ function App() {
           path="/transits/details/:transitId"
           element={<TransitDetails />}
         />
-        <Route path="/vehicles" />
+        <Route path="/vehicles" element={<VehicleList />} />
+        <Route path="/vehicles/add" element={<VehicleForm />} />
+        <Route path="/vehicles/edit/:vehicleId" element={<VehicleForm />} />
+        <Route
+          path="/vehicles/details/:vehicleId"
+          element={<VehicleDetails />}
+        />
       </Routes>
       <Footer />
     </div>

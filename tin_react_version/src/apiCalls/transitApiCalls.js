@@ -3,5 +3,5 @@ export function getTransitsApiCall() {
 }
 
 export function getTransitByIdApiCall(transitId) {
-  return `http://localhost:3000/api/drivers/${transitId}`;
+  return `http://localhost:3000/api/transits/${transitId}`;
 }
