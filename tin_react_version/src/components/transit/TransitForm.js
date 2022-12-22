@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getDriversApiCall } from "../../apiCalls/driverApiCalls";
 import { getVehiclesApiCall } from "../../apiCalls/vehicleApiCalls";
 
 export default function TransitForm() {
-  const allDrivers = getDriversApiCall();
+  //const allDrivers = getDriversApiCall();
+  const allDrivers = [];
   const allVehicles = getVehiclesApiCall();
 
   return (

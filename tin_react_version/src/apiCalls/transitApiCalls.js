@@ -1,12 +1,7 @@
-import { transitDetailsList, transitList } from "./transitApiMockData";
-
 export function getTransitsApiCall() {
-  return transitList;
+  return "http://localhost:3000/api/transits";
 }
 
 export function getTransitByIdApiCall(transitId) {
-  const transit = transitDetailsList.find(
-    (transit) => transit._id === transitId
-  );
-  return transit;
+  return `http://localhost:3000/api/drivers/${transitId}`;
 }
