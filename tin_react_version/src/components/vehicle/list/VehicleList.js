@@ -1,34 +1,15 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { getVehiclesApiCall } from "../../../apiCalls/vehicleApiCalls";
 import VehicleListTable from "./VehicleListTable";
+import useFetchList from "../../../hooks/use-fetchList";
 
 export default function VehicleList() {
-  const [vehicles, setVehicles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const fetchVehicles = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch(getVehiclesApiCall());
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-      setVehicles(data);
-    } catch (err) {
-      setError(err.message);
-    }
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    fetchVehicles();
-  }, [fetchVehicles]);
+  const {
+    list: vehicles,
+    isLoading,
+    error,
+  } = useFetchList(getVehiclesApiCall());
 
   let content = <p> Found no vehicles</p>;
 

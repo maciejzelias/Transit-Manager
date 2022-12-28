@@ -1,36 +1,18 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { getVehicleByIdApiCall } from "../../../apiCalls/vehicleApiCalls";
 import VehicleDetailsData from "./VehicleDetailsData";
+import useFetchDetails from '../../../hooks/use-fetchDetails'
 
 export default function VehicleDetails() {
   let { vehicleId } = useParams();
   vehicleId = parseInt(vehicleId);
-  const [vehicle, setVehicle] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
 
-  const fetchVehicle = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch(getVehicleByIdApiCall(vehicleId));
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-      setVehicle(data);
-    } catch (err) {
-      setError(err.message);
-    }
-    setIsLoading(false);
-  }, [vehicleId]);
-
-  useEffect(() => {
-    fetchVehicle();
-  }, [fetchVehicle]);
+  const {
+    element: vehicle,
+    isLoading,
+    error,
+  } = useFetchDetails(getVehicleByIdApiCall(vehicleId));
 
   let content = <p> Couldnt fetch data of vehicle with id : {vehicleId}</p>;
 

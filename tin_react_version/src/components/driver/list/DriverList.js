@@ -1,35 +1,12 @@
-import React, { useCallback, useState, useEffect } from "react";
+import React from "react";
+import useFetchList from "../../../hooks/use-fetchList";
 import { Link } from "react-router-dom";
 
-import { getDriversApiUrl } from "../../../apiCalls/driverApiCalls";
+import { getDriversApiCall } from "../../../apiCalls/driverApiCalls";
 import DriverListTable from "./DriverListTable";
 
 function DriverList() {
-  const [drivers, setDrivers] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const fetchDrivers = useCallback(async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch(getDriversApiUrl());
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Something went wrong");
-      }
-      setDrivers(data);
-    } catch (err) {
-      setError(err.message);
-    }
-    setIsLoading(false);
-  }, []);
-
-  useEffect(() => {
-    fetchDrivers();
-  }, [fetchDrivers]);
+  const { list: drivers, isLoading, error } = useFetchList(getDriversApiCall());
 
   let content = <p> Found no drivers</p>;
 
