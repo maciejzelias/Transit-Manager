@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import formMode from "../../helpers/formHelper";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import useFetchDetails from "../../hooks/use-fetchDetails";
+import { getDriverByIdApiCall } from "../../apiCalls/driverApiCalls";
 
 export default function DriverForm() {
+  let { driverId } = useParams();
+  driverId = parseInt(driverId);
+
+  const currentFormMode = driverId ? formMode.EDIT : formMode.NEW;
+
+  const {
+    element: driver,
+    isLoading,
+    error,
+  } = useFetchDetails(getDriverByIdApiCall(driverId));
+
+  let content = <p> Couldnt fetch data of driver with id : {driverId}</p>;
+
+  if (driver) {
+    content = <DriverDetailsData driverData={driver} />;
+  }
+
+  if (error) {
+    content = <p> {error}</p>;
+  }
+
+  if (isLoading) {
+    content = <p>Loading data...</p>;
+  }
+
   return (
     <main>
       <h2>Nowy Kierowca</h2>
