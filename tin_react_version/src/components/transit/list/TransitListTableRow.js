@@ -7,7 +7,7 @@ export default function TransitListTableRow(props) {
   return (
     <tr>
       <td>{transit.endingLocalization}</td>
-      <td>{transit.dateFrom ? getFormattedDate(transit.dateFrom) : ""}</td>
+      <td>{getFormattedDate(transit.dateFrom)}</td>
       <td>{transit.dateTo ? getFormattedDate(transit.dateTo) : ""}</td>
       <td>
         {transit.driver.firstName}

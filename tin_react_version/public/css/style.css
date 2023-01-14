@@ -209,6 +209,10 @@ textarea {
   overflow: auto;
 }
 
+abbr {
+  text-decoration: none;
+}
+
 .form {
   display: grid;
   grid-template-columns: 150px 300px 1fr;
