@@ -1,0 +1,70 @@
+<%- include("../../fragments/header.ejs") %>
+
+<main>
+  <h2>Lista przejazdów</h2>
+  <table class="table-list">
+    <thead>
+      <tr>
+        <th>Do</th>
+        <th>Data Od</th>
+        <th>Data do</th>
+        <th>Pojazd</th>
+        <th>Kierowca</th>
+        <th>Akcje</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for (let transit of transits) { %>
+      <tr>
+        <td><%= transit.endingLocalization %></td>
+        <td><%= transit.dateFrom.toISOString().split('T')[0] %></td>
+        <td>
+          <%= transit.dateTo ? transit.dateTo.toISOString().split('T')[0] : ''
+          %>
+        </td>
+        <td>
+          <a href="/vehicles/details/<%= transit.vehicle._id %>">
+            <%= transit.vehicle.brandName %>
+          </a>
+        </td>
+        <td>
+          <a href="/drivers/details/<%= transit.driver._id %>">
+            <%= transit.driver.firstName %>
+          </a>
+        </td>
+        <td>
+          <ul class="list-actions">
+            <li>
+              <a
+                href="/transits/details/<%=transit._id%>"
+                class="list-actions-button-details"
+                >Szczegóły</a
+              >
+            </li>
+            <li>
+              <a
+                href="/transits/edit/<%=transit._id%>"
+                class="list-actions-button-edit"
+                >Edytuj</a
+              >
+            </li>
+            <li>
+              <a
+                href="/transits/delete/<%=transit._id%>"
+                class="list-actions-button-delete"
+                >Usuń</a
+              >
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <p class="button-add">
+    <a href="/transits/add"> Dodaj nowy przejazd </a>
+  </p>
+</main>
+<%- include("../../fragments/footer.ejs") %>

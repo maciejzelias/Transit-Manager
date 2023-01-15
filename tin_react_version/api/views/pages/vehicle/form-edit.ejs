@@ -1,0 +1,50 @@
+<%- include("../../fragments/header.ejs") %>
+
+<main>
+  <script
+    type="application/javascript"
+    src="/js/validationVehicleForm.js"></script>
+  <script type="application/javascript" src="/js/validationCommon.js"></script>
+  <h2>Edycja Pojazdu</h2>
+
+  <form class="form" novalidate onsubmit="return validateForm();">
+    <label for="brandName">
+      Marka: <span class="symbol-required">*</span></label
+    >
+    <input
+      type="text"
+      name="brandName"
+      id="brandName"
+      value="Mercedes"
+      required />
+    <span id="errorBrandName"></span>
+
+    <label for="ProductionYear">
+      Rok Produkcji: <span class="symbol-required">*</span></label
+    >
+    <input
+      type="number"
+      name="ProductionYear"
+      id="ProductionYear"
+      value="1998"
+      required />
+    <span id="errorProductionYear"></span>
+
+    <label for="SemitrailerSize"> Wielkość naczepy: </label>
+    <input
+      type="number"
+      name="SemitrailerSize"
+      id="SemitrailerSize"
+      value=""
+      min="1"
+      max="10" />
+    <span id="errorSemitrailerSize"></span>
+
+    <div class="form-buttons">
+      <p id="errorsSummary"></p>
+      <input type="submit" value="Akceptuj" class="form-button-submit" />
+      <a href="/vehicles" class="form-button-cancel">Anuluj</a>
+    </div>
+  </form>
+</main>
+<%- include("../../fragments/footer.ejs") %>
