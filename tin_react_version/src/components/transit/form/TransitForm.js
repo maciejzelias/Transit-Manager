@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetchList from "../../../hooks/use-fetchList";
 import { getDriversApiCall } from "../../../apiCalls/driverApiCalls";
 import formMode from "../../../helpers/formHelper";
 import { getVehiclesApiCall } from "../../../apiCalls/vehicleApiCalls";
-import {getTransitByIdApiCall,getTransitsApiCall} from '../../../apiCalls/transitApiCalls';
+import {
+  getTransitByIdApiCall,
+  getTransitsApiCall,
+} from "../../../apiCalls/transitApiCalls";
 import { getFormattedDate } from "../../../helpers/dateHelper";
 import {
   validateDateTo,
@@ -12,6 +15,7 @@ import {
 } from "../../../helpers/validationTransitForm";
 
 export default function TransitForm(props) {
+  const navigate = useNavigate();
   //fetching all drivers to to select from
   const {
     list: allDrivers,
@@ -110,7 +114,12 @@ export default function TransitForm(props) {
       response = await fetch(getTransitsApiCall(), {
         method: "POST",
         body: JSON.stringify({
-          //data
+          startingLocalization: startingLocalizationRef.current.value,
+          endingLocalization: endingLocalizationRef.current.value,
+          driverId: pickedDriver,
+          vehicleId: pickedVehicle,
+          dateFrom: dateFromRef.current.value,
+          dateTo: dateToRef.current.value ? dateToRef.current.value : null,
         }),
         headers: { "Content-Type": "application/json" },
       });
@@ -118,10 +127,59 @@ export default function TransitForm(props) {
       response = await fetch(getTransitByIdApiCall(transitId), {
         method: "PUT",
         body: JSON.stringify({
-          //data
+          startingLocalization: startingLocalizationRef.current.value,
+          endingLocalization: endingLocalizationRef.current.value,
+          driverId: pickedDriver,
+          vehicleId: pickedVehicle,
+          dateFrom: dateFromRef.current.value,
+          dateTo: dateToRef.current.value ? dateToRef.current.value : null,
         }),
         headers: { "Content-Type": "application/json" },
       });
+    }
+    if (
+      response.status === 201 ||
+      response.status === 200 ||
+      response.status === 500
+    ) {
+      data = await response.json();
+
+      if (!response.ok && response.status === 500) {
+        const errorsArray = data.validationErrors.reverse();
+        setStartingLocalizationError(null);
+        setEndingLocalizationError(null);
+        setDateFromError(null);
+        setDateToError(null);
+        setDriverError(null);
+        setVehicleError(null);
+        for (const index in errorsArray) {
+          const errorItem = errorsArray[index];
+          const errorMessage = errorItem.message;
+          const fieldName = errorItem.path;
+          switch (fieldName) {
+            case "startingLocalization":
+              setStartingLocalizationError(errorMessage);
+              break;
+            case "endingLocalization":
+              setEndingLocalizationError(errorMessage);
+              break;
+            case "dateFrom":
+              setDateFromError(errorMessage);
+              break;
+            case "dateTo":
+              setDateToError(errorMessage);
+              break;
+            case "driverId":
+              setDriverError(errorMessage);
+            case "vehicleId":
+              setVehicleError(errorMessage);
+            default:
+              break;
+          }
+        }
+      } else {
+        navigate("/transits", { replace: true });
+      }
     }
   };
 
@@ -261,7 +319,11 @@ export default function TransitForm(props) {
 
       <div className="form-buttons">
         <p id="errorsSummary" className="errors-text"></p>
-        <input className="form-button-submit" type="submit" value="Dodaj" />
+        <input
+          className="form-button-submit"
+          type="submit"
+          value={currentFormMode === formMode.NEW ? "Dodaj" : "Zaktualizuj"}
+        />
         <Link to="/transits" className="form-button-cancel">
           Anuluj
         </Link>

@@ -1,9 +1,14 @@
 import React, { useState, useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import formMode from "../../../helpers/formHelper";
 import { validateField } from "../../../helpers/validationVehicleForm";
+import {
+  getVehicleByIdApiCall,
+  getVehiclesApiCall,
+} from "../../../apiCalls/vehicleApiCalls";
 
 export default function VehicleForm(props) {
+  const navigate = useNavigate();
   const brandNameRef = useRef();
   const productionYearRef = useRef();
   const semitrailerSizeRef = useRef();
@@ -15,7 +20,7 @@ export default function VehicleForm(props) {
   let { vehicleId } = useParams();
   vehicleId = parseInt(vehicleId);
   const currentFormMode = vehicleId ? formMode.EDIT : formMode.NEW;
-  const formSubmission = (event) => {
+  const formSubmission = async (event) => {
     event.preventDefault();
 
     const brandNameErrorMessage = validateField(
@@ -30,15 +35,78 @@ export default function VehicleForm(props) {
       "semitrailerSize",
       semitrailerSizeRef.current.value
     );
+    // if (
+    //   brandNameErrorMessage ||
+    //   productionYearErrorMessage ||
+    //   semitrailerSizeErrorMessage
+    // ) {
+    //   setBrandNameError(brandNameErrorMessage);
+    //   setProductionYearError(productionYearErrorMessage);
+    //   setSemitrailerSizeError(semitrailerSizeErrorMessage);
+    //   return;
+    // }
+
+    let response;
+    let data;
+
+    if (currentFormMode === formMode.NEW) {
+      response = await fetch(getVehiclesApiCall(), {
+        method: "POST",
+        body: JSON.stringify({
+          brandName: brandNameRef.current.value,
+          productionYear: productionYearRef.current.value,
+          semitrailerSize: semitrailerSizeRef.current.value
+            ? semitrailerSizeRef.current.value
+            : null,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+    } else {
+      response = await fetch(getVehicleByIdApiCall(vehicleId), {
+        method: "PUT",
+        body: JSON.stringify({
+          brandName: brandNameRef.current.value,
+          productionYear: productionYearRef.current.value,
+          semitrailerSize: semitrailerSizeRef.current.value
+            ? semitrailerSizeRef.current.value
+            : null,
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+    }
     if (
-      brandNameErrorMessage ||
-      productionYearErrorMessage ||
-      semitrailerSizeErrorMessage
+      response.status === 201 ||
+      response.status === 200 ||
+      response.status === 500
     ) {
-      setBrandNameError(brandNameErrorMessage);
-      setProductionYearError(productionYearErrorMessage);
-      setSemitrailerSizeError(semitrailerSizeErrorMessage);
-      return;
+      data = await response.json();
+
+      if (!response.ok && response.status === 500) {
+        const errorsArray = data.validationErrors.reverse();
+        setBrandNameError(null);
+        setProductionYearError(null);
+        setSemitrailerSizeError(null);
+        for (const index in errorsArray) {
+          const errorItem = errorsArray[index];
+          const errorMessage = errorItem.message;
+          const fieldName = errorItem.path;
+          switch (fieldName) {
+            case "brandName":
+              setBrandNameError(errorMessage);
+              break;
+            case "productionYear":
+              setProductionYearError(errorMessage);
+              break;
+            case "semitrailerSize":
+              setSemitrailerSizeError(errorMessage);
+              break;
+            default:
+              break;
+          }
+        }
+      } else {
+        navigate("/vehicles", { replace: true });
+      }
     }
   };
   return (

@@ -81,8 +81,7 @@ export default function DriverForm(props) {
       data = await response.json();
       //server-side  validation
       if (!response.ok && response.status === 500) {
-        console.log("no jak to");
-        const errorsArray = data.validationErrors;
+        const errorsArray = data.validationErrors.reverse();
         setFirstNameError(null);
         setLastNameError(null);
         setBirthdayYearError(null);

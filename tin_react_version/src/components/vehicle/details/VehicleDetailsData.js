@@ -4,7 +4,8 @@ import VehicleDetailsDataRow from "./VehicleDetailsDataRow";
 export default function VehicleDetailsData(props) {
   let content = <p> Vehicle has no transits performed !</p>;
   const vehicle = props.vehicleData;
-  if (vehicle.transits.length > 0) {
+  const hasTransits = vehicle.transits.length > 0;
+  if (hasTransits) {
     content = (
       <tbody>
         {vehicle.transits.map((transit) => (
@@ -29,8 +30,9 @@ export default function VehicleDetailsData(props) {
             <th>Data do</th>
           </tr>
         </thead>
-        {content}
+        {hasTransits && content}
       </table>
+      {!hasTransits && content}
     </Fragment>
   );
 }
