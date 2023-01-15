@@ -1,0 +1,70 @@
+<%- include("../../fragments/header.ejs") %>
+
+<main>
+  <h2><%= __('transit.list.pageTitle') %></h2>
+  <table class="table-list">
+    <thead>
+      <tr>
+        <th><%= __('transit.fields.endingLocalization') %></th>
+        <th><%= __('transit.fields.dateFrom') %></th>
+        <th><%= __('transit.fields.dateTo') %></th>
+        <th><%= __('transit.fields.vehicle') %></th>
+        <th><%= __('transit.fields.driver') %></th>
+        <th><%= __('list.actions.title') %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for (let transit of transits) { %>
+      <tr>
+        <td><%= transit.endingLocalization %></td>
+        <td><%= transit.dateFrom.toISOString().split('T')[0] %></td>
+        <td>
+          <%= transit.dateTo ? transit.dateTo.toISOString().split('T')[0] : ''
+          %>
+        </td>
+        <td>
+          <a href="/vehicles/details/<%= transit.vehicle._id %>">
+            <%= transit.vehicle.brandName %>
+          </a>
+        </td>
+        <td>
+          <a href="/drivers/details/<%= transit.driver._id %>">
+            <%= transit.driver.firstName %>
+          </a>
+        </td>
+        <td>
+          <ul class="list-actions">
+            <li>
+              <a
+                href="/transits/details/<%=transit._id%>"
+                class="list-actions-button-details"
+                ><%= __('list.actions.details') %></a
+              >
+            </li>
+            <li>
+              <a
+                href="/transits/edit/<%=transit._id%>"
+                class="list-actions-button-edit"
+                ><%= __('list.actions.edit') %></a
+              >
+            </li>
+            <li>
+              <a
+                href="/transits/delete/<%=transit._id%>"
+                class="list-actions-button-delete"
+                ><%= __('list.actions.delete') %></a
+              >
+            </li>
+          </ul>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+  <p class="button-add">
+    <a href="/transits/add"> <%= __('transit.list.addNew') %> </a>
+  </p>
+</main>
+<%- include("../../fragments/footer.ejs") %>

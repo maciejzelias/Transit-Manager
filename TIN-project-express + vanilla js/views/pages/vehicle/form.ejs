@@ -1,0 +1,127 @@
+<%- include("../../fragments/header.ejs") %>
+
+<main>
+  <script
+    type="application/javascript"
+    src="/js/validationVehicleForm.js"
+  ></script>
+  <script type="application/javascript" src="/js/validationCommon.js"></script>
+  <h2><%= pageTitle%></h2>
+
+  <form class="form" method="post" action="<%=formAction%>" novalidate>
+    <input type="hidden" name="_id" id="_id" value="<%= vehicle._id %>" />
+
+    <label for="brandName">
+      <%= __('vehicle.fields.brandName') %>:
+      <span class="symbol-required">*</span></label
+    >
+    <input class="<%= validationErrors.find(e => e.path.includes('brandName')) ?
+    'error-input' : '' %>" type="text" name="brandName" id="brandName" value =
+    "<%= vehicle.brandName %>" <%= (formMode == 'showDetails') ? 'disabled' : ''
+    %> />
+    <span id="errorBrandName" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('brandName'))) { %> <%=
+      validationErrors.find(e => e.path.includes('brandName')).message %> <% }
+      %>
+    </span>
+
+    <label for="productionYear">
+      <%= __('vehicle.fields.productionYear') %>:
+      <span class="symbol-required">*</span></label
+    >
+    <input class="<%= validationErrors.find(e =>
+    e.path.includes('productionYear')) ? 'error-input' : '' %>" type="number"
+    name="productionYear" id="productionYear" value ="<%= vehicle.productionYear
+    %>" <%= (formMode == 'showDetails') ? 'disabled' : '' %> />
+    <span id="errorProductionYear" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('productionYear'))) { %>
+      <%= validationErrors.find(e => e.path.includes('productionYear')).message
+      %> <% } %>
+    </span>
+
+    <label for="semitrailerSize">
+      <%= __('vehicle.fields.semitrailerSize') %>:
+    </label>
+    <input class="<%= validationErrors.find(e =>
+    e.path.includes('semitrailerSize')) ? 'error-input' : '' %>" type="number"
+    name="semitrailerSize" id="semitrailerSize" value="<%=
+    vehicle.semitrailerSize ? vehicle.semitrailerSize : null %>" <%= (formMode
+    == 'showDetails') ? 'disabled' : '' %> />
+    <span id="errorSemitrailerSize" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('semitrailerSize'))) { %>
+      <%= validationErrors.find(e => e.path.includes('semitrailerSize')).message
+      %> <% } %>
+    </span>
+
+    <label for="registrationPlate">
+      <%= __('vehicle.fields.registrationPlate') %>:
+      <span class="symbol-required">*</span>
+    </label>
+    <input class="<%= validationErrors.find(e =>
+    e.path.includes('registrationPlate')) ? 'error-input' : '' %>" type="text"
+    name="registrationPlate" id="registrationPlate" value="<%=
+    vehicle.registrationPlate ? vehicle.registrationPlate : null %>" <%=
+    (formMode == 'showDetails') ? 'disabled' : '' %> />
+    <span id="errorRegistrationPlate" class="errors-text">
+      <% if(validationErrors.find(e => e.path.includes('registrationPlate'))) {
+      %> <%= validationErrors.find(e =>
+      e.path.includes('registrationPlate')).message %> <% } %>
+    </span>
+
+    <% if(formMode == 'showDetails'){ %>
+    <div class="form-buttons">
+      <a
+        href="/vehicles/edit/<%= vehicle._id %>"
+        class="list-actions-button-edit"
+        ><%= __('form.actions.edit') %></a
+      >
+    </div>
+
+    <% } %>
+    <div class="form-buttons">
+      <p id="errorsSummary"></p>
+      <% if(formMode != 'showDetails') { %>
+      <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+      <a class="form-button-cancel" href="/vehicles"
+        ><%= __('form.actions.cancel') %></a
+      >
+      <% } else { %>
+      <a class="form-button-cancel" href="/vehicles"
+        ><%= __('form.actions.return') %></a
+      >
+      <% } %>
+    </div>
+  </form>
+
+  <% if(formMode=='showDetails' || formMode=='edit') { %>
+  <h2><%= __('vehicle.form.transit') %></h2>
+  <table class="table-list">
+    <thead>
+      <tr>
+        <th><%= __('transit.fields.driver') %></th>
+        <th><%= __('driver.fields.birthdayYear') %></th>
+        <th><%= __('transit.fields.endingLocalization') %></th>
+        <th><%= __('transit.fields.dateFrom') %></th>
+        <th><%= __('transit.fields.dateTo') %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% for(let t of vehicle.transits) { %>
+      <tr>
+        <td>
+          <a href="/drivers/details/<%= t.driver._id %>">
+            <%= t.driver.firstName %>
+          </a>
+        </td>
+        <td><%= t.driver.birthdayYear %></td>
+        <td><%= t.endingLocalization %></td>
+        <td><%= t.dateFrom.toISOString().split('T')[0] %></td>
+        <td><%= t.dateTo ? t.dateTo.toISOString().split('T')[0] : '' %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <% } %>
+</main>
+<%- include("../../fragments/footer.ejs") %>

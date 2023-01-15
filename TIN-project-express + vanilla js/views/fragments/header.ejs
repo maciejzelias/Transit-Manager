@@ -1,0 +1,74 @@
+<html lang="pl-PL">
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <meta charset="UTF-8" />
+    <title>QTransit Manager Demo</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>QTransit Manager</h1>
+      <img src="/images/logo.png" alt=" QTransit Company Logo" />
+    </header>
+    <p>
+      <% if(!loggedUser) { %>
+      <div id="login" class="loginDiv">
+        <h5> <%= __('main-page.header') %> </h5>
+        <form method="post" action="login" novalidate>
+          <label for="loginName"> <%= __('main-page.login') %> : </label>
+          <input type="text" id="loginName" name="login" />
+  
+          <label for="loginPassword"> <%= __('main-page.password') %> : </label>
+          <input type="password" id="loginPassword" name="password" />
+  
+          <input type="submit" value="<%= __('main-page.log-in') %>" class="login-button" />
+          <span id="LoginError"> <%= loginError ? loginError : '' %></span>
+        </form>
+      </div>
+      <% } else { %>
+      <div class="logoutDiv">
+        <span>
+          <%= __('main-page.loggedIn') %><%= loggedUser.firstName + " " +
+          loggedUser.lastName %>
+        </span>
+        <a href="/logout"><%= __('main-page.log-out') %></a>
+      </div>
+      <% } %>
+    </p>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">
+            <%= __('nav.main-page') %>
+            </a
+          >
+        </li>
+        <% if(loggedUser) { %>
+        <li>
+          <a
+            href="/drivers"
+            class="<%= navLocation == 'driver' ? 'active' : ''%>">
+            <%= __('nav.drivers') %>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/transits"
+            class="<%= navLocation == 'transit' ? 'active' : ''%>">
+            <%= __('nav.transits') %>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/vehicles"
+            class="<%= navLocation == 'vehicle' ? 'active' : ''%>">
+            <%= __('nav.vehicles') %>
+          </a>
+        </li>
+        <% } %>
+      </ul>
+    </nav>
+  </body>
+</html>
