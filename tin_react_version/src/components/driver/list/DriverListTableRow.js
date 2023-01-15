@@ -1,8 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getDriverByIdApiCall } from "../../../apiCalls/driverApiCalls";
 
 export default function DriverListTableRow(props) {
+  const navigate = useNavigate();
   const driver = props.driverData;
+
+  const handleDelete = async () => {
+    await fetch(getDriverByIdApiCall(driver._id), {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    navigate(0);
+  };
   return (
     <tr>
       <td>{driver.firstName}</td>
@@ -25,11 +35,11 @@ export default function DriverListTableRow(props) {
             </Link>
           </li>
           <li>
-            <Link
-              to={`/drivers/delete/${driver._id}`}
-              className="list-actions-button-delete">
+            <button
+              className="list-actions-button-delete"
+              onClick={handleDelete}>
               Usuń
-            </Link>
+            </button>
           </li>
         </ul>
       </td>

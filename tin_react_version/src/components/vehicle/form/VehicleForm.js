@@ -1,21 +1,45 @@
 import React, { useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import formMode from "../../../helpers/formHelper";
+import { validateField } from "../../../helpers/validationVehicleForm";
 
 export default function VehicleForm(props) {
   const brandNameRef = useRef();
   const productionYearRef = useRef();
   const semitrailerSizeRef = useRef();
 
-  const [brandNameError, seBranNameError] = useState(null);
+  const [brandNameError, setBrandNameError] = useState(null);
   const [productionYearError, setProductionYearError] = useState(null);
   const [semitrailerSizeError, setSemitrailerSizeError] = useState(null);
 
-  let { vehicleId } = useParams;
+  let { vehicleId } = useParams();
   vehicleId = parseInt(vehicleId);
   const currentFormMode = vehicleId ? formMode.EDIT : formMode.NEW;
   const formSubmission = (event) => {
     event.preventDefault();
+
+    const brandNameErrorMessage = validateField(
+      "brandName",
+      brandNameRef.current.value
+    );
+    const productionYearErrorMessage = validateField(
+      "productionYear",
+      productionYearRef.current.value
+    );
+    const semitrailerSizeErrorMessage = validateField(
+      "semitrailerSize",
+      semitrailerSizeRef.current.value
+    );
+    if (
+      brandNameErrorMessage ||
+      productionYearErrorMessage ||
+      semitrailerSizeErrorMessage
+    ) {
+      setBrandNameError(brandNameErrorMessage);
+      setProductionYearError(productionYearErrorMessage);
+      setSemitrailerSizeError(semitrailerSizeErrorMessage);
+      return;
+    }
   };
   return (
     <form className="form" onSubmit={formSubmission}>
@@ -63,7 +87,11 @@ export default function VehicleForm(props) {
 
       <div className="form-buttons">
         <p id="errorsSummary" className="errors-text"></p>
-        <input className="form-button-submit" type="submit" value="Dodaj" />
+        <input
+          className="form-button-submit"
+          type="submit"
+          value={currentFormMode === formMode.NEW ? "Dodaj" : "Zaktualizuj"}
+        />
         <Link to="/vehicles" className="form-button-cancel">
           Anuluj
         </Link>

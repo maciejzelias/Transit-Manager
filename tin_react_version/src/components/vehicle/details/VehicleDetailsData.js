@@ -18,7 +18,6 @@ export default function VehicleDetailsData(props) {
       <p>Marka: {vehicle.brandName}</p>
       <p>Rok Produkcji: {vehicle.productionYear} </p>
       <p>Wielkośc naczepy: {vehicle.semitrailerSize} </p>
-      <p>Rejestracja: {vehicle.registrationPlate}</p>
       <h2>Szczegóły Przejazdów</h2>
       <table className="table-list">
         <thead>

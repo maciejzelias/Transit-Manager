@@ -1,14 +1,3 @@
-function resetErrors(inputs, errorsTexts, errorInfo) {
-  for (let i = 0; i < inputs.length; i++) {
-    inputs[i].classList.remove("error-input");
-  }
-
-  for (let i = 0; i < errorsTexts.length; i++) {
-    errorsTexts[i].innerText = "";
-  }
-  errorInfo.innerText = "";
-}
-
 export function checkRequired(value) {
   if (!value) {
     return false;
@@ -18,7 +7,7 @@ export function checkRequired(value) {
   return value !== "";
 }
 
-function checkRange(value, min, max) {
+export function checkRange(value, min, max) {
   if (!value) {
     return false;
   }
@@ -42,7 +31,7 @@ export function checkTextLengthRange(value, min, max) {
   return true;
 }
 
-function CheckYear(value) {
+export function CheckYear(value) {
   if (!value) return false;
   value = value.toString().trim();
   const date = new Date();
@@ -53,7 +42,7 @@ function CheckYear(value) {
   return true;
 }
 
-function CheckVehicleYear(value) {
+export function CheckVehicleYear(value) {
   if (!value) return false;
   value = value.toString().trim();
   const date = new Date();
@@ -68,7 +57,7 @@ function CheckVehicleYear(value) {
   return true;
 }
 
-function checkDate(value) {
+export function checkDate(value) {
   if (!value) {
     return false;
   }
@@ -76,7 +65,7 @@ function checkDate(value) {
   return pattern.test(value);
 }
 
-function checkDateIsAfter(value, compareTo) {
+export function checkDateIsAfter(value, compareTo) {
   if (!value) {
     return false;
   }

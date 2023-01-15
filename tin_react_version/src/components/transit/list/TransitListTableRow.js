@@ -1,9 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getFormattedDate } from "../../../helpers/dateHelper";
+import { getTransitByIdApiCall } from "../../../apiCalls/transitApiCalls";
 
 export default function TransitListTableRow(props) {
+  const navigate = useNavigate();
   const transit = props.transitData;
+
+  const handleDelete = async () => {
+    await fetch(getTransitByIdApiCall(transit._id), {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    navigate(0);
+  };
+
   return (
     <tr>
       <td>{transit.endingLocalization}</td>
@@ -36,11 +47,11 @@ export default function TransitListTableRow(props) {
             </Link>
           </li>
           <li>
-            <Link
-              to={`/transits/delete/${transit._id}`}
+            <button
+              onClick={handleDelete}
               className="list-actions-button-delete">
               Usuń
-            </Link>
+            </button>
           </li>
         </ul>
       </td>

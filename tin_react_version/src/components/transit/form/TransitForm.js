@@ -4,7 +4,12 @@ import useFetchList from "../../../hooks/use-fetchList";
 import { getDriversApiCall } from "../../../apiCalls/driverApiCalls";
 import formMode from "../../../helpers/formHelper";
 import { getVehiclesApiCall } from "../../../apiCalls/vehicleApiCalls";
+import {getTransitByIdApiCall,getTransitsApiCall} from '../../../apiCalls/transitApiCalls';
 import { getFormattedDate } from "../../../helpers/dateHelper";
+import {
+  validateDateTo,
+  validateField,
+} from "../../../helpers/validationTransitForm";
 
 export default function TransitForm(props) {
   //fetching all drivers to to select from
@@ -57,8 +62,67 @@ export default function TransitForm(props) {
     setPickedVehicle(event.target.value);
   };
 
-  const formSubmission = (event) => {
+  const formSubmission = async (event) => {
     event.preventDefault();
+
+    //client-side validation
+    const startLocErrorMessage = validateField(
+      "startingLocalization",
+      startingLocalizationRef.current.value
+    );
+    const endingLocErrorMessage = validateField(
+      "endingLocalization",
+      endingLocalizationRef.current.value
+    );
+    const driverErrorMessage = validateField("driverId", pickedDriver);
+    const vehicleErrorMessage = validateField("vehicleId", pickedVehicle);
+    const dateFromErrorMessage = validateField(
+      "dateFrom",
+      dateFromRef.current.value
+    );
+    const dateToErrorMessage = validateDateTo(
+      dateFromRef.current.value,
+      dateToRef.current.value
+    );
+
+    if (
+      startLocErrorMessage ||
+      endingLocErrorMessage ||
+      driverErrorMessage ||
+      vehicleErrorMessage ||
+      dateFromErrorMessage ||
+      dateToErrorMessage
+    ) {
+      setStartingLocalizationError(startLocErrorMessage);
+      setEndingLocalizationError(endingLocErrorMessage);
+      setDriverError(driverErrorMessage);
+      setVehicleError(vehicleErrorMessage);
+      setDateFromError(dateFromErrorMessage);
+      setDateToError(dateToErrorMessage);
+      return;
+    }
+
+    //performing http requests
+
+    let response;
+    let data;
+    if (currentFormMode === formMode.NEW) {
+      response = await fetch(getTransitsApiCall(), {
+        method: "POST",
+        body: JSON.stringify({
+          //data
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+    } else {
+      response = await fetch(getTransitByIdApiCall(transitId), {
+        method: "PUT",
+        body: JSON.stringify({
+          //data
+        }),
+        headers: { "Content-Type": "application/json" },
+      });
+    }
   };
 
   //setting condtionally content of select if there were problems with fetching
@@ -174,7 +238,9 @@ export default function TransitForm(props) {
         }
         id="dateTo"
       />
-      <span id="errorDateTo" className="errors-text"></span>
+      <span id="errorDateTo" className="errors-text">
+        {dateToError}
+      </span>
 
       <label htmlFor="driver">
         Kierowca:

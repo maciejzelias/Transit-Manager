@@ -1,8 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getVehicleByIdApiCall } from "../../../apiCalls/vehicleApiCalls";
 
 export default function VehicleListTableRow(props) {
+  const navigate = useNavigate();
   const vehicle = props.vehicleData;
+
+  const handleDelete = async () => {
+    await fetch(getVehicleByIdApiCall(vehicle._id), {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    navigate(0);
+  };
+
   return (
     <tr>
       <td>{vehicle.brandName}</td>
@@ -25,11 +36,11 @@ export default function VehicleListTableRow(props) {
             </Link>
           </li>
           <li>
-            <Link
-              to={`/vehicles/delete/${vehicle._id}`}
+            <button
+              onClick={handleDelete}
               className="list-actions-button-delete">
               Usuń
-            </Link>
+            </button>
           </li>
         </ul>
       </td>
