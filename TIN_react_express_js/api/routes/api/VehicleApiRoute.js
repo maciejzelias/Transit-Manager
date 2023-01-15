@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const vehicleApiController = require("../../api/VehicleAPI");
+const vehicleApiController = require("../../apiControllers/VehicleAPI");
 
 router.get("/", vehicleApiController.getVehicles);
 router.get("/:vehicleId", vehicleApiController.getVehicleById);

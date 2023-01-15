@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const transitApiController = require("../../api/TransitAPI");
+const transitApiController = require("../../apiControllers/TransitAPI");
 
 router.get("/", transitApiController.getTransits);
 router.get("/:transitId", transitApiController.getTransitById);
