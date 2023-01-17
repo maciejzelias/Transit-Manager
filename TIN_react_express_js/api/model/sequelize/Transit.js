@@ -13,10 +13,10 @@ const Transit = sequelize.define("Transit", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       isDate: {
-        msg: "pole nie jest datą !",
+        msg: "notDate",
       },
     },
   },
@@ -25,12 +25,8 @@ const Transit = sequelize.define("Transit", {
     allowNull: true,
     validate: {
       isDate: {
-        msg: "pole nie jest datą !",
+        msg: "notDate",
       },
-      // isAfter: {
-      //   args:  ,
-      //   msg: "Data powinna byc pozniejsza niz data od !"
-      // }
     },
   },
   startingLocalization: {
@@ -38,11 +34,11 @@ const Transit = sequelize.define("Transit", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       len: {
         args: [2, 60],
-        msg: "Pole powinno zawierać od 2 do 60 znaków",
+        msg: "len_2_60",
       },
     },
   },
@@ -51,11 +47,11 @@ const Transit = sequelize.define("Transit", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       len: {
         args: [2, 60],
-        msg: "Pole powinno zawierać od 2 do 60 znaków",
+        msg: "len_2_60",
       },
     },
   },
@@ -64,7 +60,7 @@ const Transit = sequelize.define("Transit", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
     },
   },
@@ -73,7 +69,7 @@ const Transit = sequelize.define("Transit", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
     },
   },

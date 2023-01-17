@@ -13,11 +13,11 @@ const Vehicle = sequelize.define("Vehicle", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       len: {
         args: [2, 60],
-        msg: "Pole powinno zawierać od 2 do 60 znaków",
+        msg: "len_2_60",
       },
     },
   },
@@ -26,26 +26,22 @@ const Vehicle = sequelize.define("Vehicle", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       len: {
         args: [4, 4],
-        msg: "Pole powinno zawierać 4 znaki",
+        msg: "len_4",
       },
       isDecimal: {
-        msg: "Pole powinno być liczbą",
+        msg: "isDecimal",
       },
       max: {
         args: new Date().getFullYear(),
-        msg:
-          "Pole powinno byc w przedziale 1950 - " +
-          `${new Date().getFullYear()}`,
+        msg: "date_between_1900_actual",
       },
       min: {
-        args: 1950,
-        msg:
-          "Pole powinno byc w przedziale 1950 - " +
-          +`${new Date().getFullYear()}`,
+        args: 1900,
+        msg: "date_between_1900_actual",
       },
     },
   },
@@ -55,15 +51,15 @@ const Vehicle = sequelize.define("Vehicle", {
     validate: {
       len: {
         args: [1, 1],
-        msg: "Pole powinno zawierać 1 znak",
+        msg: "len_1",
       },
       max: {
         args: 5,
-        msg: "Pole powinno być w przediale 0-5",
+        msg: "between_1_5",
       },
       min: {
         args: -1,
-        msg: "Pole powinno być w przedziale 0-5",
+        msg: "between_1_5",
       },
     },
   },

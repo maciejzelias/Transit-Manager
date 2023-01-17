@@ -13,11 +13,11 @@ const Driver = sequelize.define("Driver", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       len: {
         args: [2, 60],
-        msg: "Pole powinno zawierać od 2 do 60 znaków",
+        msg: "len_2_60",
       },
     },
   },
@@ -26,11 +26,11 @@ const Driver = sequelize.define("Driver", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       len: {
         args: [2, 60],
-        msg: "Pole powinno zawierać od 2 do 60 znaków",
+        msg: "len_2_60",
       },
     },
   },
@@ -39,22 +39,22 @@ const Driver = sequelize.define("Driver", {
     allowNull: false,
     validate: {
       notEmpty: {
-        msg: "Pole jest wymagane",
+        msg: "nonEmpty",
       },
       len: {
         args: [4, 4],
-        msg: "Pole powinno zawierać 4 znaki",
+        msg: "len_4",
       },
       isDecimal: {
-        msg: "Pole powinno być liczbą",
+        msg: "isDecimal",
       },
       max: {
         args: new Date().getFullYear(),
-        msg: "Rok urodzenia powinien byc mniejszy niz aktualny !!!",
+        msg: "date_between_1900_actual",
       },
       min: {
-        args: 1901,
-        msg: "Rok urodzenia powinien byc wiekszy niz 1900",
+        args: 1900,
+        msg: "date_between_1900_actual",
       },
     },
   },
