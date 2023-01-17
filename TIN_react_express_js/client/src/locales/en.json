@@ -9,6 +9,17 @@
     "loggedIn": "You are logged as : ",
     "log-out": "Log out"
   },
+  "validation": {
+    "nonEmpty": "The field is required",
+    "notDate": "The field is not date !",
+    "len_2_60": "The field should contain 2-60 characters",
+    "len_4": "The field should contain 4 characters",
+    "len_1": "The field should contain 1 character",
+    "between_1_5": "Written value should be between 1 and 5",
+    "isDecimal": "The field is not decimal",
+    "dateGreaterThan": "Date should be after date from value !",
+    "date_between_1900_actual": "Written year value should be smaller than actual year and greater than 1900 !"
+  },
   "nav": {
     "main-page": "Main Page",
     "drivers": "Drivers",
@@ -42,6 +53,12 @@
       "addNew": "Add new driver",
       "noData": "No drivers in database",
       "pageTitle": "List of drivers"
+    },
+    "fetching": {
+      "foundNoDrivers": "Found no drivers!",
+      "fetchDataError": "Couldn't fetch driver data with id :",
+      "loadingData": "Loading Data...",
+      "noTransits": "Driver has no transits performed !"
     },
     "form": {
       "transit": "History of transits",
@@ -81,6 +98,11 @@
       "noData": "No transits in database",
       "pageTitle": "List of transits"
     },
+    "fetching": {
+      "foundNoTransits": "Found no transits!",
+      "fetchDataError": "Couldn't fetch transit data with id :",
+      "loadingData": "Loading Data..."
+    },
     "form": {
       "choose": {
         "drivers": "-- Choose driver --",
@@ -119,6 +141,12 @@
       "addNew": "Add new vehicle",
       "noData": "No vehicles in database",
       "pageTitle": "List of vehicles"
+    },
+    "fetching": {
+      "foundNoVehicles": "Found no vehicles !",
+      "fetchDataError": "Couldn't fetch vehicle data with id: ",
+      "loadingData": "Loading Data...",
+      "noTransits": "Vehicle has no transits performed !"
     },
     "form": {
       "transit": "History of transits",

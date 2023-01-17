@@ -39,6 +39,9 @@ export function CheckYear(value) {
   if (value > currYear) {
     return false;
   }
+  if (value < 1900) {
+    return false;
+  }
   return true;
 }
 
@@ -50,7 +53,7 @@ export function CheckVehicleYear(value) {
   if (value > currYear) {
     return false;
   }
-  if (value < 1950) {
+  if (value < 1900) {
     return false;
   }
 

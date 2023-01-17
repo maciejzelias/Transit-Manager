@@ -2,12 +2,13 @@ import React, { useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import useFetchList from "../../../hooks/use-fetchList";
 import { getDriversApiCall } from "../../../apiCalls/driverApiCalls";
-import formMode from "../../../helpers/formHelper";
+import formMode, { getValidationMessage } from "../../../helpers/formHelper";
 import { getVehiclesApiCall } from "../../../apiCalls/vehicleApiCalls";
 import {
   getTransitByIdApiCall,
   getTransitsApiCall,
 } from "../../../apiCalls/transitApiCalls";
+import { useTranslation } from "react-i18next";
 import { getFormattedDate } from "../../../helpers/dateHelper";
 import {
   validateDateTo,
@@ -15,6 +16,7 @@ import {
 } from "../../../helpers/validationTransitForm";
 
 export default function TransitForm(props) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   //fetching all drivers to to select from
   const {
@@ -97,13 +99,13 @@ export default function TransitForm(props) {
       dateFromErrorMessage ||
       dateToErrorMessage
     ) {
-      setStartingLocalizationError(startLocErrorMessage);
-      setEndingLocalizationError(endingLocErrorMessage);
-      setDriverError(driverErrorMessage);
-      setVehicleError(vehicleErrorMessage);
-      setDateFromError(dateFromErrorMessage);
-      setDateToError(dateToErrorMessage);
-      return;
+      // setStartingLocalizationError(startLocErrorMessage);
+      // setEndingLocalizationError(endingLocErrorMessage);
+      // setDriverError(driverErrorMessage);
+      // setVehicleError(vehicleErrorMessage);
+      // setDateFromError(dateFromErrorMessage);
+      // setDateToError(dateToErrorMessage);
+      // return;
     }
 
     //performing http requests
@@ -158,21 +160,23 @@ export default function TransitForm(props) {
           const fieldName = errorItem.path;
           switch (fieldName) {
             case "startingLocalization":
-              setStartingLocalizationError(errorMessage);
+              setStartingLocalizationError(getValidationMessage(errorMessage));
               break;
             case "endingLocalization":
-              setEndingLocalizationError(errorMessage);
+              setEndingLocalizationError(getValidationMessage(errorMessage));
               break;
             case "dateFrom":
-              setDateFromError(errorMessage);
+              setDateFromError(getValidationMessage(errorMessage));
               break;
             case "dateTo":
-              setDateToError(errorMessage);
+              setDateToError(getValidationMessage(errorMessage));
               break;
             case "driverId":
-              setDriverError(errorMessage);
+              setDriverError(getValidationMessage(errorMessage));
+              break;
             case "vehicleId":
-              setVehicleError(errorMessage);
+              setVehicleError(getValidationMessage(errorMessage));
+              break;
             default:
               break;
           }
@@ -196,7 +200,7 @@ export default function TransitForm(props) {
         value={pickedDriver}
         onChange={handleChangeDriver}
         required>
-        <option value="">--- Wybierz kierowce ---</option>
+        <option value="">{t("transit.form.choose.drivers")}</option>
         {allDrivers.map((driver) => (
           <option
             key={driver._id}
@@ -220,7 +224,7 @@ export default function TransitForm(props) {
         value={pickedVehicle}
         onChange={handleChangeVehicle}
         required>
-        <option>--- Wybierz pojazd ---</option>
+        <option>{t("transit.form.choose.vehicles")}</option>
         {allVehicles.map((vehicle) => (
           <option
             key={vehicle._id}
@@ -234,13 +238,13 @@ export default function TransitForm(props) {
     vehicleContent = <p>{getVehiclesError}</p>;
   }
   if (vehiclesLoading) {
-    vehicleContent = <p>Loading data...</p>;
+    vehicleContent = <p>{t("transit.fetching.loadingData")}</p>;
   }
 
   return (
     <form className="form" onSubmit={formSubmission}>
       <label htmlFor="startingLocalization">
-        Z:
+        {t("transit.fields.startingLocalization")}:
         <span className="symbol-required">*</span>
       </label>
       <input
@@ -248,7 +252,6 @@ export default function TransitForm(props) {
         ref={startingLocalizationRef}
         type="text"
         id="startingLocalization"
-        placeholder="2-60 znaków"
         defaultValue={props.transit.startingLocalization}
       />
       <span id="errorStartingLocalization" className="errors-text">
@@ -256,7 +259,7 @@ export default function TransitForm(props) {
       </span>
 
       <label htmlFor="endingLocalization">
-        Nazwisko:
+        {t("transit.fields.endingLocalization")}:
         <span className="symbol-required">*</span>
       </label>
       <input
@@ -264,7 +267,6 @@ export default function TransitForm(props) {
         ref={endingLocalizationRef}
         type="text"
         id="endingLocalization"
-        placeholder="2-60 znaków"
         defaultValue={props.transit.endingLocalization}
       />
       <span id="errorEndingLocalization" className="errors-text">
@@ -272,7 +274,7 @@ export default function TransitForm(props) {
       </span>
 
       <label htmlFor="dateFrom">
-        Data od:
+        {t("transit.fields.dateFrom")}:
         <span className="symbol-required">*</span>
       </label>
       <input
@@ -286,7 +288,7 @@ export default function TransitForm(props) {
         {dateFromError}
       </span>
 
-      <label htmlFor="dateTo">Data do:</label>
+      <label htmlFor="dateTo">{t("transit.fields.dateTo")}:</label>
       <input
         className={`${dateToError ? "error-input" : ""}`}
         ref={dateToRef}
@@ -301,16 +303,14 @@ export default function TransitForm(props) {
       </span>
 
       <label htmlFor="driver">
-        Kierowca:
-        <span className="symbol-required">*</span>
+        {t("transit.fields.driver")}:<span className="symbol-required">*</span>
       </label>
       {driverContent}
       <span id="errorDriver" className="errors-text">
         {driverError}
       </span>
       <label htmlFor="vehicle">
-        Pojazd:
-        <span className="symbol-required">*</span>
+        {t("transit.fields.vehicle")}:<span className="symbol-required">*</span>
       </label>
       {vehicleContent}
       <span id="errorVehicle" className="errors-text">
@@ -322,10 +322,14 @@ export default function TransitForm(props) {
         <input
           className="form-button-submit"
           type="submit"
-          value={currentFormMode === formMode.NEW ? "Dodaj" : "Zaktualizuj"}
+          value={
+            currentFormMode === formMode.NEW
+              ? t("transit.form.add.btnLabel")
+              : t("transit.form.edit.btnLabel")
+          }
         />
         <Link to="/transits" className="form-button-cancel">
-          Anuluj
+          {t("form.actions.cancel")}
         </Link>
       </div>
     </form>

@@ -3,8 +3,10 @@ import { getVehicleByIdApiCall } from "../../../apiCalls/vehicleApiCalls";
 import useFetchDetails from "../../../hooks/use-fetchDetails";
 import { useParams } from "react-router-dom";
 import VehicleForm from "./VehicleForm";
+import { useTranslation } from "react-i18next";
 
 export default function VehicleEdit() {
+  const { t } = useTranslation();
   let { vehicleId } = useParams();
   vehicleId = parseInt(vehicleId);
 
@@ -23,12 +25,12 @@ export default function VehicleEdit() {
     content = <p> {error}</p>;
   }
   if (isLoading) {
-    content = <p>Loading data...</p>;
+    content = <p>{t("vehicle.fetching.loadingData")}</p>;
   }
 
   return (
     <main>
-      <h2>Edycja pojazdu</h2>
+      <h2>{t("vehicle.form.edit.pageTitle")}</h2>
       <section>{content}</section>
     </main>
   );

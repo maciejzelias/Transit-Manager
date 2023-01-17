@@ -65,6 +65,13 @@ a {
   display: inline-block;
 }
 
+nav ul li.lang {
+  margin-left: auto;
+}
+nav ul li button {
+  background-color: transparent;
+}
+
 .list-actions-button-details,
 .list-actions-button-edit,
 .list-actions-button-delete,

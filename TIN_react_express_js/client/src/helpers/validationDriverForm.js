@@ -3,21 +3,22 @@ import {
   checkTextLengthRange,
   CheckYear,
 } from "./validationCommon";
+import { t } from "i18next";
 
 export const validateField = (fieldName, fieldValue) => {
   let errorMessage = "";
   if (fieldName === "firstName" || fieldName === "lastName") {
     if (!checkRequired(fieldValue)) {
-      errorMessage = "Pole jest wymagane";
+      errorMessage = t("validation.nonEmpty");
     } else if (!checkTextLengthRange(fieldValue, 2, 60)) {
-      errorMessage = "Pole powinno zawierać od 2 do 60 znaków";
+      errorMessage = t("validation.len_2_60");
     }
   }
   if (fieldName === "birthdayYear") {
     if (!checkRequired(fieldValue)) {
-      errorMessage = "Pole jest wymagane";
+      errorMessage = t("validation.nonEmpty");
     } else if (!CheckYear(fieldValue)) {
-      errorMessage = "Pole powinno zawierać rok mniejszy niz aktualny";
+      errorMessage = t("validation.date_between_1900_actual");
     }
   }
   return errorMessage;

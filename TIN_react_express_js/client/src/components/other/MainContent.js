@@ -1,10 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function MainContent() {
+  const { t } = useTranslation();
   return (
     <main>
-      <h2>Strona główna</h2>
-      <p>Webowy manager....</p>
+      <h2>{t("main-page.content")}</h2>
+      <p>{t("main-page.paragraphContent")}</p>
     </main>
   );
 }

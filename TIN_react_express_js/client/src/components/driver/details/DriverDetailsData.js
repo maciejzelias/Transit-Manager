@@ -1,8 +1,10 @@
 import React, { Fragment } from "react";
 import DriverDetailsDataRow from "./DriverDetailsDataRow";
+import { useTranslation } from "react-i18next";
 
 export default function DriverDetailsData(props) {
-  let content = <p> Driver has no transits performed !</p>;
+  const { t } = useTranslation();
+  let content = <p> {t("driver.fetching.noTransits")}</p>;
   const driver = props.driverData;
   if (driver.transits.length > 0) {
     content = (
@@ -15,18 +17,24 @@ export default function DriverDetailsData(props) {
   }
   return (
     <Fragment>
-      <p>Imię: {driver.firstName}</p>
-      <p>Nazwisko: {driver.lastName} </p>
-      <p>Rok urodzenia: {driver.birthdayYear} </p>
-      <h2>Szczegóły Przejazdów</h2>
+      <p>
+        {t("driver.fields.firstName")}: {driver.firstName}
+      </p>
+      <p>
+        {t("driver.fields.lastName")}: {driver.lastName}{" "}
+      </p>
+      <p>
+        {t("driver.fields.birthdayYear")}: {driver.birthdayYear}{" "}
+      </p>
+      <h2>{t("driver.form.transit")}</h2>
       <table className="table-list">
         <thead>
           <tr>
-            <th>Marka</th>
-            <th>Rok Produkcji</th>
-            <th>Do</th>
-            <th>Data od</th>
-            <th>Data do</th>
+            <th>{t("vehicle.fields.brandName")}</th>
+            <th>{t("vehicle.fields.productionYear")}</th>
+            <th>{t("transit.fields.endingLocalization")}</th>
+            <th>{t("transit.fields.dateFrom")}</th>
+            <th>{t("transit.fields.dateTo")}</th>
           </tr>
         </thead>
         {content}

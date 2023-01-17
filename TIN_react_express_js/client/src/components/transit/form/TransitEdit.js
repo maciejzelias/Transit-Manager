@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import useFetchDetails from "../../../hooks/use-fetchDetails";
 import { getTransitByIdApiCall } from "../../../apiCalls/transitApiCalls";
 import TransitForm from "./TransitForm";
+import { useTranslation } from "react-i18next";
 
 export default function TransitEdit() {
+  const { t } = useTranslation();
   let { transitId } = useParams();
   transitId = parseInt(transitId);
 
@@ -23,12 +25,12 @@ export default function TransitEdit() {
     content = <p> {error}</p>;
   }
   if (isLoading) {
-    content = <p>Loading data...</p>;
+    content = <p>{t("transit.fetching.loadingData")}</p>;
   }
 
   return (
     <main>
-      <h2>Edycja przejazdu</h2>
+      <h2>{t("transit.form.edit.pageTitle")}</h2>
       <section>{content}</section>
     </main>
   );

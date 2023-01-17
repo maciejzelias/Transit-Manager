@@ -1,13 +1,15 @@
 import React, { useState, useRef } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import formMode from "../../../helpers/formHelper";
+import formMode, { getValidationMessage } from "../../../helpers/formHelper";
 import { validateField } from "../../../helpers/validationVehicleForm";
 import {
   getVehicleByIdApiCall,
   getVehiclesApiCall,
 } from "../../../apiCalls/vehicleApiCalls";
+import { useTranslation } from "react-i18next";
 
 export default function VehicleForm(props) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const brandNameRef = useRef();
   const productionYearRef = useRef();
@@ -35,16 +37,16 @@ export default function VehicleForm(props) {
       "semitrailerSize",
       semitrailerSizeRef.current.value
     );
-    // if (
-    //   brandNameErrorMessage ||
-    //   productionYearErrorMessage ||
-    //   semitrailerSizeErrorMessage
-    // ) {
-    //   setBrandNameError(brandNameErrorMessage);
-    //   setProductionYearError(productionYearErrorMessage);
-    //   setSemitrailerSizeError(semitrailerSizeErrorMessage);
-    //   return;
-    // }
+    if (
+      brandNameErrorMessage ||
+      productionYearErrorMessage ||
+      semitrailerSizeErrorMessage
+    ) {
+      setBrandNameError(brandNameErrorMessage);
+      setProductionYearError(productionYearErrorMessage);
+      setSemitrailerSizeError(semitrailerSizeErrorMessage);
+      return;
+    }
 
     let response;
     let data;
@@ -92,13 +94,13 @@ export default function VehicleForm(props) {
           const fieldName = errorItem.path;
           switch (fieldName) {
             case "brandName":
-              setBrandNameError(errorMessage);
+              setBrandNameError(getValidationMessage(errorMessage));
               break;
             case "productionYear":
-              setProductionYearError(errorMessage);
+              setProductionYearError(getValidationMessage(errorMessage));
               break;
             case "semitrailerSize":
-              setSemitrailerSizeError(errorMessage);
+              setSemitrailerSizeError(getValidationMessage(errorMessage));
               break;
             default:
               break;
@@ -112,7 +114,7 @@ export default function VehicleForm(props) {
   return (
     <form className="form" onSubmit={formSubmission}>
       <label htmlFor="brandName">
-        Marka:
+        {t("vehicle.fields.brandName")}:
         <span className="symbol-required">*</span>
       </label>
       <input
@@ -127,7 +129,7 @@ export default function VehicleForm(props) {
       </span>
 
       <label htmlFor="productionYear">
-        Rok Produkcji:
+        {t("vehicle.fields.productionYear")}:
         <span className="symbol-required">*</span>
       </label>
       <input
@@ -141,7 +143,9 @@ export default function VehicleForm(props) {
         {productionYearError}
       </span>
 
-      <label htmlFor="semitrailerSize">Wielkosc naczepy:</label>
+      <label htmlFor="semitrailerSize">
+        {t("vehicle.fields.semitrailerSize")}:
+      </label>
       <input
         className={`${semitrailerSizeError ? "error-input" : ""}`}
         ref={semitrailerSizeRef}
@@ -158,10 +162,14 @@ export default function VehicleForm(props) {
         <input
           className="form-button-submit"
           type="submit"
-          value={currentFormMode === formMode.NEW ? "Dodaj" : "Zaktualizuj"}
+          value={
+            currentFormMode === formMode.NEW
+              ? t("vehicle.form.add.btnLabel")
+              : t("vehicle.form.edit.btnLabel")
+          }
         />
         <Link to="/vehicles" className="form-button-cancel">
-          Anuluj
+          {t("form.actions.cancel")}
         </Link>
       </div>
     </form>

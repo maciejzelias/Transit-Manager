@@ -3,8 +3,10 @@ import { useParams } from "react-router-dom";
 import useFetchDetails from "../../../hooks/use-fetchDetails";
 import { getDriverByIdApiCall } from "../../../apiCalls/driverApiCalls";
 import DriverForm from "./DriverForm";
+import { useTranslation } from "react-i18next";
 
 export default function DriverEdit() {
+  const { t } = useTranslation();
   let { driverId } = useParams();
   driverId = parseInt(driverId);
 
@@ -22,12 +24,12 @@ export default function DriverEdit() {
     content = <p> {error}</p>;
   }
   if (isLoading) {
-    content = <p>Loading data...</p>;
+    content = <p>{t("driver.fetching.loadingData")}</p>;
   }
 
   return (
     <main>
-      <h2>Edycja kierowcy</h2>
+      <h2>{t("driver.form.edit.pageTitle")}</h2>
       <section>{content}</section>
     </main>
   );

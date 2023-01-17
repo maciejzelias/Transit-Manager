@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import formMode from "../../../helpers/formHelper";
+import formMode, { getValidationMessage } from "../../../helpers/formHelper";
+import { useTranslation } from "react-i18next";
 import {
   getDriversApiCall,
   getDriverByIdApiCall,
@@ -8,6 +9,7 @@ import {
 import { validateField } from "../../../helpers/validationDriverForm";
 
 export default function DriverForm(props) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -91,13 +93,13 @@ export default function DriverForm(props) {
           const fieldName = errorItem.path;
           switch (fieldName) {
             case "firstName":
-              setFirstNameError(errorMessage);
+              setFirstNameError(getValidationMessage(errorMessage));
               break;
             case "lastName":
-              setLastNameError(errorMessage);
+              setLastNameError(getValidationMessage(errorMessage));
               break;
             case "birthdayYear":
-              setBirthdayYearError(errorMessage);
+              setBirthdayYearError(getValidationMessage(errorMessage));
               break;
             default:
               break;
@@ -112,7 +114,7 @@ export default function DriverForm(props) {
   return (
     <form className="form" onSubmit={formSubmission}>
       <label htmlFor="firstName">
-        Imię:
+        {t("driver.fields.firstName")}:
         <span className="symbol-required">*</span>
       </label>
       <input
@@ -121,22 +123,19 @@ export default function DriverForm(props) {
         defaultValue={props.driver.firstName}
         type="text"
         id="firstName"
-        placeholder="2-60 znaków"
       />
       <span id="errorFirstName" className="errors-text">
         {firstNameError}
       </span>
 
       <label htmlFor="lastName">
-        Nazwisko:
-        <span className="symbol-required">*</span>
+        {t("driver.fields.lastName")}:<span className="symbol-required">*</span>
       </label>
       <input
         className={`${lastNameError ? "error-input" : ""} `}
         ref={lastNameRef}
         type="text"
         id="lastName"
-        placeholder="2-60 znaków"
         defaultValue={props.driver.lastName}
       />
       <span id="errorLastName" className="errors-text">
@@ -144,7 +143,7 @@ export default function DriverForm(props) {
       </span>
 
       <label htmlFor="birthdayYear">
-        Rok urodzenia:
+        {t("driver.fields.birthdayYear")}:
         <span className="symbol-required">*</span>
       </label>
       <input
@@ -163,10 +162,14 @@ export default function DriverForm(props) {
         <input
           className="form-button-submit"
           type="submit"
-          value={currentFormMode === formMode.NEW ? "Dodaj" : "Zaktualizuj"}
+          value={
+            currentFormMode === formMode.NEW
+              ? t("driver.form.add.btnLabel")
+              : t("driver.form.edit.btnLabel")
+          }
         />
         <Link to="/drivers" className="form-button-cancel">
-          Anuluj
+          {t("form.actions.cancel")}
         </Link>
       </div>
     </form>

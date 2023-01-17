@@ -1,23 +1,34 @@
 import React, { Fragment } from "react";
 import { getFormattedDate } from "../../../helpers/dateHelper";
+import { useTranslation } from "react-i18next";
 
 export default function TransitDetailsData(props) {
+  const { t } = useTranslation();
   const transit = props.transitData;
   return (
     <Fragment>
-      <p>Z: {transit.startingLocalization}</p>
-      <p>Do: {transit.endingLocalization} </p>
       <p>
-        Data od: {transit.dateFrom ? getFormattedDate(transit.dateFrom) : ""}{" "}
+        {t("transit.fields.startingLocalization")}:{" "}
+        {transit.startingLocalization}
       </p>
-      <p>Data od: {transit.dateTo ? getFormattedDate(transit.dateTo) : ""} </p>
       <p>
-        Kierowca: {transit.driver.firstName}
+        {t("transit.fields.endingLocalization")}: {transit.endingLocalization}{" "}
+      </p>
+      <p>
+        {t("transit.fields.dateFrom")}:{" "}
+        {transit.dateFrom ? getFormattedDate(transit.dateFrom) : ""}{" "}
+      </p>
+      <p>
+        {t("transit.fields.dateTo")}:{" "}
+        {transit.dateTo ? getFormattedDate(transit.dateTo) : ""}{" "}
+      </p>
+      <p>
+        {t("transit.fields.driver")}: {transit.driver.firstName}
         <span> </span>
         {transit.driver.lastName}
       </p>
       <p>
-        Pojazd: {transit.vehicle.brandName}
+        {t("transit.fields.vehicle")}: {transit.vehicle.brandName}
         <span> </span>
         {transit.vehicle.productionYear}
       </p>

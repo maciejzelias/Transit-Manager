@@ -1,21 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function Navigation() {
+  const { t } = useTranslation();
   return (
     <nav>
       <ul>
         <li>
-          <Link to="/">Strona główna</Link>
+          <Link to="/">{t("nav.main-page")}</Link>
         </li>
         <li>
-          <Link to="/drivers">Kierowcy</Link>
+          <Link to="/drivers">{t("nav.drivers")}</Link>
         </li>
         <li>
-          <Link to="/transits">Przejazdy</Link>
+          <Link to="/transits">{t("nav.transits")}</Link>
         </li>
         <li>
-          <Link to="/vehicles">Pojazdy</Link>
+          <Link to="/vehicles">{t("nav.vehicles")}</Link>
         </li>
       </ul>
     </nav>

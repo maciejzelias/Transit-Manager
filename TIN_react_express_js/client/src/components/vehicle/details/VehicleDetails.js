@@ -2,9 +2,11 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { getVehicleByIdApiCall } from "../../../apiCalls/vehicleApiCalls";
 import VehicleDetailsData from "./VehicleDetailsData";
-import useFetchDetails from '../../../hooks/use-fetchDetails'
+import useFetchDetails from "../../../hooks/use-fetchDetails";
+import { useTranslation } from "react-i18next";
 
 export default function VehicleDetails() {
+  const { t } = useTranslation();
   let { vehicleId } = useParams();
   vehicleId = parseInt(vehicleId);
 
@@ -14,7 +16,12 @@ export default function VehicleDetails() {
     error,
   } = useFetchDetails(getVehicleByIdApiCall(vehicleId));
 
-  let content = <p> Couldnt fetch data of vehicle with id : {vehicleId}</p>;
+  let content = (
+    <p>
+      {" "}
+      {t("vehicle.fetching.fetchDataError")} {vehicleId}
+    </p>
+  );
 
   if (vehicle) {
     content = <VehicleDetailsData vehicleData={vehicle} />;
@@ -24,16 +31,16 @@ export default function VehicleDetails() {
     content = <p> {error}</p>;
   }
   if (isLoading) {
-    content = <p>Loading data...</p>;
+    content = <p>{t("vehicle.fetching.loadingData")}</p>;
   }
 
   return (
     <main>
-      <h2>Szczegóły pojazdu</h2>
+      <h2>{t("vehicle.form.details.pageTitle")}</h2>
       <section>{content}</section>
       <p className="section-buttons">
         <Link to="/vehicles" className="form-button-cancel">
-          Powrót
+          {t("form.actions.return")}
         </Link>
       </p>
     </main>

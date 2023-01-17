@@ -1,147 +1,174 @@
 {
-	"main-page": {
-		"content": "Strona główna",
-		"paragraphContent": "Webowy manager przejazdów firmy QTransit",
-		"header": "Logowanie",
-		"login": "login",
-		"password": "hasło",
-		"log-in": "Zaloguj się",
-		"loggedIn": "Jesteś zalogowany jako : ",
-		"log-out": "Wyloguj się"
-	},
-	"nav": {
-		"main-page": "Strona główna",
-		"drivers": "Kierowcy",
-		"transits": "Przejazdy",
-		"vehicles": "Pojazdy"
-	},
-	"list": {
-		"actions": {
-			"title": "Akcje",
-			"details": "Szczegóły",
-			"edit": "Edytuj",
-			"delete": "Usuń"
-		}
-	},
-	"form": {
-		"actions": {
-			"return": "Powrót",
-			"edit": "Edytuj",
-			"cancel": "Anuluj"
-		},
-		"transit": "form.transit"
-	},
-	"driver": {
-		"fields": {
-			"firstName": "Imię",
-			"lastName": "Naziwsko",
-			"birthdayYear": "Rok urodzenia",
-			"login": "login uzytkownika"
-		},
-		"list": {
-			"title": "Kierowcy",
-			"addNew": "Dodaj nowego kierowce",
-			"noData": "Brak kierowców w bazie",
-			"pageTitle": "Lista kierowców"
-		},
-		"form": {
-			"transit": "Historia przejazdów",
-			"add": {
-				"pageTitle": "Dodanie kierowcy",
-				"btnLabel": "Dodaj kierowce",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie dodano kierowce"
-				}
-			},
-			"edit": {
-				"pageTitle": "Edycja kierowcy",
-				"btnLabel": "Zapisz zmiany",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie zaktualizowano kierowce"
-				}
-			},
-			"details": {
-				"pageTitle": "Szczegóły kierowcy"
-			}
-		}
-	},
-	"transit": {
-		"fields": {
-			"startingLocalization": "Z",
-			"endingLocalization": "Do",
-			"dateFrom": "Data od",
-			"dateTo": "Data do",
-			"vehicle": "Pojazd",
-			"driver": "Kierowca"
-		},
-		"list": {
-			"title": "Przejazdy",
-			"addNew": "Dodaj nowy przejazd",
-			"noData": "Brak przejazdów w bazie",
-			"pageTitle": "Lista przejazdów"
-		},
-		"form": {
-			"choose": {
-				"drivers": "-- wybierz kierowce --",
-				"vehicles": "-- wybierz pojazd --"
-			},
-			"add": {
-				"pageTitle": "Dodanie przejazdu",
-				"btnLabel": "Dodaj przejazd",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie dodano przejazd"
-				}
-			},
-			"edit": {
-				"pageTitle": "Edycja przejazdu",
-				"btnLabel": "Zapisz zmiany",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie zaktualizowano przejazd"
-				}
-			},
-			"details": {
-				"pageTitle": "Szczegóły przejazdu"
-			}
-		}
-	},
-	"vehicle": {
-		"fields": {
-			"brandName": "Marka",
-			"productionYear": "Rok produkcji",
-			"semitrailerSize": "Wielkość naczepy",
-			"registrationPlate": "Rejestracja"
-		},
-		"list": {
-			"title": "Pojazdy",
-			"addNew": "Dodaj nowy pojazd",
-			"noData": "Brak pojazdów w bazie",
-			"pageTitle": "Lista pojazdów"
-		},
-		"form": {
-			"transit": "Historia przejazdów",
-			"add": {
-				"pageTitle": "Dodanie pojazdu",
-				"btnLabel": "Dodaj pojazd",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie dodano pojazd"
-				}
-			},
-			"edit": {
-				"pageTitle": "Edycja pojazdu",
-				"btnLabel": "Zapisz zmiany",
-				"confirm": {
-					"header": "Potwierdzenie operacji",
-					"text": "Pomyślnie zaktualizowano pojazd"
-				}
-			},
-			"details": {
-				"pageTitle": "Szczegóły pojazdu"
-			}
-		}
-	}
+  "main-page": {
+    "content": "Strona główna",
+    "paragraphContent": "Webowy manager przejazdów firmy QTransit",
+    "header": "Logowanie",
+    "login": "login",
+    "password": "hasło",
+    "log-in": "Zaloguj się",
+    "loggedIn": "Jesteś zalogowany jako : ",
+    "log-out": "Wyloguj się"
+  },
+  "validation": {
+    "nonEmpty": "Pole jest wymagane",
+    "notDate": "Pole nie jest data!",
+    "len_2_60": "Pole powinno zawierac od 2 do 60 znakow",
+    "len_4": "Pole powinno zawierac 4 znaki",
+    "len_1": "Pole powinno zawierac 1 znak",
+    "between_1_5": "Podana liczba powinna byc w przedziale 1-5",
+    "isDecimal": "Pole nie jest liczba!",
+    "dateGreaterThan": "Data powinna być późniejsza niz data od",
+    "date_between_1900_actual": "Podany rok powinien byc mniejszy niz aktualny i wiekszy niz 1900 !"
+  },
+  "nav": {
+    "main-page": "Strona główna",
+    "drivers": "Kierowcy",
+    "transits": "Przejazdy",
+    "vehicles": "Pojazdy"
+  },
+  "list": {
+    "actions": {
+      "title": "Akcje",
+      "details": "Szczegóły",
+      "edit": "Edytuj",
+      "delete": "Usuń"
+    }
+  },
+  "form": {
+    "actions": {
+      "return": "Powrót",
+      "edit": "Edytuj",
+      "cancel": "Anuluj"
+    }
+  },
+  "driver": {
+    "fields": {
+      "firstName": "Imię",
+      "lastName": "Naziwsko",
+      "birthdayYear": "Rok urodzenia",
+      "login": "login uzytkownika"
+    },
+    "list": {
+      "title": "Kierowcy",
+      "addNew": "Dodaj nowego kierowce",
+      "noData": "Brak kierowców w bazie",
+      "pageTitle": "Lista kierowców"
+    },
+    "fetching": {
+      "foundNoDrivers": "Nie znaleziono zadnych kierowcow !",
+      "fetchDataError": "Nie udało się wczytać danych kierowcy z id :",
+      "loadingData": "Wczytywanie danych...",
+      "noTransits": "Kierowca nie przeprowadził zadnych przejazdów !"
+    },
+    "form": {
+      "transit": "Historia przejazdów",
+      "add": {
+        "pageTitle": "Dodanie kierowcy",
+        "btnLabel": "Dodaj kierowce",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie dodano kierowce"
+        }
+      },
+      "edit": {
+        "pageTitle": "Edycja kierowcy",
+        "btnLabel": "Zapisz zmiany",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie zaktualizowano kierowce"
+        }
+      },
+      "details": {
+        "pageTitle": "Szczegóły kierowcy"
+      }
+    }
+  },
+  "transit": {
+    "fields": {
+      "startingLocalization": "Z",
+      "endingLocalization": "Do",
+      "dateFrom": "Data od",
+      "dateTo": "Data do",
+      "vehicle": "Pojazd",
+      "driver": "Kierowca"
+    },
+    "list": {
+      "title": "Przejazdy",
+      "addNew": "Dodaj nowy przejazd",
+      "noData": "Brak przejazdów w bazie",
+      "pageTitle": "Lista przejazdów"
+    },
+    "fetching": {
+      "foundNoTransits": "Nie znaleziono zadnych przejazdow!",
+      "fetchDataError": "Nie udalo sie wczytac danych przejazdu o id :",
+      "loadingData": "Wczytywanie danych..."
+    },
+    "form": {
+      "choose": {
+        "drivers": "-- wybierz kierowce --",
+        "vehicles": "-- wybierz pojazd --"
+      },
+      "add": {
+        "pageTitle": "Dodanie przejazdu",
+        "btnLabel": "Dodaj przejazd",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie dodano przejazd"
+        }
+      },
+      "edit": {
+        "pageTitle": "Edycja przejazdu",
+        "btnLabel": "Zapisz zmiany",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie zaktualizowano przejazd"
+        }
+      },
+      "details": {
+        "pageTitle": "Szczegóły przejazdu"
+      }
+    }
+  },
+  "vehicle": {
+    "fields": {
+      "brandName": "Marka",
+      "productionYear": "Rok produkcji",
+      "semitrailerSize": "Wielkość naczepy",
+      "registrationPlate": "Rejestracja"
+    },
+    "list": {
+      "title": "Pojazdy",
+      "addNew": "Dodaj nowy pojazd",
+      "noData": "Brak pojazdów w bazie",
+      "pageTitle": "Lista pojazdów"
+    },
+    "fetching": {
+      "foundNoVehicles": "Nie znaleziono zadnych pojazdow !",
+      "fetchDataError": "Nie udało się wczytać danych pojazdu z id :",
+      "loadingData": "Wczytywanie danych...",
+      "noTransits": "Pojazd nie brał udziału w zadnych przejazdach  !"
+    },
+    "form": {
+      "transit": "Historia przejazdów",
+      "add": {
+        "pageTitle": "Dodanie pojazdu",
+        "btnLabel": "Dodaj pojazd",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie dodano pojazd"
+        }
+      },
+      "edit": {
+        "pageTitle": "Edycja pojazdu",
+        "btnLabel": "Zapisz zmiany",
+        "confirm": {
+          "header": "Potwierdzenie operacji",
+          "text": "Pomyślnie zaktualizowano pojazd"
+        }
+      },
+      "details": {
+        "pageTitle": "Szczegóły pojazdu"
+      }
+    }
+  }
 }

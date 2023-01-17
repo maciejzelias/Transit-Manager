@@ -4,14 +4,15 @@ import {
   checkRequired,
   checkTextLengthRange,
 } from "./validationCommon";
+import { t } from "i18next";
 
 export const validateDateTo = (dateFrom, dateTo) => {
   let errorMessage = "";
   if (checkRequired(dateTo.toString())) {
     if (!checkDate(dateTo)) {
-      errorMessage = "Zły format daty";
+      errorMessage = t("validation.notDate");
     } else if (!checkDateIsAfter(dateTo, dateFrom)) {
-      errorMessage = "Data powinna być późniejsza niz data od";
+      errorMessage = t("validation.dateGreaterThan");
     }
   }
   return errorMessage;
@@ -25,22 +26,22 @@ export const validateField = (fieldName, fieldValue) => {
     fieldName === "endingLocalization"
   ) {
     if (!checkRequired(fieldValue)) {
-      errorMessage = "Pole jest wymagane";
+      errorMessage = t("validation.nonEmpty");
     } else if (!checkTextLengthRange(fieldValue, 2, 60)) {
-      errorMessage = "Pole powinno zawierać od 2 do 60 znaków";
+      errorMessage = t("validation.len_2_60");
     }
   }
   if (fieldName === "vehicleId" || fieldName === "driverId") {
     if (!checkRequired(fieldValue)) {
-      errorMessage = "Pole jest wymagane";
+      errorMessage = t("validation.nonEmpty");
     }
   }
 
   if (fieldName === "dateFrom") {
     if (!checkRequired(fieldValue.toString())) {
-      errorMessage = "Pole jest wymagane";
+      errorMessage = t("validation.nonEmpty");
     } else if (!checkDate(fieldValue)) {
-      errorMessage = "Zły format daty";
+      errorMessage = t("validation.notDate");
     }
   }
 

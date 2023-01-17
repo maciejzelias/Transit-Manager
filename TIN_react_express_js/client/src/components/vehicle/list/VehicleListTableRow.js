@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getVehicleByIdApiCall } from "../../../apiCalls/vehicleApiCalls";
 
 export default function VehicleListTableRow(props) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const vehicle = props.vehicleData;
 
@@ -25,21 +27,21 @@ export default function VehicleListTableRow(props) {
             <Link
               to={`/vehicles/details/${vehicle._id}`}
               className="list-actions-button-details">
-              Szczegóły
+              {t("list.actions.details")}
             </Link>
           </li>
           <li>
             <Link
               to={`/vehicles/edit/${vehicle._id}`}
               className="list-actions-button-edit">
-              Edytuj
+              {t("list.actions.edit")}
             </Link>
           </li>
           <li>
             <button
               onClick={handleDelete}
               className="list-actions-button-delete">
-              Usuń
+              {t("list.actions.delete")}
             </button>
           </li>
         </ul>
