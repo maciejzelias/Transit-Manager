@@ -31,6 +31,12 @@ exports.createDriver = (newDriverData) => {
   });
 };
 
+exports.findByLogin = (login) => {
+  return Driver.findOne({
+    where: { login: login },
+  });
+};
+
 exports.updateDriver = (driverId, driverData) => {
   const firstName = driverData.firstName;
   const lastName = driverData.lastName;

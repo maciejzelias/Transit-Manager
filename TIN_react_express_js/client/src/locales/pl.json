@@ -2,9 +2,11 @@
   "main-page": {
     "content": "Strona główna",
     "paragraphContent": "Webowy manager przejazdów firmy QTransit",
+    "auth_not_valid" : "Nieprawidłowy login lub hasło",
     "header": "Logowanie",
-    "login": "login",
-    "password": "hasło",
+    "login": "Login",
+    "password": "Hasło",
+    "noPermission" : "Musisz byc zalogowanym aby moc uzywac tych akcji !",
     "log-in": "Zaloguj się",
     "loggedIn": "Jesteś zalogowany jako : ",
     "log-out": "Wyloguj się"

@@ -2,9 +2,11 @@
   "main-page": {
     "content": "Main Page",
     "paragraphContent": "Web Transit Manager intended for QTransit Company",
+    "auth_not_valid" : "Incorrect login or password",
     "header": "SignUp",
-    "login": "login",
-    "password": "password",
+    "login": "Login",
+    "password": "Password",
+    "noPermission" : "You need to be logged in to access these actions !",
     "log-in": "Log In",
     "loggedIn": "You are logged as : ",
     "log-out": "Log out"

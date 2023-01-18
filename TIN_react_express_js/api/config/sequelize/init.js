@@ -4,6 +4,9 @@ const Driver = require("../../model/sequelize/Driver");
 const Transit = require("../../model/sequelize/Transit");
 const Vehicle = require("../../model/sequelize/Vehicle");
 
+const authUtil = require("../../util/authUtil");
+const passHash = authUtil.hashPassword("12345");
+
 module.exports = () => {
   Driver.hasMany(Transit, {
     as: "transits",
@@ -39,9 +42,27 @@ module.exports = () => {
     .then((drivers) => {
       if (!drivers || drivers.length == 0) {
         return Driver.bulkCreate([
-          { firstName: "Michal", lastName: "Jarosz", birthdayYear: 1996 },
-          { firstName: "Jakub", lastName: "Mazur", birthdayYear: 2002 },
-          { firstName: "Jan", lastName: "Kowalski", birthdayYear: 1986 },
+          {
+            firstName: "Michal",
+            lastName: "Jarosz",
+            birthdayYear: 1996,
+            login: "michaljarosz11",
+            password: passHash,
+          },
+          {
+            firstName: "Jakub",
+            lastName: "Mazur",
+            birthdayYear: 2002,
+            login: "jakubmazur02",
+            password: passHash,
+          },
+          {
+            firstName: "Jan",
+            lastName: "Kowalski",
+            birthdayYear: 1986,
+            login: "jankow86",
+            password: passHash,
+          },
         ]).then(() => {
           return Driver.findAll();
         });

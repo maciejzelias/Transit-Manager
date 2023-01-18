@@ -6,6 +6,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
+const authApiRouter = require("./routes/api/AuthApiRoute");
 const driverApiRouter = require("./routes/api/DriverApiRoute");
 const transitApiRouter = require("./routes/api/TransitApiRoute");
 const vehicleApiRouter = require("./routes/api/VehicleApiRoute");
@@ -28,8 +29,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
-
 app.use("/", indexRouter);
+app.use("/api/auth", authApiRouter);
 app.use("/api/drivers", driverApiRouter);
 app.use("/api/transits", transitApiRouter);
 app.use("/api/vehicles", vehicleApiRouter);
